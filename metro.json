@@ -1,0 +1,2784 @@
+{
+  "meta": {
+    "version": "2026.11.08.3",
+    "last_verified": "2026-11-08",
+    "built": "2026-11-08",
+    "disclaimer": "Unofficial. Not affiliated with Maha Metro or PMRDA. Verify fares and timings at the station."
+  },
+  "operators": {
+    "mahametro": {
+      "name": "Maha Metro (Maharashtra Metro Rail Corporation Ltd)",
+      "lines": [
+        "purple",
+        "aqua"
+      ],
+      "website": "https://www.punemetrorail.org/",
+      "helpline": "18002705501",
+      "ticketing": {
+        "official_app_android": "https://play.google.com/store/apps/details?id=org.mahametro.punemobileapp",
+        "official_app_ios": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648",
+        "whatsapp": "https://wa.me/9420101990",
+        "ondc_apps": [
+          "Paytm",
+          "Uber"
+        ]
+      },
+      "fare_rule": {
+        "type": "station_matrix",
+        "currency": "INR",
+        "min_fare": 10,
+        "max_fare": 35,
+        "source": "mahametro_fare_page",
+        "verified": true,
+        "note": "Station-to-station fares from the official fare chart."
+      },
+      "discounts": [
+        {
+          "name": "One Pune NCMC RuPay card",
+          "percent": 10,
+          "source": "mahametro_home",
+          "verified": true
+        },
+        {
+          "name": "One Pune Vidyarthi Pass",
+          "percent": 30,
+          "source": "mahametro_home",
+          "verified": true
+        }
+      ]
+    },
+    "puneri_metro": {
+      "name": "Puneri Metro (Pune IT City Metro Rail Ltd, PMRDA concession; operated by Keolis)",
+      "lines": [
+        "pink"
+      ],
+      "website": "https://punerimetro.in/",
+      "helpline": null,
+      "ticketing": {
+        "official_app_android": "https://play.google.com/store/apps/details?id=org.mahametro.punemobileapp",
+        "official_app_ios": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648",
+        "whatsapp": null,
+        "ondc_apps": []
+      },
+      "fare_rule": {
+        "type": "station_matrix",
+        "currency": "INR",
+        "min_fare": 12,
+        "max_fare": 62,
+        "source": "puneri_fare_table",
+        "verified": true,
+        "note": "Station-to-station fares from the official fare table."
+      },
+      "discounts": []
+    }
+  },
+  "lines": [
+    {
+      "id": "purple",
+      "name": "Purple Line",
+      "number": 1,
+      "operator": "mahametro",
+      "colour": "#7B2D8E",
+      "colour_note": "approximate; finalise in design",
+      "stations": [
+        {
+          "station": "pcmc",
+          "status": "open"
+        },
+        {
+          "station": "sant_tukaram_nagar",
+          "status": "open"
+        },
+        {
+          "station": "nashik_phata",
+          "status": "open"
+        },
+        {
+          "station": "kasarwadi",
+          "status": "open"
+        },
+        {
+          "station": "phugewadi",
+          "status": "open"
+        },
+        {
+          "station": "dapodi",
+          "status": "open"
+        },
+        {
+          "station": "bopodi",
+          "status": "open"
+        },
+        {
+          "station": "khadki",
+          "status": "open"
+        },
+        {
+          "station": "range_hill",
+          "status": "under_construction"
+        },
+        {
+          "station": "shivaji_nagar",
+          "status": "open"
+        },
+        {
+          "station": "district_court",
+          "status": "open"
+        },
+        {
+          "station": "kasba_peth",
+          "status": "open"
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "status": "open"
+        },
+        {
+          "station": "swargate",
+          "status": "open"
+        }
+      ],
+      "status_source": "mahametro_home",
+      "service": {
+        "first_departure": "06:00",
+        "last_departure": null,
+        "service_until": "23:00",
+        "headway_peak_min": [
+          6,
+          6
+        ],
+        "headway_offpeak_min": [
+          10,
+          10
+        ],
+        "peak_windows": [
+          "08:00-11:00",
+          "16:00-20:00"
+        ],
+        "hours_source": "mahametro_hours_notice",
+        "hours_verified": true,
+        "headway_source": "urbanacres_frequency",
+        "headway_verified": false,
+        "end_to_end_min": null,
+        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro."
+      }
+    },
+    {
+      "id": "aqua",
+      "name": "Aqua Line",
+      "number": 2,
+      "operator": "mahametro",
+      "colour": "#00A3B4",
+      "colour_note": "approximate; finalise in design",
+      "stations": [
+        {
+          "station": "vanaz",
+          "status": "open"
+        },
+        {
+          "station": "anand_nagar",
+          "status": "open"
+        },
+        {
+          "station": "paud_phata",
+          "status": "open"
+        },
+        {
+          "station": "sndt_college",
+          "status": "open"
+        },
+        {
+          "station": "garware_college",
+          "status": "open"
+        },
+        {
+          "station": "deccan_gymkhana",
+          "status": "open"
+        },
+        {
+          "station": "sambhaji_udyan",
+          "status": "open"
+        },
+        {
+          "station": "pmc",
+          "status": "open"
+        },
+        {
+          "station": "district_court",
+          "status": "open"
+        },
+        {
+          "station": "rto_pune",
+          "status": "open"
+        },
+        {
+          "station": "pune_railway_station",
+          "status": "open"
+        },
+        {
+          "station": "ruby_hall_clinic",
+          "status": "open"
+        },
+        {
+          "station": "bund_garden",
+          "status": "open"
+        },
+        {
+          "station": "yerwada",
+          "status": "open"
+        },
+        {
+          "station": "kalyani_nagar",
+          "status": "open"
+        },
+        {
+          "station": "ramwadi",
+          "status": "open"
+        }
+      ],
+      "status_source": "mahametro_home",
+      "service": {
+        "first_departure": "06:00",
+        "last_departure": null,
+        "service_until": "23:00",
+        "headway_peak_min": [
+          6,
+          6
+        ],
+        "headway_offpeak_min": [
+          10,
+          10
+        ],
+        "peak_windows": [
+          "08:00-11:00",
+          "16:00-20:00"
+        ],
+        "hours_source": "mahametro_hours_notice",
+        "hours_verified": true,
+        "headway_source": "urbanacres_frequency",
+        "headway_verified": false,
+        "end_to_end_min": null,
+        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro."
+      }
+    },
+    {
+      "id": "pink",
+      "name": "Pink Line",
+      "number": 3,
+      "operator": "puneri_metro",
+      "colour": "#E0457B",
+      "colour_note": "approximate; finalise in design",
+      "stations": [
+        {
+          "station": "maan",
+          "status": "open"
+        },
+        {
+          "station": "maan_midc_circle",
+          "status": "open"
+        },
+        {
+          "station": "maan_bus_depot",
+          "status": "open"
+        },
+        {
+          "station": "hinjawadi_p2_c2",
+          "status": "open"
+        },
+        {
+          "station": "hinjawadi_p2_c1",
+          "status": "open"
+        },
+        {
+          "station": "padmabhushan_chowk",
+          "status": "open"
+        },
+        {
+          "station": "shivaji_maharaj_chowk_hinjawadi",
+          "status": "open"
+        },
+        {
+          "station": "hinjawadi_p1",
+          "status": "open"
+        },
+        {
+          "station": "wakad_chowk",
+          "status": "open"
+        },
+        {
+          "station": "sports_complex_mahalunge",
+          "status": "open"
+        },
+        {
+          "station": "mitcon_balewadi",
+          "status": "open"
+        },
+        {
+          "station": "rk_laxman_museum",
+          "status": "open"
+        },
+        {
+          "station": "balewadi_high_street",
+          "status": "not_open"
+        },
+        {
+          "station": "balewadi_phata",
+          "status": "not_open"
+        },
+        {
+          "station": "baner_gaon",
+          "status": "not_open"
+        },
+        {
+          "station": "baner_pashan_link_road",
+          "status": "not_open"
+        },
+        {
+          "station": "aundh",
+          "status": "open"
+        },
+        {
+          "station": "sakal_nagar",
+          "status": "open"
+        },
+        {
+          "station": "sppu",
+          "status": "open"
+        },
+        {
+          "station": "bhosalenagar_rbi",
+          "status": "not_open"
+        },
+        {
+          "station": "agriculture_college",
+          "status": "open"
+        },
+        {
+          "station": "shivaji_nagar",
+          "status": "not_open"
+        },
+        {
+          "station": "district_court",
+          "status": "open"
+        }
+      ],
+      "status_source": "mrn_line3",
+      "service": {
+        "first_departure": "06:00",
+        "last_departure_by_terminal": {
+          "maan": "22:30",
+          "district_court": "23:40"
+        },
+        "headway_peak_min": [
+          5.5,
+          5.5
+        ],
+        "headway_offpeak_min": [
+          10,
+          10
+        ],
+        "peak_windows": [
+          "07:30-09:30",
+          "17:00-20:00"
+        ],
+        "hours_source": "puneri_time_table",
+        "hours_verified": true,
+        "headway_source": "puneri_time_table",
+        "headway_verified": true,
+        "end_to_end_min": 45,
+        "end_to_end_km": 23.3,
+        "note": "Official timetable (1 Nov 2026). Puneri Metro says frequency may change with passenger numbers."
+      }
+    }
+  ],
+  "stations": [
+    {
+      "id": "pcmc",
+      "name_en": "PCMC",
+      "name_mr": "पीसीएमसी",
+      "name_mr_verified": false,
+      "aliases": [
+        "PCMC Bhavan",
+        "Pimpri Chinchwad"
+      ],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "sant_tukaram_nagar",
+      "name_en": "Sant Tukaram Nagar",
+      "name_mr": "संत तुकाराम नगर",
+      "name_mr_verified": false,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "nashik_phata",
+      "name_en": "Nashik Phata (Bhosari)",
+      "name_mr": "नाशिक फाटा (भोसरी)",
+      "name_mr_verified": false,
+      "aliases": [
+        "Bhosari"
+      ],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "kasarwadi",
+      "name_en": "Kasarwadi",
+      "name_mr": "कासारवाडी",
+      "name_mr_verified": false,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "phugewadi",
+      "name_en": "Phugewadi",
+      "name_mr": "फुगेवाडी",
+      "name_mr_verified": false,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "dapodi",
+      "name_en": "Dapodi",
+      "name_mr": "दापोडी",
+      "name_mr_verified": false,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "bopodi",
+      "name_en": "Bopodi",
+      "name_mr": "बोपोडी",
+      "name_mr_verified": false,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "khadki",
+      "name_en": "Khadki",
+      "name_mr": "खडकी",
+      "name_mr_verified": false,
+      "aliases": [
+        "Kirkee"
+      ],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "range_hill",
+      "name_en": "Range Hill",
+      "name_mr": "रेंज हिल",
+      "name_mr_verified": false,
+      "aliases": [
+        "Range Hills"
+      ],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "shivaji_nagar",
+      "name_en": "Shivaji Nagar",
+      "name_mr": "शिवाजीनगर",
+      "name_mr_verified": true,
+      "aliases": [
+        "Shivajinagar"
+      ],
+      "lines": [
+        "purple",
+        "pink"
+      ],
+      "interchange": true,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "district_court",
+      "name_en": "District Court",
+      "name_mr": "जिल्हा न्यायालय पुणे",
+      "name_mr_verified": true,
+      "aliases": [
+        "Civil Court",
+        "District Court Pune"
+      ],
+      "lines": [
+        "purple",
+        "aqua",
+        "pink"
+      ],
+      "interchange": true,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "kasba_peth",
+      "name_en": "Kasba Peth",
+      "name_mr": "कसबा पेठ",
+      "name_mr_verified": false,
+      "aliases": [
+        "Budhwar Peth"
+      ],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "mahatma_phule_mandai",
+      "name_en": "Mahatma Phule Mandai",
+      "name_mr": "महात्मा फुले मंडई",
+      "name_mr_verified": false,
+      "aliases": [
+        "Mandai"
+      ],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "swargate",
+      "name_en": "Swargate",
+      "name_mr": "स्वारगेट",
+      "name_mr_verified": false,
+      "aliases": [],
+      "lines": [
+        "purple"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "vanaz",
+      "name_en": "Vanaz",
+      "name_mr": "वनाझ",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "anand_nagar",
+      "name_en": "Anand Nagar",
+      "name_mr": "आनंद नगर",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "paud_phata",
+      "name_en": "Paud Phata",
+      "name_mr": "पौड फाटा",
+      "name_mr_verified": true,
+      "aliases": [
+        "Ideal Colony"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "sndt_college",
+      "name_en": "S.N.D.T. College",
+      "name_mr": "एसएनडीटी कॉलेज",
+      "name_mr_verified": true,
+      "aliases": [
+        "SNDT",
+        "Nal Stop"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "garware_college",
+      "name_en": "Garware College",
+      "name_mr": "गरवारे महाविद्यालय",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "deccan_gymkhana",
+      "name_en": "Deccan Gymkhana",
+      "name_mr": "डेक्कन जिमखाना",
+      "name_mr_verified": true,
+      "aliases": [
+        "Deccan"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "sambhaji_udyan",
+      "name_en": "Chhatrapati Sambhaji Udyan",
+      "name_mr": "छत्रपती संभाजी उद्यान",
+      "name_mr_verified": true,
+      "aliases": [
+        "Sambhaji Park"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "pmc",
+      "name_en": "PMC",
+      "name_mr": "पुणे महानगरपालिका भवन",
+      "name_mr_verified": true,
+      "aliases": [
+        "PMC Bhavan",
+        "Pune Municipal Corporation"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "rto_pune",
+      "name_en": "R.T.O Pune",
+      "name_mr": "आर.टी.ओ. पुणे",
+      "name_mr_verified": true,
+      "aliases": [
+        "RTO",
+        "Mangalwar Peth"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "pune_railway_station",
+      "name_en": "Pune Railway Station",
+      "name_mr": "पुणे रेल्वे स्थानक",
+      "name_mr_verified": true,
+      "aliases": [
+        "Pune Station",
+        "Pune Junction"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "ruby_hall_clinic",
+      "name_en": "Ruby Hall Clinic",
+      "name_mr": "रुबी हॉल क्लिनिक",
+      "name_mr_verified": true,
+      "aliases": [
+        "Ruby Hall"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "bund_garden",
+      "name_en": "Bund Garden",
+      "name_mr": "बंड गार्डन",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "yerwada",
+      "name_en": "Yerwada",
+      "name_mr": "येरवडा",
+      "name_mr_verified": true,
+      "aliases": [
+        "Yerawada"
+      ],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "kalyani_nagar",
+      "name_en": "Kalyani Nagar",
+      "name_mr": "कल्याणी नगर",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "ramwadi",
+      "name_en": "Ramwadi",
+      "name_mr": "रामवाडी",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "aqua"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "maan",
+      "name_en": "Maan",
+      "name_mr": "माण",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "maan_midc_circle",
+      "name_en": "Maan - MIDC Circle Phase-II",
+      "name_mr": "माण - एमआयडीसी सर्कल फेज-II",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "maan_bus_depot",
+      "name_en": "Maan Bus Depot",
+      "name_mr": "माण बस डेपो",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "hinjawadi_p2_c2",
+      "name_en": "Hinjawadi Phase-II Circle-II",
+      "name_mr": "हिंजवडी फेज-II सर्कल-II",
+      "name_mr_verified": true,
+      "aliases": [
+        "Hinjewadi Phase 2 Circle 2"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "hinjawadi_p2_c1",
+      "name_en": "Hinjawadi Phase-II Circle-I",
+      "name_mr": "हिंजवडी फेज-II सर्कल-I",
+      "name_mr_verified": true,
+      "aliases": [
+        "Hinjewadi Phase 2 Circle 1"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "padmabhushan_chowk",
+      "name_en": "Padmabhushan Chowk",
+      "name_mr": "पद्मभूषण चौक",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "shivaji_maharaj_chowk_hinjawadi",
+      "name_en": "Shree Shiv Chhatrapati Shivaji Maharaj Chowk Hinjawadi",
+      "name_mr": "श्री शिव छत्रपती शिवाजी महाराज चौक हिंजवडी",
+      "name_mr_verified": true,
+      "aliases": [
+        "Shivaji Chowk Hinjawadi"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "hinjawadi_p1",
+      "name_en": "Hinjawadi Phase-I",
+      "name_mr": "हिंजवडी फेज-I",
+      "name_mr_verified": true,
+      "aliases": [
+        "Hinjewadi Phase 1"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "wakad_chowk",
+      "name_en": "Wakad Chowk",
+      "name_mr": "वाकड चौक",
+      "name_mr_verified": true,
+      "aliases": [
+        "Wakad"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "sports_complex_mahalunge",
+      "name_en": "Shree Shiv Chhatrapati Sports Complex Mahalunge",
+      "name_mr": "श्री शिवछत्रपती क्रीडा संकुल महाळुंगे",
+      "name_mr_verified": true,
+      "aliases": [
+        "Balewadi Stadium",
+        "Mahalunge"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "mitcon_balewadi",
+      "name_en": "Mitcon Balewadi",
+      "name_mr": "मिटकॉन बालेवाडी",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "rk_laxman_museum",
+      "name_en": "R K Laxman Museum Balewadi",
+      "name_mr": "आर. के. लक्ष्मण संग्रहालय बालेवाडी",
+      "name_mr_verified": true,
+      "aliases": [
+        "RK Laxman Museum"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "balewadi_high_street",
+      "name_en": "Balewadi High Street",
+      "name_mr": "बालेवाडी हाय स्ट्रीट",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "balewadi_phata",
+      "name_en": "Balewadi Phata",
+      "name_mr": "बालेवाडी फाटा",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "baner_gaon",
+      "name_en": "Baner Gaon",
+      "name_mr": "बाणेर गाव",
+      "name_mr_verified": true,
+      "aliases": [
+        "Baner"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "baner_pashan_link_road",
+      "name_en": "Baner Pashan Link Road",
+      "name_mr": "बाणेर पाषाण लिंक रोड",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "aundh",
+      "name_en": "Aundh",
+      "name_mr": "औंध",
+      "name_mr_verified": true,
+      "aliases": [
+        "Aundh NCL"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "sakal_nagar",
+      "name_en": "Sakal Nagar",
+      "name_mr": "सकाळ नगर",
+      "name_mr_verified": true,
+      "aliases": [],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "sppu",
+      "name_en": "Savitribai Phule Pune University",
+      "name_mr": "सावित्रीबाई फुले पुणे विद्यापीठ",
+      "name_mr_verified": true,
+      "aliases": [
+        "SPPU",
+        "Pune University"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "bhosalenagar_rbi",
+      "name_en": "Bhosalenagar - RBI",
+      "name_mr": "भोसलेनगर - आरबीआय",
+      "name_mr_verified": true,
+      "aliases": [
+        "RBI"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    },
+    {
+      "id": "agriculture_college",
+      "name_en": "Agriculture College",
+      "name_mr": "कृषी महाविद्यालय",
+      "name_mr_verified": true,
+      "aliases": [
+        "Krushi Mahavidyalaya"
+      ],
+      "lines": [
+        "pink"
+      ],
+      "interchange": false,
+      "coords": null,
+      "gates": [],
+      "facilities": []
+    }
+  ],
+  "fares": {
+    "charts": {
+      "mahametro": {
+        "source": "mahametro_fare_page",
+        "published": "2026-02-09",
+        "stations": [
+          "pcmc",
+          "sant_tukaram_nagar",
+          "nashik_phata",
+          "kasarwadi",
+          "phugewadi",
+          "dapodi",
+          "bopodi",
+          "khadki",
+          "shivaji_nagar",
+          "district_court",
+          "kasba_peth",
+          "mahatma_phule_mandai",
+          "swargate",
+          "vanaz",
+          "anand_nagar",
+          "paud_phata",
+          "sndt_college",
+          "garware_college",
+          "deccan_gymkhana",
+          "sambhaji_udyan",
+          "pmc",
+          "district_court",
+          "rto_pune",
+          "pune_railway_station",
+          "ruby_hall_clinic",
+          "bund_garden",
+          "yerwada",
+          "kalyani_nagar",
+          "ramwadi"
+        ],
+        "rows": [
+          [
+            0,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30,
+            30,
+            35,
+            35,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            35,
+            35
+          ],
+          [
+            15,
+            0,
+            10,
+            15,
+            15,
+            15,
+            20,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            30,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            35
+          ],
+          [
+            15,
+            10,
+            0,
+            10,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30,
+            30,
+            35
+          ],
+          [
+            20,
+            15,
+            10,
+            0,
+            10,
+            10,
+            15,
+            20,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30
+          ],
+          [
+            20,
+            15,
+            15,
+            10,
+            0,
+            10,
+            15,
+            15,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30
+          ],
+          [
+            25,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            15,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30
+          ],
+          [
+            25,
+            20,
+            20,
+            15,
+            15,
+            10,
+            0,
+            10,
+            20,
+            20,
+            25,
+            25,
+            25,
+            30,
+            25,
+            25,
+            25,
+            25,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30
+          ],
+          [
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            10,
+            0,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30
+          ],
+          [
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            15,
+            0,
+            10,
+            15,
+            15,
+            20,
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            15,
+            10,
+            10,
+            15,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25
+          ],
+          [
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            10,
+            0,
+            10,
+            15,
+            15,
+            25,
+            20,
+            20,
+            15,
+            15,
+            10,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            20,
+            25,
+            25
+          ],
+          [
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            15,
+            10,
+            0,
+            10,
+            15,
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            15,
+            10,
+            10,
+            15,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25
+          ],
+          [
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            15,
+            15,
+            10,
+            0,
+            10,
+            25,
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            15,
+            15,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25
+          ],
+          [
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            20,
+            15,
+            15,
+            10,
+            0,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            20,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25
+          ],
+          [
+            35,
+            30,
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            0,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30
+          ],
+          [
+            35,
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            20,
+            25,
+            25,
+            25,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30
+          ],
+          [
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            20,
+            20,
+            20,
+            25,
+            25,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30
+          ],
+          [
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            20,
+            15,
+            20,
+            20,
+            25,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25
+          ],
+          [
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            15,
+            15,
+            15,
+            20,
+            25,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25
+          ],
+          [
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            15,
+            10,
+            15,
+            15,
+            20,
+            20,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            10,
+            15,
+            15,
+            25,
+            25,
+            20,
+            25,
+            25
+          ],
+          [
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            15,
+            10,
+            15,
+            15,
+            20,
+            20,
+            20,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            15,
+            25,
+            20,
+            25,
+            25
+          ],
+          [
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            10,
+            10,
+            10,
+            15,
+            20,
+            20,
+            20,
+            20,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            20,
+            20,
+            25,
+            25
+          ],
+          [
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            10,
+            0,
+            10,
+            15,
+            15,
+            25,
+            20,
+            20,
+            15,
+            15,
+            10,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            20,
+            25,
+            25
+          ],
+          [
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            15,
+            10,
+            15,
+            15,
+            20,
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            15,
+            20,
+            25
+          ],
+          [
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            15,
+            10,
+            15,
+            15,
+            20,
+            25,
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            15,
+            20,
+            25
+          ],
+          [
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            15,
+            15,
+            15,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            10,
+            20,
+            20
+          ],
+          [
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            20,
+            15,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            20,
+            15,
+            15,
+            10,
+            10,
+            0,
+            10,
+            15,
+            20
+          ],
+          [
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            20,
+            20,
+            20,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            20,
+            20,
+            15,
+            15,
+            10,
+            10,
+            0,
+            15,
+            15
+          ],
+          [
+            35,
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            15,
+            15,
+            15,
+            0,
+            10
+          ],
+          [
+            35,
+            35,
+            35,
+            30,
+            30,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            30,
+            30,
+            30,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            25,
+            20,
+            20,
+            15,
+            10,
+            0
+          ]
+        ]
+      },
+      "puneri_metro": {
+        "source": "puneri_fare_table",
+        "published": "2026-10-29",
+        "stations": [
+          "maan",
+          "maan_midc_circle",
+          "maan_bus_depot",
+          "hinjawadi_p2_c2",
+          "hinjawadi_p2_c1",
+          "padmabhushan_chowk",
+          "shivaji_maharaj_chowk_hinjawadi",
+          "hinjawadi_p1",
+          "wakad_chowk",
+          "sports_complex_mahalunge",
+          "mitcon_balewadi",
+          "rk_laxman_museum",
+          "balewadi_high_street",
+          "balewadi_phata",
+          "baner_gaon",
+          "baner_pashan_link_road",
+          "aundh",
+          "sakal_nagar",
+          "sppu",
+          "bhosalenagar_rbi",
+          "agriculture_college",
+          "shivaji_nagar",
+          "district_court"
+        ],
+        "rows": [
+          [
+            12,
+            12,
+            25,
+            25,
+            25,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49,
+            49,
+            62,
+            62,
+            62,
+            62,
+            62
+          ],
+          [
+            12,
+            12,
+            12,
+            12,
+            25,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49,
+            49,
+            62,
+            62,
+            62,
+            62
+          ],
+          [
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            62,
+            62,
+            62
+          ],
+          [
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            62,
+            62
+          ],
+          [
+            25,
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            62
+          ],
+          [
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49
+          ],
+          [
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49,
+            49
+          ],
+          [
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            49,
+            49,
+            49,
+            49
+          ],
+          [
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43,
+            49,
+            49
+          ],
+          [
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43,
+            49
+          ],
+          [
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43,
+            43
+          ],
+          [
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            12,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43,
+            43
+          ],
+          [
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43,
+            43
+          ],
+          [
+            49,
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            43,
+            43
+          ],
+          [
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37,
+            37
+          ],
+          [
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37,
+            37
+          ],
+          [
+            49,
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            37,
+            37,
+            37
+          ],
+          [
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            25,
+            25,
+            25,
+            37
+          ],
+          [
+            62,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            12,
+            25,
+            25
+          ],
+          [
+            62,
+            62,
+            49,
+            49,
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            12,
+            25
+          ],
+          [
+            62,
+            62,
+            62,
+            49,
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            12,
+            12,
+            12,
+            12,
+            12
+          ],
+          [
+            62,
+            62,
+            62,
+            62,
+            49,
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12,
+            12
+          ],
+          [
+            62,
+            62,
+            62,
+            62,
+            62,
+            49,
+            49,
+            49,
+            49,
+            49,
+            43,
+            43,
+            43,
+            43,
+            37,
+            37,
+            37,
+            37,
+            25,
+            25,
+            12,
+            12,
+            12
+          ]
+        ]
+      }
+    },
+    "cross_operator_rule": "Trips between Pink and Purple/Aqua need two tickets; fare = sum of both legs.",
+    "cross_operator_source": "official_app_notes"
+  },
+  "sources": {
+    "mahametro_home": {
+      "title": "Pune Metro Rail Project (Maha Metro) - home page and journey planner",
+      "url": "https://www.punemetrorail.org/",
+      "kind": "official",
+      "read_on": "2026-11-08"
+    },
+    "mahametro_fare_page": {
+      "title": "Maha Metro official fare chart (Purple and Aqua lines)",
+      "url": "https://www.punemetrorail.org/fare_chart.aspx",
+      "kind": "official",
+      "read_on": "2026-11-08"
+    },
+    "wiki_aqua": {
+      "title": "Aqua Line (Pune Metro) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Aqua_Line_(Pune_Metro)",
+      "kind": "secondary",
+      "read_on": "2026-11-08"
+    },
+    "wiki_pink": {
+      "title": "Pink Line (Pune Metro) - Wikipedia",
+      "url": "https://en.wikipedia.org/wiki/Pink_Line_(Pune_Metro)",
+      "kind": "secondary",
+      "read_on": "2026-11-08"
+    },
+    "mrn_line3": {
+      "title": "Pune Metro Line 3 - Metro Rail News (status, timings, fare range)",
+      "url": "https://metrorailnews.in/projects/pune-metro-line-3/",
+      "kind": "secondary",
+      "read_on": "2026-11-08"
+    },
+    "puneri_fare_table": {
+      "title": "Puneri Metro official fare table (Pink Line, all 23 stations)",
+      "url": "https://punerimetro.in/passenger-info/fare-table",
+      "kind": "official",
+      "read_on": "2026-11-08"
+    },
+    "puneri_time_table": {
+      "title": "Puneri Metro official time table (Pink Line service hours, frequency, travel time)",
+      "url": "https://punerimetro.in/passenger-info/time-table",
+      "kind": "official",
+      "read_on": "2026-11-08"
+    },
+    "mahametro_hours_notice": {
+      "title": "Maha Metro timetable notice: regular service 06:00 to 23:00 (Aug 2025)",
+      "url": "https://www.punemetrorail.org/assets/images/home_popup/Time-Tablenew2.jpg",
+      "kind": "official",
+      "read_on": "2026-11-08"
+    },
+    "urbanacres_frequency": {
+      "title": "Pune Metro frequency: every 6 minutes at peak, about 10 off-peak (Sept 2026 report)",
+      "url": "https://urbanacres.in/pune-metro-plans-five-minute-peak-hour-service-after-trials/",
+      "kind": "secondary",
+      "read_on": "2026-11-08"
+    },
+    "official_app_notes": {
+      "title": "Pune Metro official app release notes (Pink Line booking, two QR tickets)",
+      "url": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648",
+      "kind": "official",
+      "read_on": "2026-11-08"
+    }
+  },
+  "open_issues": [
+    "The official Maha Metro fare chart prints different fares in each direction for 11 station pairs; confirm which applies (the app shows a range).",
+    "Maha Metro publishes service hours (06:00 to 23:00) but not the last departure from each end, travel times or an official frequency for the Purple and Aqua lines.",
+    "Verify Purple Line Marathi names (written from knowledge, flagged mr_verified=false).",
+    "Add coordinates from OpenStreetMap (ODbL, credit required) for every station.",
+    "Confirm whether Pink Line trains run through not-yet-open stations without stopping.",
+    "Add gates/exits and facilities per station from official station pages.",
+    "Historic aliases 'Ideal Colony' and 'Nal Stop' are matched to Paud Phata and SNDT College by station order in a 2022 Maha Metro PDF; confirm."
+  ]
+}

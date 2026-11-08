@@ -1,0 +1,58 @@
+{
+  "version": "2026.11.08.3",
+  "items": [
+    {
+      "id": "pink-open",
+      "kind": "service",
+      "featured": true,
+      "date": "2026-11-04",
+      "title": "The Pink Line is open",
+      "body": "Maan to District Court, with 17 of 23 stations open. First trains leave both ends at 06:00.",
+      "source": "Metro Rail News",
+      "url": "https://metrorailnews.in/projects/pune-metro-line-3/"
+    },
+    {
+      "id": "pink-closed-stations",
+      "kind": "service",
+      "date": "2026-11-04",
+      "title": "Six Pink Line stations are still closed",
+      "body": "Balewadi High Street and Balewadi Phata are expected by end of November. Baner Gaon, Baner Pashan Link Road, Bhosalenagar - RBI and Shivaji Nagar are expected in phases by January 2027.",
+      "source": "Metro Rail News (expected dates)",
+      "url": "https://metrorailnews.in/projects/pune-metro-line-3/"
+    },
+    {
+      "id": "pink-two-tickets",
+      "kind": "ticket",
+      "title": "The Pink Line needs its own ticket",
+      "body": "Trips between the Pink Line and the Purple or Aqua Line use two QR tickets. The official app sells both in one payment.",
+      "source": "Pune Metro official app release notes",
+      "url": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648"
+    },
+    {
+      "id": "one-pune-cards",
+      "kind": "ticket",
+      "title": "Save with One Pune cards",
+      "body": "The One Pune NCMC card gives 10% off every ride. The One Pune Vidyarthi Pass gives students 30% off.",
+      "source": "punemetrorail.org",
+      "url": "https://www.punemetrorail.org/"
+    },
+    {
+      "id": "ondc-apps",
+      "kind": "ticket",
+      "date": "2026-05-22",
+      "title": "Pune Metro tickets on Uber and Paytm",
+      "body": "Both apps sell Pune Metro QR tickets through ONDC, alongside the official app and WhatsApp booking.",
+      "source": "Punekar News, Paytm",
+      "url": "https://www.punekarnews.in/?p=235810"
+    },
+    {
+      "id": "data-update",
+      "kind": "ticket",
+      "date": "2026-11-08",
+      "title": "Official fares and timings",
+      "body": "Journeys now show the fare from the official Maha Metro and Puneri Metro fare charts, including two-ticket trips. Pink Line timings come from Puneri Metro's official time table, and Purple and Aqua service hours from Maha Metro.",
+      "source": "Maha Metro and Puneri Metro",
+      "url": "https://punerimetro.in/passenger-info/fare-table"
+    }
+  ]
+}

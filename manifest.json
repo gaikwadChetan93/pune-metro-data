@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "version": "2026.11.08.3",
+  "published": "2026-11-08",
+  "files": {
+    "metro.json": {
+      "sha256": "c6902e038cffab19b5148942e0b41925180db5828da3181d53f1caaba9cd5a4f",
+      "bytes": 55583
+    },
+    "updates.json": {
+      "sha256": "5bc2e8a7399e96344ea605185210ae7070d17c2e512983eb4b9e6895d8aa10c8",
+      "bytes": 2455
+    }
+  }
+}
