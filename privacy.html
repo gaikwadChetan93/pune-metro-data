@@ -72,6 +72,8 @@
       <li>The app doesn't collect, store or share any personal data.</li>
       <li>There's no account, no analytics, no advertising and no tracking.</li>
       <li>Your saved journeys, saved stations, recent stations and settings stay on your device.</li>
+      <li>If you ask for the nearest station, your location is used once, on your phone, and is never stored or sent.</li>
+      <li>If you set a last-train reminder, your phone schedules it. Nothing about it is sent anywhere.</li>
     </ul>
   </section>
 
@@ -86,10 +88,24 @@
     <ul>
       <li>journeys and stations you save,</li>
       <li>stations you searched for recently,</li>
-      <li>your settings, such as theme and reduce motion, and</li>
+      <li>your settings, such as theme, language and reduce motion,</li>
+      <li>a last-train reminder you've set, until it goes off, and</li>
       <li>the latest metro data (stations, timings and fares).</li>
     </ul>
     <p>None of this is sent anywhere. You can clear recent stations in Settings, and uninstalling the app or clearing its storage removes everything.</p>
+  </section>
+
+  <section class="card" aria-labelledby="location">
+    <h2 id="location">Your location</h2>
+    <p>The app can find the nearest metro station. It asks for your location only when you tap <em>Find nearest station</em> or <em>Use nearest station</em>, and only while you're using the app.</p>
+    <p>It uses your position on your phone to work out which station is closest, then discards it. Your location is never saved, never sent to us or anyone else, and never used in the background. Station positions come from OpenStreetMap and ship with the app.</p>
+    <p>You can turn off the permission at any time in your phone's settings. Everything else in the app keeps working.</p>
+  </section>
+
+  <section class="card" aria-labelledby="reminders">
+    <h2 id="reminders">Last-train reminders</h2>
+    <p>On the Journey screen you can ask for a reminder before tonight's last train. The app works out the time from the official timetables and asks your phone to show a notification then. It asks for permission to show notifications the first time you set one, not before.</p>
+    <p>The reminder, and the trip it's for, stay on your phone. Nothing is sent to us or anyone else. On Android you can also allow exact alarms, so the reminder arrives on the minute; without that permission it may arrive a few minutes late. You can cancel a reminder in the app, or turn off notifications in your phone's settings at any time.</p>
   </section>
 
   <section class="card" aria-labelledby="network">
@@ -100,12 +116,12 @@
 
   <section class="card" aria-labelledby="links">
     <h2 id="links">Links you tap</h2>
-    <p>Links to the official ticketing apps, WhatsApp ticketing, data sources and helpline numbers open in other apps only when you tap them. Those apps and websites have their own privacy policies.</p>
+    <p>Links to the official ticketing apps, WhatsApp ticketing, data sources and helpline numbers open in other apps only when you tap them. <em>Directions</em> opens your maps app with the station's position, not yours. Those apps and websites have their own privacy policies.</p>
   </section>
 
   <section class="card" aria-labelledby="permissions">
     <h2 id="permissions">Permissions</h2>
-    <p>On Android, the app asks only for internet access, to download metro data. It doesn't use your location, contacts, camera, microphone, photos or files.</p>
+    <p>The app asks for internet access, to download metro data; your location, only when you ask for the nearest station; and permission to show notifications, only when you set a last-train reminder. On Android it can also use exact alarms (if you allow them) and the phone's start-up signal, so a reminder still goes off on time after a restart. It doesn't use your contacts, camera, microphone, photos or files.</p>
   </section>
 
   <section class="card" aria-labelledby="children">
