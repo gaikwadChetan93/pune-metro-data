@@ -17,6 +17,7 @@ A download is used from the next time the app opens.
 | `manifest.json` | Schema, version, publish date and the checksum of each file |
 | `metro.json` | Lines, stations, statuses, timings, operators, official fare charts, sources |
 | `updates.json` | Items on the app's Updates tab |
+| `privacy.html` | The app's privacy policy, served by GitHub Pages at https://gaikwadchetan93.github.io/pune-metro-data/privacy.html |
 
 ## Publishing
 
