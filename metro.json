@@ -1,13 +1,21 @@
 {
   "meta": {
-    "version": "2026.11.08.3",
+    "version": "2026.11.09.2",
     "last_verified": "2026-11-08",
-    "built": "2026-11-08",
-    "disclaimer": "Unofficial. Not affiliated with Maha Metro or PMRDA. Verify fares and timings at the station."
+    "built": "2026-11-09",
+    "coords_snapshot": "2026-11-08T13:00:21Z",
+    "places_snapshot": "2026-11-09T09:02:50Z",
+    "disclaimer": "Unofficial. Not affiliated with Maha Metro or PMRDA. Verify fares and timings at the station.",
+    "disclaimer_mr": "अनधिकृत. महामेट्रो किंवा पीएमआरडीएशी संबंधित नाही. भाडे आणि वेळा स्थानकावर तपासा.",
+    "disclaimer_hi": "गैर-आधिकारिक। महामेट्रो या पीएमआरडीए से कोई संबंध नहीं। किराया और समय स्टेशन पर जाँचें।"
   },
   "operators": {
     "mahametro": {
       "name": "Maha Metro (Maharashtra Metro Rail Corporation Ltd)",
+      "name_mr": "महामेट्रो (महाराष्ट्र मेट्रो रेल कॉर्पोरेशन लि.)",
+      "short_name_mr": "महामेट्रो",
+      "name_hi": "महामेट्रो (महाराष्ट्र मेट्रो रेल कॉर्पोरेशन लि.)",
+      "short_name_hi": "महामेट्रो",
       "lines": [
         "purple",
         "aqua"
@@ -17,10 +25,19 @@
       "ticketing": {
         "official_app_android": "https://play.google.com/store/apps/details?id=org.mahametro.punemobileapp",
         "official_app_ios": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648",
-        "whatsapp": "https://wa.me/9420101990",
+        "whatsapp": "https://wa.me/919420101990",
+        "whatsapp_number": "94201 01990",
+        "whatsapp_source": "mahametro_home",
         "ondc_apps": [
           "Paytm",
-          "Uber"
+          "PhonePe",
+          "Uber",
+          "Amazon",
+          "Flipkart"
+        ],
+        "ondc_sources": [
+          "fpj_ondc_launch",
+          "fpj_uber_pune"
         ]
       },
       "fare_rule": {
@@ -30,25 +47,45 @@
         "max_fare": 35,
         "source": "mahametro_fare_page",
         "verified": true,
-        "note": "Station-to-station fares from the official fare chart."
+        "note": "Station-to-station fares from the official fare chart.",
+        "note_mr": "अधिकृत भाडे तक्त्यानुसार स्थानक-ते-स्थानक भाडे.",
+        "note_hi": "आधिकारिक किराया चार्ट के अनुसार स्टेशन-से-स्टेशन किराया।"
       },
       "discounts": [
         {
           "name": "One Pune NCMC RuPay card",
+          "name_mr": "वन पुणे NCMC रुपे कार्ड",
+          "name_hi": "वन पुणे NCMC रुपे कार्ड",
           "percent": 10,
           "source": "mahametro_home",
           "verified": true
         },
         {
           "name": "One Pune Vidyarthi Pass",
+          "name_mr": "वन पुणे विद्यार्थी पास",
+          "name_hi": "वन पुणे विद्यार्थी पास",
           "percent": 30,
           "source": "mahametro_home",
           "verified": true
+        }
+      ],
+      "station_notes": [
+        {
+          "text": "Maha Metro lists lifts from the entrance to the platform, and accessible toilets, among its station facilities, but not station by station.",
+          "text_mr": "महामेट्रो आपल्या स्थानकांवरील सुविधांमध्ये प्रवेशद्वारापासून फलाटापर्यंत लिफ्ट आणि दिव्यांगांसाठी स्वच्छतागृहे नमूद करते, पण प्रत्येक स्थानकासाठी स्वतंत्रपणे नाही.",
+          "text_hi": "महामेट्रो अपने स्टेशनों की सुविधाओं में प्रवेश से प्लेटफ़ॉर्म तक लिफ़्ट और दिव्यांगों के लिए शौचालय बताता है, पर हर स्टेशन के लिए अलग से नहीं।",
+          "sources": [
+            "mahametro_pwd"
+          ]
         }
       ]
     },
     "puneri_metro": {
       "name": "Puneri Metro (Pune IT City Metro Rail Ltd, PMRDA concession; operated by Keolis)",
+      "name_mr": "पुणेरी मेट्रो (पुणे आयटी सिटी मेट्रो रेल लि., पीएमआरडीए सवलत; संचालन: केओलिस)",
+      "short_name_mr": "पुणेरी मेट्रो",
+      "name_hi": "पुणेरी मेट्रो (पुणे आईटी सिटी मेट्रो रेल लि., पीएमआरडीए रियायत; संचालन: केओलिस)",
+      "short_name_hi": "पुणेरी मेट्रो",
       "lines": [
         "pink"
       ],
@@ -57,7 +94,9 @@
       "ticketing": {
         "official_app_android": "https://play.google.com/store/apps/details?id=org.mahametro.punemobileapp",
         "official_app_ios": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648",
-        "whatsapp": null,
+        "whatsapp": "https://wa.me/919420101990",
+        "whatsapp_number": "94201 01990",
+        "whatsapp_source": "punekar_line3_tickets",
         "ondc_apps": []
       },
       "fare_rule": {
@@ -67,15 +106,29 @@
         "max_fare": 62,
         "source": "puneri_fare_table",
         "verified": true,
-        "note": "Station-to-station fares from the official fare table."
+        "note": "Station-to-station fares from the official fare table.",
+        "note_mr": "अधिकृत भाडे सारणीनुसार स्थानक-ते-स्थानक भाडे.",
+        "note_hi": "आधिकारिक किराया तालिका के अनुसार स्टेशन-से-स्टेशन किराया।"
       },
-      "discounts": []
+      "discounts": [],
+      "station_notes": [
+        {
+          "text": "Puneri Metro lists lifts, escalators, and separate and accessible toilets at its stations, and parking at some of them.",
+          "text_mr": "पुणेरी मेट्रो आपल्या स्थानकांवर लिफ्ट, सरकते जिने, स्वतंत्र आणि दिव्यांगांसाठी स्वच्छतागृहे, आणि काही स्थानकांवर पार्किंग असल्याचे सांगते.",
+          "text_hi": "पुणेरी मेट्रो के अनुसार उसके स्टेशनों पर लिफ़्ट, एस्केलेटर, अलग और दिव्यांगों के लिए शौचालय हैं, और कुछ स्टेशनों पर पार्किंग।",
+          "sources": [
+            "puneri_amenities"
+          ]
+        }
+      ]
     }
   },
   "lines": [
     {
       "id": "purple",
       "name": "Purple Line",
+      "name_mr": "पर्पल लाईन",
+      "name_hi": "पर्पल लाइन",
       "number": 1,
       "operator": "mahametro",
       "colour": "#7B2D8E",
@@ -160,12 +213,16 @@
         "headway_source": "urbanacres_frequency",
         "headway_verified": false,
         "end_to_end_min": null,
-        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro."
+        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro.",
+        "note_mr": "अधिकृत सेवा वेळ 06:00 ते 23:00 आहे. महामेट्रोने प्रत्येक टोकावरून सुटणाऱ्या शेवटच्या मेट्रोची वेळ जाहीर केलेली नाही. वारंवारता महामेट्रोचा हवाला देणाऱ्या सप्टेंबर 2026 मधील एका बातमीवरून घेतली आहे.",
+        "note_hi": "आधिकारिक सेवा समय 06:00 से 23:00 है। महामेट्रो ने हर छोर से छूटने वाली आख़िरी मेट्रो का समय प्रकाशित नहीं किया है। फ़्रीक्वेंसी महामेट्रो के हवाले से सितंबर 2026 की एक ख़बर से ली गई है।"
       }
     },
     {
       "id": "aqua",
       "name": "Aqua Line",
+      "name_mr": "ॲक्वा लाईन",
+      "name_hi": "एक्वा लाइन",
       "number": 2,
       "operator": "mahametro",
       "colour": "#00A3B4",
@@ -258,12 +315,16 @@
         "headway_source": "urbanacres_frequency",
         "headway_verified": false,
         "end_to_end_min": null,
-        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro."
+        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro.",
+        "note_mr": "अधिकृत सेवा वेळ 06:00 ते 23:00 आहे. महामेट्रोने प्रत्येक टोकावरून सुटणाऱ्या शेवटच्या मेट्रोची वेळ जाहीर केलेली नाही. वारंवारता महामेट्रोचा हवाला देणाऱ्या सप्टेंबर 2026 मधील एका बातमीवरून घेतली आहे.",
+        "note_hi": "आधिकारिक सेवा समय 06:00 से 23:00 है। महामेट्रो ने हर छोर से छूटने वाली आख़िरी मेट्रो का समय प्रकाशित नहीं किया है। फ़्रीक्वेंसी महामेट्रो के हवाले से सितंबर 2026 की एक ख़बर से ली गई है।"
       }
     },
     {
       "id": "pink",
       "name": "Pink Line",
+      "name_mr": "पिंक लाईन",
+      "name_hi": "पिंक लाइन",
       "number": 3,
       "operator": "puneri_metro",
       "colour": "#E0457B",
@@ -387,7 +448,9 @@
         "headway_verified": true,
         "end_to_end_min": 45,
         "end_to_end_km": 23.3,
-        "note": "Official timetable (1 Nov 2026). Puneri Metro says frequency may change with passenger numbers."
+        "note": "Official timetable (1 Nov 2026). Puneri Metro says frequency may change with passenger numbers.",
+        "note_mr": "अधिकृत वेळापत्रक (1 नोव्हेंबर 2026). प्रवासी संख्येनुसार वारंवारता बदलू शकते, असे पुणेरी मेट्रोने म्हटले आहे.",
+        "note_hi": "आधिकारिक समय सारणी (1 नवंबर 2026)। पुणेरी मेट्रो के अनुसार यात्रियों की संख्या के हिसाब से फ़्रीक्वेंसी बदल सकती है।"
       }
     }
   ],
@@ -405,9 +468,93 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.629319,
+        "lon": 73.803286,
+        "source": "osm_stations",
+        "osm": "node/10214268972"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 1,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "to": "Finolex Chowk side",
+              "to_mr": "फिनोलेक्स चौकाच्या बाजूला",
+              "to_hi": "फिनोलेक्स चौक की तरफ़"
+            },
+            {
+              "n": 2,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "to": "PCMC Bhavan side",
+              "to_mr": "पीसीएमसी भवनाच्या बाजूला",
+              "to_hi": "पीसीएमसी भवन की तरफ़"
+            },
+            {
+              "n": 3,
+              "sources": [
+                "pk_gates_sep26",
+                "pk_gates_feb26"
+              ],
+              "to": "PCMC Bhavan side, on the Mumbai-bound side of the highway",
+              "to_mr": "पीसीएमसी भवनाच्या बाजूला, महामार्गाच्या मुंबईकडे जाणाऱ्या बाजूला",
+              "to_hi": "पीसीएमसी भवन की तरफ़, हाईवे की मुंबई जाने वाली तरफ़"
+            },
+            {
+              "n": 4,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "to": "Finolex Chowk side",
+              "to_mr": "फिनोलेक्स चौकाच्या बाजूला",
+              "to_hi": "फिनोलेक्स चौक की तरफ़"
+            }
+          ],
+          "parking": {
+            "status": "none",
+            "note": "Maha Metro hasn't put parking at its Pimpri-Chinchwad stations; paid parking announced in 2024 didn't start.",
+            "note_mr": "महामेट्रोने पिंपरी-चिंचवडमधील स्थानकांवर पार्किंग दिलेले नाही; 2024 मध्ये जाहीर केलेले सशुल्क पार्किंग सुरू झाले नाही.",
+            "note_hi": "महामेट्रो ने पिंपरी-चिंचवड के स्टेशनों पर पार्किंग नहीं दी है; 2024 में घोषित पेड पार्किंग शुरू नहीं हुई।",
+            "sources": [
+              "fpj_no_parking_pcmc"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Dighi",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "B-1"
+            },
+            {
+              "to": "Mukai Chowk",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "P-13"
+            }
+          ],
+          "links": [
+            {
+              "text": "Shared autos to Pimple Saudagar, Kalewadi Phata, Chapekar Chowk and Chikhali",
+              "text_mr": "पिंपळे सौदागर, काळेवाडी फाटा, चापेकर चौक आणि चिखलीसाठी शेअर रिक्षा",
+              "text_hi": "पिंपले सौदागर, कालेवाड़ी फाटा, चापेकर चौक और चिखली के लिए शेयर ऑटो",
+              "sources": [
+                "pk_shared_autos"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "sant_tukaram_nagar",
@@ -419,9 +566,38 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.614525,
+        "lon": 73.815746,
+        "source": "osm_stations",
+        "osm": "node/7944597690"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "parking": {
+            "status": "none",
+            "note": "Maha Metro hasn't put parking at its Pimpri-Chinchwad stations; paid parking announced in 2024 didn't start.",
+            "note_mr": "महामेट्रोने पिंपरी-चिंचवडमधील स्थानकांवर पार्किंग दिलेले नाही; 2024 मध्ये जाहीर केलेले सशुल्क पार्किंग सुरू झाले नाही.",
+            "note_hi": "महामेट्रो ने पिंपरी-चिंचवड के स्टेशनों पर पार्किंग नहीं दी है; 2024 में घोषित पेड पार्किंग शुरू नहीं हुई।",
+            "sources": [
+              "fpj_no_parking_pcmc"
+            ]
+          },
+          "links": [
+            {
+              "text": "Close to the state transport (ST) bus station",
+              "text_mr": "एसटी बसस्थानकाजवळ",
+              "text_hi": "एसटी बस अड्डे के पास",
+              "sources": [
+                "mahametro_st_stn"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "nashik_phata",
@@ -435,9 +611,44 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.609303,
+        "lon": 73.820097,
+        "source": "osm_stations",
+        "osm": "node/7944597706"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "parking": {
+            "status": "none",
+            "note": "Maha Metro hasn't put parking at its Pimpri-Chinchwad stations; paid parking announced in 2024 didn't start.",
+            "note_mr": "महामेट्रोने पिंपरी-चिंचवडमधील स्थानकांवर पार्किंग दिलेले नाही; 2024 मध्ये जाहीर केलेले सशुल्क पार्किंग सुरू झाले नाही.",
+            "note_hi": "महामेट्रो ने पिंपरी-चिंचवड के स्टेशनों पर पार्किंग नहीं दी है; 2024 में घोषित पेड पार्किंग शुरू नहीं हुई।",
+            "sources": [
+              "fpj_no_parking_pcmc"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Nigdi",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "32"
+            },
+            {
+              "to": "Sector 13, PM Awas Yojana",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "356"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kasarwadi",
@@ -449,9 +660,41 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.59962,
+        "lon": 73.827264,
+        "source": "osm_stations",
+        "osm": "node/7944597699"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "lifts": {
+            "sources": [
+              "fpj_escalators"
+            ]
+          },
+          "escalators": {
+            "note": "At Gate 3",
+            "note_mr": "गेट 3 येथे",
+            "note_hi": "गेट 3 पर",
+            "sources": [
+              "pk_mandai_gate3"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "note": "Maha Metro hasn't put parking at its Pimpri-Chinchwad stations; paid parking announced in 2024 didn't start.",
+            "note_mr": "महामेट्रोने पिंपरी-चिंचवडमधील स्थानकांवर पार्किंग दिलेले नाही; 2024 मध्ये जाहीर केलेले सशुल्क पार्किंग सुरू झाले नाही.",
+            "note_hi": "महामेट्रो ने पिंपरी-चिंचवड के स्टेशनों पर पार्किंग नहीं दी है; 2024 में घोषित पेड पार्किंग शुरू नहीं हुई।",
+            "sources": [
+              "fpj_no_parking_pcmc"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "phugewadi",
@@ -463,9 +706,28 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.591106,
+        "lon": 73.831147,
+        "source": "osm_stations",
+        "osm": "node/7944584963"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "parking": {
+            "status": "none",
+            "note": "Maha Metro hasn't put parking at its Pimpri-Chinchwad stations; paid parking announced in 2024 didn't start.",
+            "note_mr": "महामेट्रोने पिंपरी-चिंचवडमधील स्थानकांवर पार्किंग दिलेले नाही; 2024 मध्ये जाहीर केलेले सशुल्क पार्किंग सुरू झाले नाही.",
+            "note_hi": "महामेट्रो ने पिंपरी-चिंचवड के स्टेशनों पर पार्किंग नहीं दी है; 2024 में घोषित पेड पार्किंग शुरू नहीं हुई।",
+            "sources": [
+              "fpj_no_parking_pcmc"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "dapodi",
@@ -477,9 +739,28 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.583765,
+        "lon": 73.833766,
+        "source": "osm_stations",
+        "osm": "node/7944584975"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "parking": {
+            "status": "none",
+            "note": "Maha Metro hasn't put parking at its Pimpri-Chinchwad stations; paid parking announced in 2024 didn't start.",
+            "note_mr": "महामेट्रोने पिंपरी-चिंचवडमधील स्थानकांवर पार्किंग दिलेले नाही; 2024 मध्ये जाहीर केलेले सशुल्क पार्किंग सुरू झाले नाही.",
+            "note_hi": "महामेट्रो ने पिंपरी-चिंचवड के स्टेशनों पर पार्किंग नहीं दी है; 2024 में घोषित पेड पार्किंग शुरू नहीं हुई।",
+            "sources": [
+              "fpj_no_parking_pcmc"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "bopodi",
@@ -491,9 +772,39 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.569661,
+        "lon": 73.838103,
+        "source": "osm_stations",
+        "osm": "node/7944597711"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 4,
+              "sources": [
+                "mahametro_gates_2024"
+              ],
+              "to": "Across the busy road, so you reach the footbridge without crossing it",
+              "to_mr": "वर्दळीच्या रस्त्याच्या पलीकडे: रस्ता न ओलांडता पादचारी पुलावर जाता येते",
+              "to_hi": "व्यस्त सड़क के उस पार: सड़क पार किए बिना फ़ुटओवर ब्रिज तक पहुँचें"
+            }
+          ],
+          "parking": {
+            "status": "unclear",
+            "note": "Paid parking was announced in February 2024. We couldn't confirm that it's open.",
+            "note_mr": "फेब्रुवारी 2024 मध्ये सशुल्क पार्किंग जाहीर झाले होते. ते सुरू आहे का याची खात्री झालेली नाही.",
+            "note_hi": "फ़रवरी 2024 में पेड पार्किंग की घोषणा हुई थी। यह चालू है या नहीं, इसकी पुष्टि नहीं हुई।",
+            "sources": [
+              "pk_parking_feb24"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "khadki",
@@ -507,9 +818,29 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.562262,
+        "lon": 73.842083,
+        "source": "osm_stations",
+        "osm": "node/13644302877"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "links": [
+            {
+              "text": "Next to Khadki railway station, with direct access",
+              "text_mr": "खडकी रेल्वे स्थानकाशेजारी, थेट जाण्याची सोय",
+              "text_hi": "खड़की रेलवे स्टेशन के पास, सीधा रास्ता",
+              "sources": [
+                "pk_khadki"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "range_hill",
@@ -523,7 +854,12 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.550287,
+        "lon": 73.845807,
+        "source": "osm_stations",
+        "osm": "node/7944584969"
+      },
       "gates": [],
       "facilities": []
     },
@@ -540,9 +876,143 @@
         "pink"
       ],
       "interchange": true,
-      "coords": null,
+      "coords": {
+        "lat": 18.532172,
+        "lon": 73.84966,
+        "source": "osm_stations",
+        "osm": "node/11097510271"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 3,
+              "sources": [
+                "pk_gates_feb26"
+              ],
+              "to": "Near Akashvani, Shimla Office Chowk: for Ganeshkhind Road and Agriculture College",
+              "to_mr": "आकाशवाणीजवळ, शिमला ऑफिस चौक: गणेशखिंड रस्ता आणि कृषी महाविद्यालयासाठी",
+              "to_hi": "आकाशवाणी के पास, शिमला ऑफ़िस चौक: गणेशखिंड रोड और एग्रीकल्चर कॉलेज के लिए"
+            }
+          ],
+          "lifts": {
+            "count": 5,
+            "sources": [
+              "mahametro_ug_brochure"
+            ]
+          },
+          "escalators": {
+            "count": 14,
+            "note": "12 installed",
+            "note_mr": "12 बसवले आहेत",
+            "note_hi": "12 लगे हैं",
+            "sources": [
+              "mahametro_ug_brochure"
+            ]
+          },
+          "parking": {
+            "status": "unclear",
+            "note": "Pay-and-park started in September 2024, but the contractor was suspended a day later. Current status unknown.",
+            "note_mr": "सप्टेंबर 2024 मध्ये पे-अँड-पार्क सुरू झाले, पण दुसऱ्याच दिवशी कंत्राटदाराला निलंबित केले. सध्याची स्थिती माहीत नाही.",
+            "note_hi": "सितंबर 2024 में पे-एंड-पार्क शुरू हुआ, पर अगले ही दिन ठेकेदार को निलंबित कर दिया गया। मौजूदा स्थिति पता नहीं।",
+            "sources": [
+              "fpj_dc_parking"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Swargate",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "2B"
+            },
+            {
+              "to": "Narhegaon",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "route": "17"
+            },
+            {
+              "to": "Rajas Society",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "route": "297"
+            }
+          ],
+          "links": [
+            {
+              "text": "Pedestrian subways to Shivajinagar railway station and to Akashvani",
+              "text_mr": "शिवाजीनगर रेल्वे स्थानक आणि आकाशवाणीकडे जाणारे पादचारी भुयारी मार्ग",
+              "text_hi": "शिवाजीनगर रेलवे स्टेशन और आकाशवाणी तक पैदल सबवे",
+              "sources": [
+                "mahametro_ug_brochure"
+              ]
+            }
+          ]
+        },
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "All India Radio, Pune",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Shivajinagar Police Chowky",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Shivajinagar Railway Station",
+              "Pataleshwar Cave Temple"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "district_court",
@@ -559,9 +1029,111 @@
         "pink"
       ],
       "interchange": true,
-      "coords": null,
+      "coords": {
+        "lat": 18.526786,
+        "lon": 73.856899,
+        "source": "osm_stations",
+        "osm": "node/11097510274"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "lifts": {
+            "sources": [
+              "mahametro_ug_brochure"
+            ]
+          },
+          "escalators": {
+            "sources": [
+              "mahametro_ug_brochure"
+            ]
+          },
+          "parking": {
+            "status": "unclear",
+            "note": "Pay-and-park started in September 2024, but the contractor was suspended a day later. OpenStreetMap shows a free car park run by Pune Metro.",
+            "note_mr": "सप्टेंबर 2024 मध्ये पे-अँड-पार्क सुरू झाले, पण दुसऱ्याच दिवशी कंत्राटदाराला निलंबित केले. ओपनस्ट्रीटमॅपवर पुणे मेट्रोचे मोफत वाहनतळ दिसते.",
+            "note_hi": "सितंबर 2024 में पे-एंड-पार्क शुरू हुआ, पर अगले ही दिन ठेकेदार को निलंबित कर दिया गया। ओपनस्ट्रीटमैप पर पुणे मेट्रो की मुफ़्त पार्किंग दिखती है।",
+            "sources": [
+              "fpj_dc_parking",
+              "osm_dc_parking"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Swargate",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "2B"
+            },
+            {
+              "to": "Hadapsar",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "17"
+            }
+          ]
+        },
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "District Court",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "MahaMetro Head Office",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Pune District and Sessions Court",
+              "Bund Garden"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "kasba_peth",
@@ -575,9 +1147,30 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.521375,
+        "lon": 73.859623,
+        "source": "osm_stations",
+        "osm": "node/12211880200"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 2,
+              "sources": [
+                "pk_kasba_yerwada"
+              ],
+              "to": "On the main road, at the former Sattoti police post",
+              "to_mr": "मुख्य रस्त्यावर, पूर्वीच्या सातोटी पोलीस चौकीच्या जागी",
+              "to_hi": "मुख्य सड़क पर, पुरानी सातोटी पुलिस चौकी की जगह"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "mahatma_phule_mandai",
@@ -591,9 +1184,39 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.512898,
+        "lon": 73.85701,
+        "source": "osm_stations",
+        "osm": "node/7944597694"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 2,
+              "sources": [
+                "fpj_mandai_gates"
+              ],
+              "to": "Chhatrapati Shivaji Maharaj Road",
+              "to_mr": "छत्रपती शिवाजी महाराज रस्ता",
+              "to_hi": "छत्रपति शिवाजी महाराज रोड"
+            },
+            {
+              "n": 3,
+              "sources": [
+                "pk_mandai_gate3"
+              ],
+              "to": "Near the Lokmanya Tilak statue: for Tulshibaug, Dagdusheth Ganpati and Shanipar",
+              "to_mr": "लोकमान्य टिळक पुतळ्याजवळ: तुळशीबाग, दगडूशेठ गणपती आणि शनिपारसाठी",
+              "to_hi": "लोकमान्य तिलक प्रतिमा के पास: तुलशीबाग, दगडूशेठ गणपति और शनिपार के लिए"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "swargate",
@@ -605,9 +1228,76 @@
         "purple"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.499745,
+        "lon": 73.85746,
+        "source": "osm_stations",
+        "osm": "node/7944597710"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 5,
+              "sources": [
+                "pk_gates_feb26"
+              ],
+              "to": "Next to the MSRTC (ST) bus stand, by an underground passage: no need to cross Jedhe Chowk",
+              "to_mr": "एमएसआरटीसी (एसटी) बसस्थानकाशेजारी, भुयारी मार्गाने: जेधे चौक ओलांडावा लागत नाही",
+              "to_hi": "एमएसआरटीसी (एसटी) बस स्टैंड के पास, भूमिगत रास्ते से: जेधे चौक पार नहीं करना पड़ता"
+            }
+          ],
+          "parking": {
+            "status": "unclear",
+            "note": "Paid parking was announced in February 2024. We couldn't confirm that it's open.",
+            "note_mr": "फेब्रुवारी 2024 मध्ये सशुल्क पार्किंग जाहीर झाले होते. ते सुरू आहे का याची खात्री झालेली नाही.",
+            "note_hi": "फ़रवरी 2024 में पेड पार्किंग की घोषणा हुई थी। यह चालू है या नहीं, इसकी पुष्टि नहीं हुई।",
+            "sources": [
+              "pk_parking_feb24"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Upper Depot",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "13"
+            },
+            {
+              "to": "Dhankawadi",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "38"
+            },
+            {
+              "to": "Bharti Vidyapeeth (Katraj)",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "shuttle": "216"
+            },
+            {
+              "to": "Narhegaon",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "route": "17"
+            },
+            {
+              "to": "Rajas Society",
+              "sources": [
+                "mahametro_feeder_purple"
+              ],
+              "route": "297"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "vanaz",
@@ -619,9 +1309,28 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.507185,
+        "lon": 73.805195,
+        "source": "osm_stations",
+        "osm": "node/9599243853"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "buses": [
+            {
+              "to": "Bavdhan Gaon",
+              "sources": [
+                "mahametro_feeder_aqua"
+              ],
+              "route": "K-21"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "anand_nagar",
@@ -633,9 +1342,28 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.509572,
+        "lon": 73.814075,
+        "source": "osm_stations",
+        "osm": "node/9599243854"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "parking": {
+            "status": "unclear",
+            "note": "Pay-and-park was reported running in August 2024. We found no newer report.",
+            "note_mr": "ऑगस्ट 2024 मध्ये पे-अँड-पार्क सुरू असल्याचे वृत्त होते. त्यानंतरचे वृत्त आढळले नाही.",
+            "note_hi": "अगस्त 2024 में पे-एंड-पार्क चालू होने की ख़बर थी। उसके बाद की कोई ख़बर नहीं मिली।",
+            "sources": [
+              "fpj_payandpark_aug24"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "paud_phata",
@@ -649,9 +1377,28 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.508885,
+        "lon": 73.822144,
+        "source": "osm_stations",
+        "osm": "node/9599243855"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "parking": {
+            "status": "unclear",
+            "note": "Paid parking was announced in February 2024. We couldn't confirm that it's open.",
+            "note_mr": "फेब्रुवारी 2024 मध्ये सशुल्क पार्किंग जाहीर झाले होते. ते सुरू आहे का याची खात्री झालेली नाही.",
+            "note_hi": "फ़रवरी 2024 में पेड पार्किंग की घोषणा हुई थी। यह चालू है या नहीं, इसकी पुष्टि नहीं हुई।",
+            "sources": [
+              "pk_parking_feb24"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "sndt_college",
@@ -666,9 +1413,51 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.507357,
+        "lon": 73.828782,
+        "source": "osm_stations",
+        "osm": "node/9599243856"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 1,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            },
+            {
+              "n": 2,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "ramwadi"
+            },
+            {
+              "n": 4,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            }
+          ],
+          "buses": [
+            {
+              "to": "Warje-Malwadi",
+              "sources": [
+                "mahametro_feeder_aqua"
+              ],
+              "shuttle": "2"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "garware_college",
@@ -680,9 +1469,42 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.511989,
+        "lon": 73.83805,
+        "source": "osm_stations",
+        "osm": "node/9599243857"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 1,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            },
+            {
+              "n": 3,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "ramwadi"
+            },
+            {
+              "n": 4,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "deccan_gymkhana",
@@ -696,9 +1518,59 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.516448,
+        "lon": 73.844446,
+        "source": "osm_stations",
+        "osm": "node/11097527725"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 1,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            },
+            {
+              "n": 2,
+              "sources": [
+                "pk_gates_sep26",
+                "mahametro_gates_2024"
+              ],
+              "side": "ramwadi",
+              "to": "Across JM Road, so you reach the footbridge without crossing it",
+              "to_mr": "जे.एम. रस्त्याच्या पलीकडे: रस्ता न ओलांडता पादचारी पुलावर जाता येते",
+              "to_hi": "जे.एम. रोड के उस पार: सड़क पार किए बिना फ़ुटओवर ब्रिज तक पहुँचें"
+            },
+            {
+              "n": 3,
+              "sources": [
+                "pk_gates_sep26",
+                "mahametro_gates_2024"
+              ],
+              "side": "ramwadi",
+              "to": "Across JM Road, so you reach the footbridge without crossing it",
+              "to_mr": "जे.एम. रस्त्याच्या पलीकडे: रस्ता न ओलांडता पादचारी पुलावर जाता येते",
+              "to_hi": "जे.एम. रोड के उस पार: सड़क पार किए बिना फ़ुटओवर ब्रिज तक पहुँचें"
+            }
+          ],
+          "buses": [
+            {
+              "to": "Warje-Malwadi",
+              "sources": [
+                "mahametro_feeder_aqua"
+              ],
+              "shuttle": "2"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "sambhaji_udyan",
@@ -712,9 +1584,57 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.520081,
+        "lon": 73.847383,
+        "source": "osm_stations",
+        "osm": "node/11097527718"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 1,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            },
+            {
+              "n": 2,
+              "sources": [
+                "pk_gates_sep26",
+                "mahametro_gates_2024"
+              ],
+              "side": "ramwadi",
+              "to": "Across JM Road, so you reach the footbridge without crossing it",
+              "to_mr": "जे.एम. रस्त्याच्या पलीकडे: रस्ता न ओलांडता पादचारी पुलावर जाता येते",
+              "to_hi": "जे.एम. रोड के उस पार: सड़क पार किए बिना फ़ुटओवर ब्रिज तक पहुँचें"
+            },
+            {
+              "n": 3,
+              "sources": [
+                "pk_gates_sep26",
+                "mahametro_gates_2024"
+              ],
+              "side": "vanaz",
+              "to": "Across JM Road, so you reach the footbridge without crossing it",
+              "to_mr": "जे.एम. रस्त्याच्या पलीकडे: रस्ता न ओलांडता पादचारी पुलावर जाता येते",
+              "to_hi": "जे.एम. रोड के उस पार: सड़क पार किए बिना फ़ुटओवर ब्रिज तक पहुँचें"
+            },
+            {
+              "n": 4,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "pmc",
@@ -729,9 +1649,48 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.522744,
+        "lon": 73.85335,
+        "source": "osm_stations",
+        "osm": "node/7944584980"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 1,
+              "sources": [
+                "pk_gates_sep26"
+              ],
+              "side": "vanaz"
+            },
+            {
+              "n": 2,
+              "sources": [
+                "mahametro_gates_2024"
+              ],
+              "to": "River side: no need to cross the road to reach the footbridge",
+              "to_mr": "नदीच्या बाजूला: पादचारी पुलासाठी रस्ता ओलांडावा लागत नाही",
+              "to_hi": "नदी की तरफ़: फ़ुटओवर ब्रिज के लिए सड़क पार नहीं करनी पड़ती"
+            },
+            {
+              "n": 3,
+              "sources": [
+                "pk_gates_sep26",
+                "mahametro_gates_2024"
+              ],
+              "side": "ramwadi",
+              "to": "River side: no need to cross the road to reach the footbridge",
+              "to_mr": "नदीच्या बाजूला: पादचारी पुलासाठी रस्ता ओलांडावा लागत नाही",
+              "to_hi": "नदी की तरफ़: फ़ुटओवर ब्रिज के लिए सड़क पार नहीं करनी पड़ती"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "rto_pune",
@@ -746,9 +1705,28 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.530069,
+        "lon": 73.865104,
+        "source": "osm_stations",
+        "osm": "way/1532296305"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "parking": {
+            "status": "unclear",
+            "note": "Paid parking was announced in February 2024. We couldn't confirm that it's open.",
+            "note_mr": "फेब्रुवारी 2024 मध्ये सशुल्क पार्किंग जाहीर झाले होते. ते सुरू आहे का याची खात्री झालेली नाही.",
+            "note_hi": "फ़रवरी 2024 में पेड पार्किंग की घोषणा हुई थी। यह चालू है या नहीं, इसकी पुष्टि नहीं हुई।",
+            "sources": [
+              "pk_parking_feb24"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "pune_railway_station",
@@ -763,9 +1741,29 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.529759,
+        "lon": 73.872409,
+        "source": "osm_stations",
+        "osm": "way/1494691943"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "links": [
+            {
+              "text": "Next to Pune railway station, the main ST bus terminus and the PMPML bus stand",
+              "text_mr": "पुणे रेल्वे स्थानक, मुख्य एसटी बसस्थानक आणि पीएमपीएमएल बसस्थानकाशेजारी",
+              "text_hi": "पुणे रेलवे स्टेशन, मुख्य एसटी बस अड्डे और पीएमपीएमएल बस स्टैंड के पास",
+              "sources": [
+                "mahametro_st_prs"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "ruby_hall_clinic",
@@ -779,7 +1777,12 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.532718,
+        "lon": 73.877749,
+        "source": "osm_stations",
+        "osm": "node/7944584984"
+      },
       "gates": [],
       "facilities": []
     },
@@ -793,7 +1796,12 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.540593,
+        "lon": 73.883439,
+        "source": "osm_stations",
+        "osm": "node/11699340649"
+      },
       "gates": [],
       "facilities": []
     },
@@ -809,9 +1817,43 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.545303,
+        "lon": 73.886621,
+        "source": "osm_stations",
+        "osm": "node/11699340652"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "escalators": {
+            "note": "At Entrances 2 and 3",
+            "note_mr": "प्रवेशद्वार 2 आणि 3 येथे",
+            "note_hi": "एंट्रेंस 2 और 3 पर",
+            "sources": [
+              "pk_kasba_yerwada"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Lohegaon Airport",
+              "sources": [
+                "mahametro_feeder_aqua"
+              ],
+              "shuttle": "19"
+            },
+            {
+              "to": "Commerzone IT Park",
+              "sources": [
+                "mahametro_feeder_aqua"
+              ],
+              "route": "155"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "kalyani_nagar",
@@ -823,9 +1865,40 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.544481,
+        "lon": 73.905698,
+        "source": "osm_stations",
+        "osm": "node/11699340655"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "gates": [
+            {
+              "n": 3,
+              "sources": [
+                "mahametro_gates_2024"
+              ],
+              "to": "Across the busy road, so you reach the footbridge without crossing it",
+              "to_mr": "वर्दळीच्या रस्त्याच्या पलीकडे: रस्ता न ओलांडता पादचारी पुलावर जाता येते",
+              "to_hi": "व्यस्त सड़क के उस पार: सड़क पार किए बिना फ़ुटओवर ब्रिज तक पहुँचें"
+            }
+          ],
+          "links": [
+            {
+              "text": "PMPML feeder buses run from here",
+              "text_mr": "येथून पीएमपीएमएल फीडर बस धावतात",
+              "text_hi": "यहाँ से पीएमपीएमएल फ़ीडर बसें चलती हैं",
+              "sources": [
+                "pk_feeder_apr26"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "ramwadi",
@@ -837,9 +1910,56 @@
         "aqua"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.557028,
+        "lon": 73.908563,
+        "source": "osm_stations",
+        "osm": "node/11699340657"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "mahametro",
+          "lifts": {
+            "sources": [
+              "fpj_escalators"
+            ]
+          },
+          "escalators": {
+            "note": "At Gate 2",
+            "note_mr": "गेट 2 येथे",
+            "note_hi": "गेट 2 पर",
+            "sources": [
+              "pk_mandai_gate3"
+            ]
+          },
+          "toilets": {
+            "note": "Free, inside the station (level 1)",
+            "note_mr": "मोफत, स्थानकाच्या आत (स्तर 1)",
+            "note_hi": "मुफ़्त, स्टेशन के अंदर (लेवल 1)",
+            "sources": [
+              "osm_ramwadi_toilets"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Lohegaon Airport",
+              "sources": [
+                "mahametro_feeder_aqua"
+              ],
+              "shuttle": "19"
+            },
+            {
+              "to": "WTC, EON IT Park and IITP Kharadi",
+              "sources": [
+                "mahametro_feeder_aqua"
+              ],
+              "shuttle": "20"
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "maan",
@@ -851,9 +1971,95 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.579213,
+        "lon": 73.688016,
+        "source": "osm_stations",
+        "osm": "node/7944584973"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "TCS, Megapolis",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Eon Homes, Tech Mahindra",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 3,
+              "coming_soon": true,
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "available",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Megapolis Residential",
+              "Pawar Public School",
+              "TCS",
+              "Tech Mahindra"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Mahalunge Gaon",
+              "sources": [
+                "pk_feeder_l3"
+              ]
+            },
+            {
+              "to": "Podar International School, Bhoirwadi",
+              "sources": [
+                "pk_feeder_l3"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "maan_midc_circle",
@@ -865,9 +2071,82 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.584018,
+        "lon": 73.694818,
+        "source": "osm_stations",
+        "osm": "node/7944597688"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Embassy Quadron",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Maan Depot",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "available",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Quadron Park",
+              "MIDC",
+              "Vedant Hospital"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "buses": [
+            {
+              "shuttle": "41",
+              "to": "Nilsoft and Infosys Phase 3",
+              "sources": [
+                "pk_feeder_l3"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "maan_bus_depot",
@@ -879,9 +2158,73 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.588102,
+        "lon": 73.702895,
+        "source": "osm_stations",
+        "osm": "node/7944584965"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Dohler",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Abhay Bio CNG Pvt Ltd, SWM Plant",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Quadron Park",
+              "MIDC",
+              "Vedant Hospital"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "hinjawadi_p2_c2",
@@ -895,9 +2238,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.594195,
+        "lon": 73.709223,
+        "source": "osm_stations",
+        "osm": "node/7944584983"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Infosys",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "TCG International Biotech Park",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Vedant Hospital",
+              "Hinjawadi Police Station"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "hinjawadi_p2_c1",
@@ -911,9 +2317,71 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.59659,
+        "lon": 73.717161,
+        "source": "osm_stations",
+        "osm": "node/7944597696"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Wipro, Infosys",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Ibys Hotel",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Wipro"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "padmabhushan_chowk",
@@ -925,9 +2393,80 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.594487,
+        "lon": 73.727826,
+        "source": "osm_stations",
+        "osm": "node/14334230170"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Chroma / Terminal 1",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Atlas Copco",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Pall Corporation",
+              "KB Chowk"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Koyte Vasti, Punawale",
+              "sources": [
+                "pk_feeder_l3"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "shivaji_maharaj_chowk_hinjawadi",
@@ -941,9 +2480,79 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.592395,
+        "lon": 73.737357,
+        "source": "osm_stations",
+        "osm": "node/13647113374"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Shivaji Chowk",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Mandi Shivaji Chowk, Birla Soft",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Shivaji Chowk"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "buses": [
+            {
+              "to": "Indira University, Tathawade",
+              "sources": [
+                "pk_feeder_l3"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "hinjawadi_p1",
@@ -957,9 +2566,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.590967,
+        "lon": 73.7463,
+        "source": "osm_stations",
+        "osm": "node/13647113373"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Hotel Vevanta",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Truww Hinjawadi",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "XION Mall",
+              "D-Mart"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "wakad_chowk",
@@ -973,9 +2645,81 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.590299,
+        "lon": 73.757559,
+        "source": "osm_stations",
+        "osm": "node/7944597702"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Wakad Chowk",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Surya Hospital",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "available",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Blossom Public School",
+              "Mumbai Pune National Highway"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "buses": [
+            {
+              "shuttle": "31",
+              "to": "Pimpri Metro Station",
+              "sources": [
+                "pk_feeder_l3"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "sports_complex_mahalunge",
@@ -990,9 +2734,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.579709,
+        "lon": 73.761542,
+        "source": "osm_stations",
+        "osm": "node/7944584964"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "7 Avenues",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Balewadi Stadium",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "available",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "PICT Model School",
+              "Manipal Hospital"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "mitcon_balewadi",
@@ -1004,9 +2811,82 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.575034,
+        "lon": 73.766062,
+        "source": "osm_stations",
+        "osm": "node/13647113369"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Amartech Park, MIS School",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Nic Mar",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Aram Tech Park",
+              "NICMAR University",
+              "Mahalunge (Ozon) Hospital"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "buses": [
+            {
+              "shuttle": "50",
+              "to": "Chandegaon",
+              "sources": [
+                "pk_feeder_l3"
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "id": "rk_laxman_museum",
@@ -1020,9 +2900,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.574343,
+        "lon": 73.771849,
+        "source": "osm_stations",
+        "osm": "node/14334230175"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Ridhi Sidhi Society, Smart Works",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "RK Laxman Museum",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Mahalunge (Ozon) Hospital",
+              "Manipal Hospital"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "balewadi_high_street",
@@ -1034,9 +2977,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.570512,
+        "lon": 73.774838,
+        "source": "osm_stations",
+        "osm": "node/13647113368"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "CRIF High Mark Information Services",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Rabindranath Tagore School of Excellence",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Balewadi Stadium",
+              "NICMAR University"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "balewadi_phata",
@@ -1048,9 +3054,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.564186,
+        "lon": 73.779766,
+        "source": "osm_stations",
+        "osm": "node/13647113367"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Global Manpower Consultancy Services",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Panchshil Business Park",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Jupiter Hospital Pune",
+              "Westend Mall"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "baner_gaon",
@@ -1064,9 +3133,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.559196,
+        "lon": 73.790598,
+        "source": "osm_stations",
+        "osm": "node/13647113366"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Central Bank of India",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "ALLEN Career Institute, Aundh Campus",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Baner Hill",
+              "VITS Hotel Pune"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "baner_pashan_link_road",
@@ -1078,9 +3210,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.554955,
+        "lon": 73.797667,
+        "source": "osm_stations",
+        "osm": "node/13647113365"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Canara Bank, General Branch",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Dhanwantari Hospital",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Pashan Lake",
+              "National Chemical Laboratory (NCL)"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "aundh",
@@ -1094,9 +3289,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.550306,
+        "lon": 73.808257,
+        "source": "osm_stations",
+        "osm": "node/13647113364"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "eleRide Mobility Solutions Pvt",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Accenture PDC7",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Westend Mall",
+              "Chhatrapati Sambhaji Garden"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "sakal_nagar",
@@ -1108,9 +3366,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.546325,
+        "lon": 73.819665,
+        "source": "osm_stations",
+        "osm": "node/13647113363"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Indian Agriculture Research Institute",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "IISER Chemistry Department",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "The Orchid Hotel Pune",
+              "Mhatre Bridge"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "sppu",
@@ -1125,9 +3446,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.542347,
+        "lon": 73.827173,
+        "source": "osm_stations",
+        "osm": "node/13647113362"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "The Children's Clinic and Vaccination Centre",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Police Headquarters",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Chattushringi Temple",
+              "Savitribai Phule Pune University Main Building"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "bhosalenagar_rbi",
@@ -1141,9 +3525,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.536371,
+        "lon": 73.836692,
+        "source": "osm_stations",
+        "osm": "node/7944597700"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Regional Forensic Science Laboratory",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Modern College of Arts, Science and Commerce",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "Range Hills",
+              "Pune University Circle"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     },
     {
       "id": "agriculture_college",
@@ -1157,9 +3604,72 @@
         "pink"
       ],
       "interchange": false,
-      "coords": null,
+      "coords": {
+        "lat": 18.533006,
+        "lon": 73.841487,
+        "source": "osm_stations",
+        "osm": "node/7944597695"
+      },
       "gates": [],
-      "facilities": []
+      "facilities": [],
+      "access": [
+        {
+          "operator": "puneri_metro",
+          "gates": [
+            {
+              "n": 1,
+              "to": "Reserve Bank of India College of Agricultural Banking",
+              "sources": [
+                "puneri_station_list"
+              ]
+            },
+            {
+              "n": 2,
+              "to": "Symbiosis Centre for Distance Learning (SCDL)",
+              "sources": [
+                "puneri_station_list"
+              ]
+            }
+          ],
+          "lifts": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "escalators": {
+            "count": 4,
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "parking": {
+            "status": "none",
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "amenities": {
+            "items": [
+              "first_aid",
+              "wheelchair",
+              "drinking_water"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          },
+          "nearby": {
+            "names": [
+              "College of Agriculture, Pune",
+              "Mahatma Phule Museum"
+            ],
+            "sources": [
+              "puneri_station_list"
+            ]
+          }
+        }
+      ]
     }
   ],
   "fares": {
@@ -2710,7 +5220,1971 @@
     "cross_operator_rule": "Trips between Pink and Purple/Aqua need two tickets; fare = sum of both legs.",
     "cross_operator_source": "official_app_notes"
   },
+  "places": [
+    {
+      "id": "way/1145089204",
+      "kind": "heritage",
+      "name": "Shaniwar Wada",
+      "lat": 18.519386,
+      "lon": 73.855347,
+      "near": [
+        {
+          "station": "pmc",
+          "m": 429
+        },
+        {
+          "station": "kasba_peth",
+          "m": 502
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 742
+        },
+        {
+          "station": "district_court",
+          "m": 839
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 843
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 1195
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "शनिवार वाडा"
+    },
+    {
+      "id": "way/217271037",
+      "kind": "heritage",
+      "name": "Lal Mahal",
+      "lat": 18.518725,
+      "lon": 73.856664,
+      "near": [
+        {
+          "station": "kasba_peth",
+          "m": 429
+        },
+        {
+          "station": "pmc",
+          "m": 567
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 649
+        },
+        {
+          "station": "district_court",
+          "m": 897
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 990
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "लाल महाल"
+    },
+    {
+      "id": "way/215998826",
+      "kind": "heritage",
+      "name": "Aga Khan Palace",
+      "lat": 18.552485,
+      "lon": 73.901537,
+      "near": [
+        {
+          "station": "ramwadi",
+          "m": 897
+        },
+        {
+          "station": "kalyani_nagar",
+          "m": 992
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "आगा खान पॅलेस"
+    },
+    {
+      "id": "way/218078556",
+      "kind": "heritage",
+      "name": "Pataleshwar Cave Temple",
+      "lat": 18.527045,
+      "lon": 73.850079,
+      "near": [
+        {
+          "station": "shivaji_nagar",
+          "m": 572
+        },
+        {
+          "station": "pmc",
+          "m": 590
+        },
+        {
+          "station": "district_court",
+          "m": 720
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 825
+        },
+        {
+          "station": "agriculture_college",
+          "m": 1122
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1187
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पाताळेश्वर लेणी"
+    },
+    {
+      "id": "way/197954182",
+      "kind": "heritage",
+      "name": "Parvati Hill",
+      "lat": 18.49727,
+      "lon": 73.846792,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 1158
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पर्वती"
+    },
+    {
+      "id": "way/264281528",
+      "kind": "museum",
+      "name": "Raja Dinkar Kelkar Museum",
+      "lat": 18.510762,
+      "lon": 73.854509,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 355
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "राजा दिनकर केळकर संग्रहालय"
+    },
+    {
+      "id": "way/218078554",
+      "kind": "museum",
+      "name": "Mahatma Phule Vastu Sangrahalaya",
+      "lat": 18.523634,
+      "lon": 73.845183,
+      "near": [
+        {
+          "station": "sambhaji_udyan",
+          "m": 458
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 803
+        },
+        {
+          "station": "pmc",
+          "m": 867
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 1060
+        },
+        {
+          "station": "agriculture_college",
+          "m": 1113
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "महात्मा फुले वस्तू संग्रहालय"
+    },
+    {
+      "id": "way/232879052",
+      "kind": "museum",
+      "name": "Bharat Itihas Sanshodhak Mandal",
+      "lat": 18.510666,
+      "lon": 73.84951,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 829
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 836
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1071
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "भारत इतिहास संशोधक मंडळ"
+    },
+    {
+      "id": "node/2455119457",
+      "kind": "museum",
+      "name": "Joshi's Museum of Miniature Railways",
+      "lat": 18.501412,
+      "lon": 73.822364,
+      "near": [
+        {
+          "station": "paud_phata",
+          "m": 831
+        },
+        {
+          "station": "sndt_college",
+          "m": 946
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "जोशी रेल्वे संग्रहालय"
+    },
+    {
+      "id": "node/13805714808",
+      "kind": "museum",
+      "name": "R K Laxman Museum",
+      "lat": 18.573321,
+      "lon": 73.770793,
+      "near": [
+        {
+          "station": "rk_laxman_museum",
+          "m": 159
+        },
+        {
+          "station": "balewadi_high_street",
+          "m": 529
+        },
+        {
+          "station": "mitcon_balewadi",
+          "m": 534
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "आर. के. लक्ष्मण संग्रहालय"
+    },
+    {
+      "id": "way/290390068",
+      "kind": "museum",
+      "name": "Sawai Gandharva Smarak",
+      "lat": 18.531728,
+      "lon": 73.845496,
+      "near": [
+        {
+          "station": "shivaji_nagar",
+          "m": 442
+        },
+        {
+          "station": "agriculture_college",
+          "m": 446
+        },
+        {
+          "station": "bhosalenagar_rbi",
+          "m": 1062
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "सवाई गंधर्व स्मारक"
+    },
+    {
+      "id": "way/264276391",
+      "kind": "temple",
+      "name": "Dagdusheth Halwai Ganpati",
+      "lat": 18.516391,
+      "lon": 73.856084,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 400
+        },
+        {
+          "station": "kasba_peth",
+          "m": 668
+        },
+        {
+          "station": "pmc",
+          "m": 763
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1005
+        },
+        {
+          "station": "district_court",
+          "m": 1159
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "श्रीमंत दगडूशेठ हलवाई गणपती मंदिर"
+    },
+    {
+      "id": "way/380363669",
+      "kind": "temple",
+      "name": "Tulshibaug Ram Mandir",
+      "lat": 18.513729,
+      "lon": 73.855497,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 184
+        },
+        {
+          "station": "kasba_peth",
+          "m": 955
+        },
+        {
+          "station": "pmc",
+          "m": 1028
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1109
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "तुळशीबाग राम मंदिर"
+    },
+    {
+      "id": "node/2701228387",
+      "kind": "temple",
+      "name": "Tambdi Jogeshwari",
+      "lat": 18.516531,
+      "lon": 73.854765,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 468
+        },
+        {
+          "station": "pmc",
+          "m": 707
+        },
+        {
+          "station": "kasba_peth",
+          "m": 743
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 873
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 1088
+        },
+        {
+          "station": "district_court",
+          "m": 1162
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "तांबडी जोगेश्वरी"
+    },
+    {
+      "id": "node/2289294092",
+      "kind": "temple",
+      "name": "Kasba Ganpati",
+      "lat": 18.51903,
+      "lon": 73.857241,
+      "near": [
+        {
+          "station": "kasba_peth",
+          "m": 362
+        },
+        {
+          "station": "pmc",
+          "m": 582
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 682
+        },
+        {
+          "station": "district_court",
+          "m": 863
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1046
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "कसबा गणपती"
+    },
+    {
+      "id": "way/215535660",
+      "kind": "temple",
+      "name": "Omkareshwar Mandir",
+      "lat": 18.51994,
+      "lon": 73.849099,
+      "near": [
+        {
+          "station": "sambhaji_udyan",
+          "m": 182
+        },
+        {
+          "station": "pmc",
+          "m": 546
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 626
+        },
+        {
+          "station": "district_court",
+          "m": 1121
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1121
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 1144
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "ओंकारेश्वर मंदिर"
+    },
+    {
+      "id": "way/265922891",
+      "kind": "temple",
+      "name": "Chaturshrungi Mandir",
+      "lat": 18.538887,
+      "lon": 73.82777,
+      "near": [
+        {
+          "station": "sppu",
+          "m": 390
+        },
+        {
+          "station": "bhosalenagar_rbi",
+          "m": 981
+        },
+        {
+          "station": "sakal_nagar",
+          "m": 1189
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "चतुःशृंगी मंदिर"
+    },
+    {
+      "id": "way/1489755536",
+      "kind": "temple",
+      "name": "Mahalaxmi Mandir, Sarasbaug",
+      "lat": 18.499938,
+      "lon": 73.854167,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 348
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "श्री महालक्ष्मी मंदिर, सारसबाग"
+    },
+    {
+      "id": "way/269501567",
+      "kind": "temple",
+      "name": "Jangli Maharaj Mandir",
+      "lat": 18.526377,
+      "lon": 73.849997,
+      "near": [
+        {
+          "station": "pmc",
+          "m": 537
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 645
+        },
+        {
+          "station": "district_court",
+          "m": 729
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 752
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1157
+        },
+        {
+          "station": "agriculture_college",
+          "m": 1161
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "जंगली महाराज मंदिर"
+    },
+    {
+      "id": "node/3836998960",
+      "kind": "temple",
+      "name": "Belbag Mandir",
+      "lat": 18.515669,
+      "lon": 73.855609,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 342
+        },
+        {
+          "station": "kasba_peth",
+          "m": 763
+        },
+        {
+          "station": "pmc",
+          "m": 822
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 996
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 1180
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "बेलबाग मंदिर"
+    },
+    {
+      "id": "way/67168944",
+      "kind": "temple",
+      "name": "Ohel David Synagogue (Lal Deval)",
+      "lat": 18.519358,
+      "lon": 73.874604,
+      "near": [
+        {
+          "station": "pune_railway_station",
+          "m": 1179
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "ओहेल डेव्हिड सिनेगॉग (लाल देऊळ)"
+    },
+    {
+      "id": "way/264403539",
+      "kind": "temple",
+      "name": "Osho International Meditation Resort",
+      "lat": 18.537054,
+      "lon": 73.888606,
+      "near": [
+        {
+          "station": "bund_garden",
+          "m": 672
+        },
+        {
+          "station": "yerwada",
+          "m": 941
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "ओशो आश्रम"
+    },
+    {
+      "id": "way/282961100",
+      "kind": "temple",
+      "name": "Gurusingh Sabha Gurudwara",
+      "lat": 18.517844,
+      "lon": 73.861877,
+      "near": [
+        {
+          "station": "kasba_peth",
+          "m": 459
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 752
+        },
+        {
+          "station": "pmc",
+          "m": 1051
+        },
+        {
+          "station": "district_court",
+          "m": 1124
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "गुरुसिंह सभा गुरुद्वारा"
+    },
+    {
+      "id": "way/532470092",
+      "kind": "park",
+      "name": "Bund Garden",
+      "lat": 18.541623,
+      "lon": 73.884249,
+      "near": [
+        {
+          "station": "bund_garden",
+          "m": 143
+        },
+        {
+          "station": "yerwada",
+          "m": 480
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "बंडगार्डन"
+    },
+    {
+      "id": "way/53272975",
+      "kind": "park",
+      "name": "Sarasbaug",
+      "lat": 18.500829,
+      "lon": 73.852809,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 505
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "सारसबाग"
+    },
+    {
+      "id": "way/197954183",
+      "kind": "park",
+      "name": "Peshwe Udyan",
+      "lat": 18.50134,
+      "lon": 73.851535,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 649
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पेशवे उद्यान"
+    },
+    {
+      "id": "way/199261924",
+      "kind": "park",
+      "name": "Chhatrapati Sambhaji Udyan",
+      "lat": 18.520561,
+      "lon": 73.847125,
+      "near": [
+        {
+          "station": "sambhaji_udyan",
+          "m": 60
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 538
+        },
+        {
+          "station": "pmc",
+          "m": 700
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "छत्रपती संभाजी उद्यान"
+    },
+    {
+      "id": "way/152333025",
+      "kind": "park",
+      "name": "Udaan Biodiversity Park",
+      "lat": 18.565386,
+      "lon": 73.910281,
+      "near": [
+        {
+          "station": "ramwadi",
+          "m": 947
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "उडान बायोडायव्हर्सिटी पार्क"
+    },
+    {
+      "id": "way/215535659",
+      "kind": "stadium",
+      "name": "Nehru Stadium",
+      "lat": 18.502159,
+      "lon": 73.855606,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 332
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "नेहरु स्टेडियम"
+    },
+    {
+      "id": "way/615974518",
+      "kind": "stadium",
+      "name": "Shree Shiv Chhatrapati Sports Complex, Balewadi",
+      "lat": 18.573763,
+      "lon": 73.761722,
+      "near": [
+        {
+          "station": "mitcon_balewadi",
+          "m": 479
+        },
+        {
+          "station": "sports_complex_mahalunge",
+          "m": 661
+        },
+        {
+          "station": "rk_laxman_museum",
+          "m": 1069
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "श्री शिव छत्रपती क्रीडा संकुल, बालेवाडी"
+    },
+    {
+      "id": "way/1019388898",
+      "kind": "mall",
+      "name": "The Pavillion",
+      "lat": 18.533723,
+      "lon": 73.829624,
+      "near": [
+        {
+          "station": "bhosalenagar_rbi",
+          "m": 801
+        },
+        {
+          "station": "sppu",
+          "m": 993
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "द पॅव्हिलियन"
+    },
+    {
+      "id": "node/13955832747",
+      "kind": "mall",
+      "name": "The KOPA",
+      "lat": 18.538383,
+      "lon": 73.90772,
+      "near": [
+        {
+          "station": "kalyani_nagar",
+          "m": 711
+        }
+      ],
+      "source": "osm_places"
+    },
+    {
+      "id": "way/359527390",
+      "kind": "mall",
+      "name": "Grand highstreet",
+      "lat": 18.593797,
+      "lon": 73.725531,
+      "near": [
+        {
+          "station": "padmabhushan_chowk",
+          "m": 254
+        },
+        {
+          "station": "hinjawadi_p2_c1",
+          "m": 935
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "ग्रँड हायस्ट्रीट"
+    },
+    {
+      "id": "way/121898933",
+      "kind": "mall",
+      "name": "Jewel Square Mall",
+      "lat": 18.538909,
+      "lon": 73.885919,
+      "near": [
+        {
+          "station": "bund_garden",
+          "m": 322
+        },
+        {
+          "station": "yerwada",
+          "m": 715
+        },
+        {
+          "station": "ruby_hall_clinic",
+          "m": 1103
+        }
+      ],
+      "source": "osm_places"
+    },
+    {
+      "id": "way/121898482",
+      "kind": "theatre",
+      "name": "Balgandharva Rangmandir",
+      "lat": 18.521991,
+      "lon": 73.848694,
+      "near": [
+        {
+          "station": "sambhaji_udyan",
+          "m": 253
+        },
+        {
+          "station": "pmc",
+          "m": 498
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 762
+        },
+        {
+          "station": "district_court",
+          "m": 1016
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 1137
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1154
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "बालगंधर्व रंगमंदिर"
+    },
+    {
+      "id": "way/53273142",
+      "kind": "theatre",
+      "name": "Ganesh Kala Krida Rangamanch",
+      "lat": 18.501604,
+      "lon": 73.856688,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 222
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "गणेश कला क्रिडा रंगमंच"
+    },
+    {
+      "id": "way/217773622",
+      "kind": "theatre",
+      "name": "Tilak Smarak Mandir",
+      "lat": 18.508234,
+      "lon": 73.848891,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 1001
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 1027
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "टिळक स्मारक मंदिर"
+    },
+    {
+      "id": "way/217773605",
+      "kind": "theatre",
+      "name": "Bharat Natya Mandir",
+      "lat": 18.510644,
+      "lon": 73.849246,
+      "near": [
+        {
+          "station": "deccan_gymkhana",
+          "m": 820
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 856
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1068
+        },
+        {
+          "station": "garware_college",
+          "m": 1190
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "भरत नाट्य मंदिर"
+    },
+    {
+      "id": "way/198733121",
+      "kind": "theatre",
+      "name": "Yashwantrao Chavan Natyagruha",
+      "lat": 18.50272,
+      "lon": 73.812339,
+      "near": [
+        {
+          "station": "anand_nagar",
+          "m": 784
+        },
+        {
+          "station": "vanaz",
+          "m": 902
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "यशवंतराव चव्हाण नाट्यगृह"
+    },
+    {
+      "id": "way/215998827",
+      "kind": "cinema",
+      "name": "Alka Talkies",
+      "lat": 18.512205,
+      "lon": 73.84334,
+      "near": [
+        {
+          "station": "deccan_gymkhana",
+          "m": 486
+        },
+        {
+          "station": "garware_college",
+          "m": 558
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 974
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "अलका टॉकीज"
+    },
+    {
+      "id": "way/216506274",
+      "kind": "cinema",
+      "name": "Mangala Multiplex",
+      "lat": 18.524368,
+      "lon": 73.854438,
+      "near": [
+        {
+          "station": "pmc",
+          "m": 214
+        },
+        {
+          "station": "district_court",
+          "m": 374
+        },
+        {
+          "station": "kasba_peth",
+          "m": 640
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 883
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 1003
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "मंगला मल्टीप्लेक्स"
+    },
+    {
+      "id": "way/238842693",
+      "kind": "cinema",
+      "name": "Rahul Cineplex",
+      "lat": 18.531591,
+      "lon": 73.846478,
+      "near": [
+        {
+          "station": "shivaji_nagar",
+          "m": 342
+        },
+        {
+          "station": "agriculture_college",
+          "m": 549
+        },
+        {
+          "station": "bhosalenagar_rbi",
+          "m": 1161
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "राहुल सिनेप्लेक्स"
+    },
+    {
+      "id": "node/508047952",
+      "kind": "cinema",
+      "name": "E-Square Multiplex",
+      "lat": 18.537851,
+      "lon": 73.835574,
+      "near": [
+        {
+          "station": "bhosalenagar_rbi",
+          "m": 202
+        },
+        {
+          "station": "agriculture_college",
+          "m": 824
+        },
+        {
+          "station": "sppu",
+          "m": 1017
+        }
+      ],
+      "source": "osm_places"
+    },
+    {
+      "id": "node/9278157008",
+      "kind": "cinema",
+      "name": "PVR Icon, Pavilion Mall",
+      "lat": 18.534244,
+      "lon": 73.829667,
+      "near": [
+        {
+          "station": "bhosalenagar_rbi",
+          "m": 777
+        },
+        {
+          "station": "sppu",
+          "m": 939
+        }
+      ],
+      "source": "osm_places"
+    },
+    {
+      "id": "node/672225961",
+      "kind": "cinema",
+      "name": "Inox",
+      "lat": 18.526845,
+      "lon": 73.877858,
+      "near": [
+        {
+          "station": "ruby_hall_clinic",
+          "m": 653
+        },
+        {
+          "station": "pune_railway_station",
+          "m": 660
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "आयनॉक्स"
+    },
+    {
+      "id": "way/260625425",
+      "kind": "cinema",
+      "name": "Vishal E-Square",
+      "lat": 18.626077,
+      "lon": 73.804093,
+      "near": [
+        {
+          "station": "pcmc",
+          "m": 370
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "विशाल ई-स्क्वेअर"
+    },
+    {
+      "id": "node/5518862552",
+      "kind": "cinema",
+      "name": "E-Square Xion",
+      "lat": 18.592074,
+      "lon": 73.744667,
+      "near": [
+        {
+          "station": "hinjawadi_p1",
+          "m": 212
+        },
+        {
+          "station": "shivaji_maharaj_chowk_hinjawadi",
+          "m": 771
+        }
+      ],
+      "source": "osm_places"
+    },
+    {
+      "id": "node/10271171705",
+      "kind": "cinema",
+      "name": "PVR Cinemas, Grand Highstreet",
+      "lat": 18.593859,
+      "lon": 73.72574,
+      "near": [
+        {
+          "station": "padmabhushan_chowk",
+          "m": 231
+        },
+        {
+          "station": "hinjawadi_p2_c1",
+          "m": 954
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "PVR सिनेमा"
+    },
+    {
+      "id": "node/1534501626",
+      "kind": "cinema",
+      "name": "R Deccan Multiplex",
+      "lat": 18.51645,
+      "lon": 73.842339,
+      "near": [
+        {
+          "station": "deccan_gymkhana",
+          "m": 222
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 668
+        },
+        {
+          "station": "garware_college",
+          "m": 671
+        }
+      ],
+      "source": "osm_places"
+    },
+    {
+      "id": "way/291939174",
+      "kind": "cinema",
+      "name": "Gunjan Talkies",
+      "lat": 18.546567,
+      "lon": 73.888259,
+      "near": [
+        {
+          "station": "yerwada",
+          "m": 223
+        },
+        {
+          "station": "bund_garden",
+          "m": 836
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "गुंजन टॉकीज"
+    },
+    {
+      "id": "way/208089911",
+      "kind": "cinema",
+      "name": "Laxminarayan Talkies",
+      "lat": 18.496148,
+      "lon": 73.857569,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 400
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "लक्ष्मीनारायण चित्रपटगृह"
+    },
+    {
+      "id": "way/65486228",
+      "kind": "market",
+      "name": "Mahatma Phule Mandai",
+      "lat": 18.51291,
+      "lon": 73.856295,
+      "near": [
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 75
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1005
+        },
+        {
+          "station": "pmc",
+          "m": 1137
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "महात्मा फुले मंडई"
+    },
+    {
+      "id": "node/343304315",
+      "kind": "rail",
+      "name": "Pune Junction railway station",
+      "lat": 18.528877,
+      "lon": 73.874415,
+      "near": [
+        {
+          "station": "pune_railway_station",
+          "m": 233
+        },
+        {
+          "station": "ruby_hall_clinic",
+          "m": 553
+        },
+        {
+          "station": "rto_pune",
+          "m": 991
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पुणे जंक्शन रेल्वे स्थानक",
+      "name_hi": "पुणे जंक्शन"
+    },
+    {
+      "id": "node/763549837",
+      "kind": "rail",
+      "name": "Shivajinagar railway station",
+      "lat": 18.532591,
+      "lon": 73.851311,
+      "near": [
+        {
+          "station": "shivaji_nagar",
+          "m": 180
+        },
+        {
+          "station": "district_court",
+          "m": 874
+        },
+        {
+          "station": "agriculture_college",
+          "m": 1037
+        },
+        {
+          "station": "pmc",
+          "m": 1116
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "शिवाजीनगर रेल्वे स्थानक"
+    },
+    {
+      "id": "node/2432308277",
+      "kind": "rail",
+      "name": "Pimpri railway station",
+      "lat": 18.622953,
+      "lon": 73.802512,
+      "near": [
+        {
+          "station": "pcmc",
+          "m": 713
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पिंपरी रेल्वे स्थानक",
+      "name_hi": "पिंपरी"
+    },
+    {
+      "id": "node/691259390",
+      "kind": "rail",
+      "name": "Kasarwadi railway station",
+      "lat": 18.608093,
+      "lon": 73.820868,
+      "near": [
+        {
+          "station": "nashik_phata",
+          "m": 157
+        },
+        {
+          "station": "sant_tukaram_nagar",
+          "m": 896
+        },
+        {
+          "station": "kasarwadi",
+          "m": 1158
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "कासारवाडी रेल्वे स्थानक"
+    },
+    {
+      "id": "node/2432308147",
+      "kind": "rail",
+      "name": "Dapodi railway station",
+      "lat": 18.581447,
+      "lon": 73.832686,
+      "near": [
+        {
+          "station": "dapodi",
+          "m": 282
+        },
+        {
+          "station": "phugewadi",
+          "m": 1086
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "दापोडी रेल्वे स्थानक"
+    },
+    {
+      "id": "way/817474247",
+      "kind": "bus",
+      "name": "Swargate ST bus stand",
+      "lat": 18.499955,
+      "lon": 73.859007,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 165
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "स्वारगेट एसटी बसस्थानक"
+    },
+    {
+      "id": "way/817532714",
+      "kind": "bus",
+      "name": "Swargate PMPML bus stand",
+      "lat": 18.499154,
+      "lon": 73.857899,
+      "near": [
+        {
+          "station": "swargate",
+          "m": 80
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "स्वारगेट पीएमपीएमएल बसस्थानक"
+    },
+    {
+      "id": "way/1531434079",
+      "kind": "bus",
+      "name": "Pune Station bus stand",
+      "lat": 18.527465,
+      "lon": 73.87276,
+      "near": [
+        {
+          "station": "pune_railway_station",
+          "m": 258
+        },
+        {
+          "station": "ruby_hall_clinic",
+          "m": 786
+        },
+        {
+          "station": "rto_pune",
+          "m": 858
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पुणे स्टेशन बसस्थानक"
+    },
+    {
+      "id": "way/242682734",
+      "kind": "bus",
+      "name": "Pimpri-Chinchwad (Vallabhnagar) bus stand",
+      "lat": 18.615092,
+      "lon": 73.815925,
+      "near": [
+        {
+          "station": "sant_tukaram_nagar",
+          "m": 66
+        },
+        {
+          "station": "nashik_phata",
+          "m": 780
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पिंपरी-चिंचवड (वल्लभनगर) बसस्थानक"
+    },
+    {
+      "id": "way/905005583",
+      "kind": "bus",
+      "name": "PMC Bhavan PMPML bus station",
+      "lat": 18.523076,
+      "lon": 73.853724,
+      "near": [
+        {
+          "station": "pmc",
+          "m": 54
+        },
+        {
+          "station": "district_court",
+          "m": 531
+        },
+        {
+          "station": "kasba_peth",
+          "m": 650
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 747
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 1098
+        },
+        {
+          "station": "mahatma_phule_mandai",
+          "m": 1184
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "मनपा भवन पीएमपीएमएल बसस्थानक"
+    },
+    {
+      "id": "way/817467530",
+      "kind": "bus",
+      "name": "Shivajinagar (Wakadewadi) ST bus stand",
+      "lat": 18.542973,
+      "lon": 73.852627,
+      "near": [
+        {
+          "station": "range_hill",
+          "m": 1086
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "शिवाजीनगर (वाकडेवाडी) एसटी बसस्थानक"
+    },
+    {
+      "id": "node/10172977877",
+      "kind": "hospital",
+      "name": "Ruby Hall Clinic",
+      "lat": 18.532784,
+      "lon": 73.877365,
+      "near": [
+        {
+          "station": "ruby_hall_clinic",
+          "m": 41
+        },
+        {
+          "station": "pune_railway_station",
+          "m": 621
+        },
+        {
+          "station": "bund_garden",
+          "m": 1079
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "रुबी हॉल क्लिनिक"
+    },
+    {
+      "id": "way/331500153",
+      "kind": "hospital",
+      "name": "Jehangir Hospital",
+      "lat": 18.530381,
+      "lon": 73.876657,
+      "near": [
+        {
+          "station": "ruby_hall_clinic",
+          "m": 284
+        },
+        {
+          "station": "pune_railway_station",
+          "m": 453
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "जहांगिर रुग्णालय"
+    },
+    {
+      "id": "node/772571829",
+      "kind": "hospital",
+      "name": "Sassoon Hospital",
+      "lat": 18.525143,
+      "lon": 73.869566,
+      "near": [
+        {
+          "station": "pune_railway_station",
+          "m": 594
+        },
+        {
+          "station": "rto_pune",
+          "m": 722
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1129
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "ससून रुग्णालय"
+    },
+    {
+      "id": "way/215075307",
+      "kind": "hospital",
+      "name": "KEM Hospital",
+      "lat": 18.520252,
+      "lon": 73.86712,
+      "near": [
+        {
+          "station": "kasba_peth",
+          "m": 800
+        },
+        {
+          "station": "rto_pune",
+          "m": 1112
+        },
+        {
+          "station": "pune_railway_station",
+          "m": 1195
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "केईएम रुग्णालय"
+    },
+    {
+      "id": "way/282054948",
+      "kind": "hospital",
+      "name": "Deccan Hardikar Hospital",
+      "lat": 18.530223,
+      "lon": 73.847541,
+      "near": [
+        {
+          "station": "shivaji_nagar",
+          "m": 311
+        },
+        {
+          "station": "agriculture_college",
+          "m": 709
+        },
+        {
+          "station": "pmc",
+          "m": 1033
+        },
+        {
+          "station": "district_court",
+          "m": 1058
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1128
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "डेक्कन हर्डीकर रुग्णालय"
+    },
+    {
+      "id": "way/380417659",
+      "kind": "hospital",
+      "name": "Inlaks and Budhrani Hospital",
+      "lat": 18.535031,
+      "lon": 73.887378,
+      "near": [
+        {
+          "station": "bund_garden",
+          "m": 745
+        },
+        {
+          "station": "ruby_hall_clinic",
+          "m": 1047
+        },
+        {
+          "station": "yerwada",
+          "m": 1145
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "इनलॅक्स बुधराणी रुग्णालय"
+    },
+    {
+      "id": "way/218110050",
+      "kind": "hospital",
+      "name": "Sancheti Hospital",
+      "lat": 18.529951,
+      "lon": 73.852881,
+      "near": [
+        {
+          "station": "shivaji_nagar",
+          "m": 420
+        },
+        {
+          "station": "district_court",
+          "m": 551
+        },
+        {
+          "station": "pmc",
+          "m": 803
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1189
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "संचेती रुग्णालय"
+    },
+    {
+      "id": "way/217773616",
+      "kind": "hospital",
+      "name": "Poona Hospital",
+      "lat": 18.510635,
+      "lon": 73.841947,
+      "near": [
+        {
+          "station": "garware_college",
+          "m": 438
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 698
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1197
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "पूना हॉस्पिटल"
+    },
+    {
+      "id": "way/207872391",
+      "kind": "hospital",
+      "name": "Deenanath Mangeshkar Hospital",
+      "lat": 18.50201,
+      "lon": 73.832843,
+      "near": [
+        {
+          "station": "sndt_college",
+          "m": 733
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "दीनानाथ मंगेशकर रुग्णालय"
+    },
+    {
+      "id": "way/652021497",
+      "kind": "hospital",
+      "name": "Jupiter Hospital",
+      "lat": 18.565705,
+      "lon": 73.785992,
+      "near": [
+        {
+          "station": "balewadi_phata",
+          "m": 678
+        },
+        {
+          "station": "baner_gaon",
+          "m": 872
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "ज्युपिटर रुग्णालय"
+    },
+    {
+      "id": "node/10010729790",
+      "kind": "hospital",
+      "name": "Manipal Hospital, Baner",
+      "lat": 18.56636,
+      "lon": 73.769576,
+      "near": [
+        {
+          "station": "balewadi_high_street",
+          "m": 722
+        },
+        {
+          "station": "rk_laxman_museum",
+          "m": 919
+        },
+        {
+          "station": "mitcon_balewadi",
+          "m": 1033
+        },
+        {
+          "station": "balewadi_phata",
+          "m": 1101
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "मणिपाल रुग्णालय, बाणेर"
+    },
+    {
+      "id": "way/207872390",
+      "kind": "college",
+      "name": "Garware College",
+      "lat": 18.511693,
+      "lon": 73.838768,
+      "near": [
+        {
+          "station": "garware_college",
+          "m": 83
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 799
+        },
+        {
+          "station": "sndt_college",
+          "m": 1158
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "गरवारे महाविद्यालय"
+    },
+    {
+      "id": "way/208588882",
+      "kind": "college",
+      "name": "SNDT Women's University",
+      "lat": 18.50887,
+      "lon": 73.827408,
+      "near": [
+        {
+          "station": "sndt_college",
+          "m": 222
+        },
+        {
+          "station": "paud_phata",
+          "m": 555
+        },
+        {
+          "station": "garware_college",
+          "m": 1174
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "एसएनडीटी महिला विद्यापीठ"
+    },
+    {
+      "id": "node/772572006",
+      "kind": "college",
+      "name": "BJ Medical College",
+      "lat": 18.526834,
+      "lon": 73.871916,
+      "near": [
+        {
+          "station": "pune_railway_station",
+          "m": 329
+        },
+        {
+          "station": "rto_pune",
+          "m": 803
+        },
+        {
+          "station": "ruby_hall_clinic",
+          "m": 898
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "बी. जे. वैद्यकीय महाविद्यालय"
+    },
+    {
+      "id": "relation/3718263",
+      "kind": "college",
+      "name": "College of Engineering Pune (COEP)",
+      "lat": 18.530613,
+      "lon": 73.856488,
+      "near": [
+        {
+          "station": "district_court",
+          "m": 428
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 740
+        },
+        {
+          "station": "rto_pune",
+          "m": 910
+        },
+        {
+          "station": "pmc",
+          "m": 935
+        },
+        {
+          "station": "kasba_peth",
+          "m": 1079
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "अभियांत्रिकी महाविद्यालय, पुणे (सीओईपी)"
+    },
+    {
+      "id": "way/331478726",
+      "kind": "college",
+      "name": "Ranade Institute",
+      "lat": 18.519116,
+      "lon": 73.840718,
+      "near": [
+        {
+          "station": "deccan_gymkhana",
+          "m": 492
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 711
+        },
+        {
+          "station": "garware_college",
+          "m": 841
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "रानडे इन्स्टिट्यूट"
+    },
+    {
+      "id": "way/268605117",
+      "kind": "college",
+      "name": "IISER Pune",
+      "lat": 18.5454,
+      "lon": 73.807152,
+      "near": [
+        {
+          "station": "aundh",
+          "m": 558
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "आयसर पुणे",
+      "name_hi": "भारतीय विज्ञान शिक्षा एवं अनुसंधान संस्थान, पुणे"
+    },
+    {
+      "id": "way/197313929",
+      "kind": "college",
+      "name": "FTII",
+      "lat": 18.51326,
+      "lon": 73.826542,
+      "near": [
+        {
+          "station": "paud_phata",
+          "m": 672
+        },
+        {
+          "station": "sndt_college",
+          "m": 698
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "भारतीय चित्रपट आणि दूरदर्शन संस्था"
+    },
+    {
+      "id": "way/208180366",
+      "kind": "college",
+      "name": "Gokhale Institute of Politics and Economics",
+      "lat": 18.520608,
+      "lon": 73.836952,
+      "near": [
+        {
+          "station": "deccan_gymkhana",
+          "m": 916
+        },
+        {
+          "station": "garware_college",
+          "m": 965
+        },
+        {
+          "station": "sambhaji_udyan",
+          "m": 1101
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "गोखले राज्यशास्त्र व अर्थशास्त्र संस्था"
+    },
+    {
+      "id": "way/995138926",
+      "kind": "college",
+      "name": "Savitribai Phule Pune University",
+      "lat": 18.551235,
+      "lon": 73.826107,
+      "near": [
+        {
+          "station": "sakal_nagar",
+          "m": 871
+        },
+        {
+          "station": "sppu",
+          "m": 995
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "सावित्रीबाई फुले पुणे विद्यापीठ",
+      "name_hi": "सावित्रीबाई फुले पुणे विद्यापीठ"
+    },
+    {
+      "id": "way/208180365",
+      "kind": "college",
+      "name": "Fergusson College",
+      "lat": 18.524069,
+      "lon": 73.838834,
+      "near": [
+        {
+          "station": "sambhaji_udyan",
+          "m": 1005
+        },
+        {
+          "station": "agriculture_college",
+          "m": 1032
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 1034
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "फर्ग्युसन महाविद्यालय",
+      "name_hi": "फर्ग्युसन महाविद्यालय"
+    },
+    {
+      "id": "way/281844136",
+      "kind": "college",
+      "name": "College of Agriculture, Pune",
+      "lat": 18.53797,
+      "lon": 73.84258,
+      "near": [
+        {
+          "station": "agriculture_college",
+          "m": 564
+        },
+        {
+          "station": "bhosalenagar_rbi",
+          "m": 646
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 986
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "कृषी महाविद्यालय, पुणे"
+    },
+    {
+      "id": "way/218691367",
+      "kind": "college",
+      "name": "MIT World Peace University",
+      "lat": 18.518202,
+      "lon": 73.815271,
+      "near": [
+        {
+          "station": "anand_nagar",
+          "m": 968
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "एमआयटी वर्ल्ड पीस युनिव्हर्सिटी"
+    },
+    {
+      "id": "way/91712361",
+      "kind": "college",
+      "name": "Modern College of Engineering",
+      "lat": 18.525506,
+      "lon": 73.846433,
+      "near": [
+        {
+          "station": "sambhaji_udyan",
+          "m": 611
+        },
+        {
+          "station": "pmc",
+          "m": 791
+        },
+        {
+          "station": "shivaji_nagar",
+          "m": 816
+        },
+        {
+          "station": "agriculture_college",
+          "m": 984
+        },
+        {
+          "station": "deccan_gymkhana",
+          "m": 1029
+        },
+        {
+          "station": "district_court",
+          "m": 1113
+        }
+      ],
+      "source": "osm_places",
+      "name_mr": "मॉडर्न अभियांत्रिकी महाविद्यालय"
+    }
+  ],
   "sources": {
+    "osm_stations": {
+      "title": "OpenStreetMap: Pune Metro station locations (© OpenStreetMap contributors, ODbL)",
+      "url": "https://www.openstreetmap.org/copyright",
+      "kind": "secondary",
+      "read_on": "2026-11-08"
+    },
     "mahametro_home": {
       "title": "Pune Metro Rail Project (Maha Metro) - home page and journey planner",
       "url": "https://www.punemetrorail.org/",
@@ -2770,15 +7244,230 @@
       "url": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648",
       "kind": "official",
       "read_on": "2026-11-08"
+    },
+    "punekar_line3_tickets": {
+      "title": "How to book Pune Metro Line 3 tickets: WhatsApp +91 94201 01990, app, counters, One Pune card (Punekar News, 4 Nov 2026)",
+      "url": "https://www.punekarnews.in/how-to-book-pune-metro-line-3-tickets-qr-codes-whatsapp-mobile-app-and-one-pune-card/",
+      "kind": "secondary",
+      "read_on": "2026-11-09"
+    },
+    "fpj_ondc_launch": {
+      "title": "ONDC ticketing launched for Pune Metro; Amazon, Flipkart, Paytm and PhonePe named (Free Press Journal, Dec 2025)",
+      "url": "https://www.freepressjournal.in/pune/no-more-queues-cm-fadnavis-launches-ondc-national-common-mobility-card-for-pune-metro",
+      "kind": "secondary",
+      "read_on": "2026-11-09"
+    },
+    "fpj_uber_pune": {
+      "title": "Uber adds Pune Metro tickets through ONDC (Free Press Journal, May 2026)",
+      "url": "https://www.freepressjournal.in/pune/pune-becomes-5th-city-in-india-as-uber-launches-metro-ticket-booking-service-on-app",
+      "kind": "secondary",
+      "read_on": "2026-11-09"
+    },
+    "puneri_station_list": {
+      "title": "Puneri Metro station list: gates and nearby landmarks, lifts, escalators, parking (Pink Line)",
+      "url": "https://punerimetro.in/route/station-list",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Puneri Metro station list"
+    },
+    "puneri_amenities": {
+      "title": "Puneri Metro passenger amenities (lifts, escalators, toilets, parking at selected stations)",
+      "url": "https://punerimetro.in/passenger-info/passenger-amenities",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Puneri Metro amenities page"
+    },
+    "mahametro_pwd": {
+      "title": "Maha Metro: facilities available for persons with disabilities (lifts, accessible toilets)",
+      "url": "https://www.punemetrorail.org/download/commuters_guide/Facilities-available-for-PWD.pdf",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Maha Metro accessibility guide"
+    },
+    "mahametro_feeder_purple": {
+      "title": "Maha Metro feeder bus timetable, Purple Line (Jan 2025)",
+      "url": "https://www.punemetrorail.org/download/Pune_Metro_PurpleLine.pdf",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Maha Metro feeder bus timetable, Jan 2025"
+    },
+    "mahametro_feeder_aqua": {
+      "title": "Maha Metro feeder bus timetable, Aqua Line (Jan 2025)",
+      "url": "https://www.punemetrorail.org/download/Pune_Metro_AquaLine.pdf",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Maha Metro feeder bus timetable, Jan 2025"
+    },
+    "mahametro_gates_2024": {
+      "title": "Maha Metro press release: new entry and exit gates at PMC, Sambhaji Udyan, Deccan, Bopodi and Kalyani Nagar (15 Jun 2024)",
+      "url": "https://punemetrorail.org/download/Improved_Accessibility_at_Pune_stn.pdf",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Maha Metro press release, Jun 2024"
+    },
+    "mahametro_ug_brochure": {
+      "title": "Maha Metro underground stations brochure (Feb 2026)",
+      "url": "https://www.punemetrorail.org/download/commuters_guide/Pune-Metro-Underground-Brochure-English.pdf",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Maha Metro brochure, Feb 2026"
+    },
+    "mahametro_st_prs": {
+      "title": "Maha Metro station page: Pune Railway Station",
+      "url": "https://punemetrorail.org/station/pune-railway-station",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Maha Metro station page"
+    },
+    "mahametro_st_stn": {
+      "title": "Maha Metro station page: Sant Tukaram Nagar",
+      "url": "https://punemetrorail.org/station/sant-tukaram-nagar",
+      "kind": "official",
+      "read_on": "2026-11-09",
+      "label": "Maha Metro station page"
+    },
+    "pk_gates_feb26": {
+      "title": "New entry gates at PCMC, Shivajinagar and Swargate metro stations (Punekar News, 13 Feb 2026)",
+      "url": "https://www.punekarnews.in/?p=228406",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Feb 2026"
+    },
+    "pk_gates_sep26": {
+      "title": "Entry and exit gates by side at PCMC and Aqua Line stations, Anant Chaturdashi arrangements (Punekar News, 24 Sep 2026)",
+      "url": "https://www.punekarnews.in/?p=245628",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Sep 2026"
+    },
+    "pk_mandai_gate3": {
+      "title": "Mandai Gate 3 opens; escalators at Ramwadi Gate 2 and Kasarwadi Gate 3 (Punekar News, 9 Jun 2025)",
+      "url": "https://www.punekarnews.in/?p=208875",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Jun 2025"
+    },
+    "fpj_escalators": {
+      "title": "Escalators open at Kasarwadi and Ramwadi entrances (Free Press Journal, 9 Jun 2025)",
+      "url": "https://www.freepressjournal.in/pune/good-news-for-pune-metro-users-escalators-operational-at-kasarwadi-ramwadi-gate-no-3-opens-at-mandai-station-videos",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Free Press Journal, Jun 2025"
+    },
+    "fpj_mandai_gates": {
+      "title": "Mandai metro station entry and exit points (Free Press Journal, 28 Aug 2025)",
+      "url": "https://www.freepressjournal.in/pune/mandai-metro-station-entry-exit-points-changed-for-ganeshotsav-heres-what-pune-commuters-need-to-know",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Free Press Journal, Aug 2025"
+    },
+    "pk_kasba_yerwada": {
+      "title": "Kasba Peth Entrance 2 opens; escalators at Yerwada Entrances 2 and 3 (Punekar News, 29 Aug 2025)",
+      "url": "https://www.punekarnews.in/pune-kasba-metro-station-entrance-no-2-opened-for-passengers/",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Aug 2025"
+    },
+    "pk_khadki": {
+      "title": "Khadki metro station opens, next to Khadki railway station (Punekar News, 20 Jun 2025)",
+      "url": "https://www.punekarnews.in/?p=210108",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Jun 2025"
+    },
+    "fpj_no_parking_pcmc": {
+      "title": "No parking at metro stations in Pimpri-Chinchwad (Free Press Journal, 27 Sep 2025)",
+      "url": "https://www.freepressjournal.in/pune/no-parking-available-at-metro-stations-in-pimpri-chinchwad-use-public-transport-says-pune-metro",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Free Press Journal, Sep 2025"
+    },
+    "pk_parking_feb24": {
+      "title": "Paid parking announced at eight metro stations (Punekar News, 15 Feb 2024)",
+      "url": "https://punekarnews.in/?p=170688",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Feb 2024"
+    },
+    "fpj_payandpark_aug24": {
+      "title": "Pay-and-park at metro stations; running at Anand Nagar (Free Press Journal, 8 Aug 2024)",
+      "url": "https://www.freepressjournal.in/pune/good-nmetro-travel-to-get-easier-for-punekars-with-pay-and-park-facility-at-these-8-stations",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Free Press Journal, Aug 2024"
+    },
+    "fpj_dc_parking": {
+      "title": "Pay-and-park contractor at District Court suspended a day after starting (Free Press Journal, 1 Oct 2024)",
+      "url": "https://www.freepressjournal.in/pune/pune-metro-suspends-contractor-for-overcharging-parking-fees-at-district-court-station-within-a-day",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Free Press Journal, Oct 2024"
+    },
+    "pk_feeder_apr26": {
+      "title": "PMPML feeder buses from 11 metro stations on 23 routes (Punekar News, 22 Apr 2026)",
+      "url": "https://www.punekarnews.in/pune-pmpml-feeder-bus-connectivity-now-also-available-from-pcmc-metro-station-11-metro-stations-across-23-routes-covered/",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Apr 2026"
+    },
+    "pk_feeder_l3": {
+      "title": "PMPML starts feeder routes for Line 3 stations (Punekar News, 4 Nov 2026)",
+      "url": "https://www.punekarnews.in/?p=248484",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Nov 2026"
+    },
+    "pk_shared_autos": {
+      "title": "Shared feeder autos from PCMC metro station (Punekar News, 13 Jun 2026)",
+      "url": "https://www.punekarnews.in/?p=237416",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "Punekar News, Jun 2026"
+    },
+    "osm_ramwadi_toilets": {
+      "title": "OpenStreetMap: toilets inside Ramwadi metro station (node 13392936177)",
+      "url": "https://www.openstreetmap.org/node/13392936177",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "OpenStreetMap"
+    },
+    "osm_dc_parking": {
+      "title": "OpenStreetMap: car park at District Court metro station, operated by Pune Metro (way 1214765510)",
+      "url": "https://www.openstreetmap.org/way/1214765510",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "OpenStreetMap"
+    },
+    "osm_places": {
+      "title": "OpenStreetMap: places near metro stations, chosen by Pune Metro Guide (© OpenStreetMap contributors, ODbL)",
+      "url": "https://www.openstreetmap.org/copyright",
+      "kind": "secondary",
+      "read_on": "2026-11-09",
+      "label": "OpenStreetMap"
     }
   },
   "open_issues": [
     "The official Maha Metro fare chart prints different fares in each direction for 11 station pairs; confirm which applies (the app shows a range).",
     "Maha Metro publishes service hours (06:00 to 23:00) but not the last departure from each end, travel times or an official frequency for the Purple and Aqua lines.",
     "Verify Purple Line Marathi names (written from knowledge, flagged mr_verified=false).",
-    "Add coordinates from OpenStreetMap (ODbL, credit required) for every station.",
     "Confirm whether Pink Line trains run through not-yet-open stations without stopping.",
-    "Add gates/exits and facilities per station from official station pages.",
+    "Purple and Aqua station facilities are incomplete: Maha Metro doesn't publish them station by station, so gates, lifts, parking and feeder buses come from its press releases and timetables, news reports and OpenStreetMap.",
     "Historic aliases 'Ideal Colony' and 'Nal Stop' are matched to Paud Phata and SNDT College by station order in a 2022 Maha Metro PDF; confirm."
+  ],
+  "open_issues_mr": [
+    "अधिकृत महामेट्रो भाडे तक्त्यात 11 स्थानक-जोड्यांसाठी दोन्ही दिशांना वेगवेगळे भाडे छापलेले आहे; कोणते लागू होते याची खात्री करायची आहे (ॲप भाड्याची श्रेणी दाखवते).",
+    "महामेट्रो सेवा वेळ (06:00 ते 23:00) जाहीर करते, पण पर्पल आणि ॲक्वा लाईनसाठी प्रत्येक टोकावरून सुटणारी शेवटची मेट्रो, प्रवास वेळ किंवा अधिकृत वारंवारता जाहीर करत नाही.",
+    "पर्पल लाईनवरील स्थानकांची मराठी नावे पडताळायची आहेत.",
+    "पिंक लाईनवरील अद्याप सुरू नसलेल्या स्थानकांवर मेट्रो न थांबता जाते का, याची खात्री करायची आहे.",
+    "पर्पल आणि ॲक्वा लाईनच्या स्थानकांवरील सुविधांची माहिती अपूर्ण आहे: महामेट्रो ती प्रत्येक स्थानकासाठी प्रसिद्ध करत नाही, त्यामुळे प्रवेशद्वारे, लिफ्ट, पार्किंग आणि फीडर बसची माहिती तिच्या प्रसिद्धीपत्रकांतून, वेळापत्रकांतून, बातम्यांतून आणि ओपनस्ट्रीटमॅपवरून घेतली आहे.",
+    "जुनी नावे 'आयडियल कॉलनी' आणि 'नळ स्टॉप' 2022 च्या महामेट्रो PDF मधील स्थानक क्रमानुसार पौड फाटा आणि एसएनडीटी कॉलेजशी जोडली आहेत; खात्री करायची आहे."
+  ],
+  "open_issues_hi": [
+    "महामेट्रो के आधिकारिक किराया चार्ट में 11 स्टेशन-जोड़ियों के लिए दोनों दिशाओं में अलग-अलग किराया छपा है; कौन-सा लागू होता है, इसकी पुष्टि करनी है (ऐप किराये की रेंज दिखाता है)।",
+    "महामेट्रो सेवा समय (06:00 से 23:00) प्रकाशित करता है, लेकिन पर्पल और एक्वा लाइन के लिए हर छोर से आख़िरी मेट्रो, यात्रा समय या आधिकारिक फ़्रीक्वेंसी प्रकाशित नहीं करता।",
+    "पर्पल लाइन के स्टेशनों के मराठी नामों की पुष्टि करनी है।",
+    "पिंक लाइन पर जो स्टेशन अभी नहीं खुले, वहाँ मेट्रो बिना रुके गुज़रती है या नहीं, इसकी पुष्टि करनी है।",
+    "पर्पल और एक्वा लाइन के स्टेशनों की सुविधाओं की जानकारी अधूरी है: महामेट्रो इसे हर स्टेशन के लिए अलग से प्रकाशित नहीं करता, इसलिए गेट, लिफ़्ट, पार्किंग और फ़ीडर बसों की जानकारी उसकी प्रेस विज्ञप्तियों, समय सारणियों, ख़बरों और ओपनस्ट्रीटमैप से ली गई है।",
+    "पुराने नाम 'आइडियल कॉलोनी' और 'नल स्टॉप' 2022 की महामेट्रो PDF में स्टेशनों के क्रम के आधार पर पौड फाटा और एसएनडीटी कॉलेज से जोड़े गए हैं; पुष्टि करनी है।"
   ]
 }

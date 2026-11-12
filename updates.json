@@ -1,5 +1,5 @@
 {
-  "version": "2026.11.08.3",
+  "version": "2026.11.08.6",
   "items": [
     {
       "id": "pink-open",
@@ -7,7 +7,11 @@
       "featured": true,
       "date": "2026-11-04",
       "title": "The Pink Line is open",
+      "title_mr": "पिंक लाईन सुरू झाली",
+      "title_hi": "पिंक लाइन शुरू हो गई",
       "body": "Maan to District Court, with 17 of 23 stations open. First trains leave both ends at 06:00.",
+      "body_mr": "माण ते जिल्हा न्यायालय, 23 पैकी 17 स्थानके सुरू. पहिल्या मेट्रो दोन्ही टोकांवरून सकाळी 06:00 वाजता सुटतात.",
+      "body_hi": "माण से जिल्हा न्यायालय तक, 23 में से 17 स्टेशन खुले। पहली मेट्रो दोनों छोरों से सुबह 06:00 बजे चलती है।",
       "source": "Metro Rail News",
       "url": "https://metrorailnews.in/projects/pune-metro-line-3/"
     },
@@ -16,7 +20,11 @@
       "kind": "service",
       "date": "2026-11-04",
       "title": "Six Pink Line stations are still closed",
+      "title_mr": "पिंक लाईनवरील सहा स्थानके अद्याप बंद",
+      "title_hi": "पिंक लाइन के छह स्टेशन अभी बंद",
       "body": "Balewadi High Street and Balewadi Phata are expected by end of November. Baner Gaon, Baner Pashan Link Road, Bhosalenagar - RBI and Shivaji Nagar are expected in phases by January 2027.",
+      "body_mr": "बालेवाडी हाय स्ट्रीट आणि बालेवाडी फाटा नोव्हेंबरअखेरपर्यंत अपेक्षित आहेत. बाणेर गाव, बाणेर पाषाण लिंक रोड, भोसलेनगर - आरबीआय आणि शिवाजीनगर जानेवारी 2027 पर्यंत टप्प्याटप्प्याने अपेक्षित आहेत.",
+      "body_hi": "बालेवाडी हाय स्ट्रीट और बालेवाडी फाटा नवंबर के अंत तक अपेक्षित हैं। बाणेर गाव, बाणेर पाषाण लिंक रोड, भोसलेनगर - आरबीआय और शिवाजीनगर जनवरी 2027 तक चरणों में अपेक्षित हैं।",
       "source": "Metro Rail News (expected dates)",
       "url": "https://metrorailnews.in/projects/pune-metro-line-3/"
     },
@@ -24,7 +32,11 @@
       "id": "pink-two-tickets",
       "kind": "ticket",
       "title": "The Pink Line needs its own ticket",
+      "title_mr": "पिंक लाईनसाठी वेगळे तिकीट लागते",
+      "title_hi": "पिंक लाइन के लिए अलग टिकट लगता है",
       "body": "Trips between the Pink Line and the Purple or Aqua Line use two QR tickets. The official app sells both in one payment.",
+      "body_mr": "पिंक लाईन आणि पर्पल किंवा ॲक्वा लाईन यांच्या दरम्यानच्या प्रवासासाठी दोन QR तिकिटे लागतात. अधिकृत ॲप दोन्ही तिकिटे एकाच पेमेंटमध्ये देते.",
+      "body_hi": "पिंक लाइन और पर्पल या एक्वा लाइन के बीच की यात्रा में दो QR टिकट लगते हैं। आधिकारिक ऐप दोनों टिकट एक ही भुगतान में देता है।",
       "source": "Pune Metro official app release notes",
       "url": "https://apps.apple.com/in/app/pune-metro-official-app/id1571012648"
     },
@@ -32,7 +44,11 @@
       "id": "one-pune-cards",
       "kind": "ticket",
       "title": "Save with One Pune cards",
+      "title_mr": "वन पुणे कार्डने बचत करा",
+      "title_hi": "वन पुणे कार्ड से बचत करें",
       "body": "The One Pune NCMC card gives 10% off every ride. The One Pune Vidyarthi Pass gives students 30% off.",
+      "body_mr": "वन पुणे NCMC कार्डवर प्रत्येक प्रवासाला 10% सूट मिळते. वन पुणे विद्यार्थी पासवर विद्यार्थ्यांना 30% सूट मिळते.",
+      "body_hi": "वन पुणे NCMC कार्ड पर हर यात्रा में 10% छूट मिलती है। वन पुणे विद्यार्थी पास पर छात्रों को 30% छूट मिलती है।",
       "source": "punemetrorail.org",
       "url": "https://www.punemetrorail.org/"
     },
@@ -41,7 +57,11 @@
       "kind": "ticket",
       "date": "2026-05-22",
       "title": "Pune Metro tickets on Uber and Paytm",
+      "title_mr": "Uber आणि Paytm वर पुणे मेट्रोची तिकिटे",
+      "title_hi": "Uber और Paytm पर पुणे मेट्रो के टिकट",
       "body": "Both apps sell Pune Metro QR tickets through ONDC, alongside the official app and WhatsApp booking.",
+      "body_mr": "दोन्ही ॲप्स ONDC द्वारे पुणे मेट्रोची QR तिकिटे विकतात. अधिकृत ॲप आणि व्हॉट्सॲप बुकिंगही उपलब्ध आहे.",
+      "body_hi": "दोनों ऐप ONDC के ज़रिए पुणे मेट्रो के QR टिकट बेचते हैं। आधिकारिक ऐप और व्हाट्सऐप बुकिंग भी उपलब्ध है।",
       "source": "Punekar News, Paytm",
       "url": "https://www.punekarnews.in/?p=235810"
     },
@@ -50,7 +70,11 @@
       "kind": "ticket",
       "date": "2026-11-08",
       "title": "Official fares and timings",
+      "title_mr": "अधिकृत भाडे आणि वेळा",
+      "title_hi": "आधिकारिक किराया और समय",
       "body": "Journeys now show the fare from the official Maha Metro and Puneri Metro fare charts, including two-ticket trips. Pink Line timings come from Puneri Metro's official time table, and Purple and Aqua service hours from Maha Metro.",
+      "body_mr": "प्रवासात आता महामेट्रो आणि पुणेरी मेट्रोच्या अधिकृत भाडे तक्त्यांनुसार भाडे दिसते, दोन तिकिटांच्या प्रवासांसह. पिंक लाईनच्या वेळा पुणेरी मेट्रोच्या अधिकृत वेळापत्रकातून, तर पर्पल आणि ॲक्वा लाईनच्या सेवा वेळा महामेट्रोकडून घेतल्या आहेत.",
+      "body_hi": "यात्रा में अब महामेट्रो और पुणेरी मेट्रो के आधिकारिक किराया चार्ट के अनुसार किराया दिखता है, दो टिकट वाली यात्राओं समेत। पिंक लाइन का समय पुणेरी मेट्रो की आधिकारिक समय सारणी से, और पर्पल व एक्वा लाइन का सेवा समय महामेट्रो से लिया गया है।",
       "source": "Maha Metro and Puneri Metro",
       "url": "https://punerimetro.in/passenger-info/fare-table"
     }
