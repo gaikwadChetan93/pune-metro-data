@@ -2,6 +2,8 @@
 
 The metro data used by the Pune Metro Guide app (Purple, Aqua and Pink lines): stations and their opening status, official fare charts, timings and service updates.
 
+The same data powers the website, [punemetroguide.com](https://punemetroguide.com): every station, fare and timing, and the [Android app](https://play.google.com/store/apps/details?id=app.punemetroguide.pune_metro).
+
 The app ships with a copy of this data and works offline. When online, it checks `manifest.json` here about twice a day. It downloads a newer dataset only if:
 
 - the manifest `version` is newer than the one the app has,
