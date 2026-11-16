@@ -52,6 +52,11 @@
   li { margin: 4px 0; }
   code { font: 14px/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; overflow-wrap: anywhere; }
   footer { color: var(--ink3); font-size: 14px; margin-top: 24px; }
+  table { width: 100%; border-collapse: collapse; font-size: 15px; margin: 4px 0 12px; }
+  th, td { text-align: left; vertical-align: top; padding: 8px 10px 8px 0; border-top: 1px solid var(--hairline); }
+  th { font-weight: 600; white-space: nowrap; }
+  button { font: inherit; color: inherit; background: var(--surface); border: 1.5px solid var(--hairline); border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  button:focus-visible { outline: 3px solid #4C6FFF; outline-offset: 2px; }
 </style>
 </head>
 <body>
@@ -61,7 +66,7 @@
       <span style="background:var(--purple)"></span><span style="background:var(--aqua)"></span><span style="background:var(--pink)"></span>
     </div>
     <h1>Privacy policy</h1>
-    <p>Pune Metro Guide for Android and iOS · Effective 16 November 2026</p>
+    <p>Pune Metro Guide for Android and iOS, and punemetroguide.com · Effective 16 November 2026</p>
   </div>
 </header>
 
@@ -76,6 +81,7 @@
       <li>If you set a last-train reminder, your phone schedules it. Nothing about it is sent anywhere.</li>
       <li>If you report a mistake, your own email app sends the message, and only when you send it.</li>
       <li>If you rate the app from the prompt, Google Play or the App Store handles your rating. The app never sees it.</li>
+      <li>The website, punemetroguide.com, uses analytics only if you say yes, and you can change your answer at any time. <a href="#website">How the website works</a>.</li>
     </ul>
   </section>
 
@@ -139,14 +145,42 @@
     <p>The app asks for internet access, to download metro data; your location, only when you ask for the nearest station; and permission to show notifications, only when you set a last-train reminder. On Android it can also use exact alarms (if you allow them) and the phone's start-up signal, so a reminder still goes off on time after a restart. It doesn't use your contacts, camera, microphone, photos or files.</p>
   </section>
 
+  <section class="card" aria-labelledby="website-h" id="website">
+    <h2 id="website-h">The website (punemetroguide.com)</h2>
+    <p>The website shows the same metro information as the app. Everything on it works without analytics, and nothing below applies to the app.</p>
+    <p><strong>Your choice comes first.</strong> On your first visit the site asks whether you allow two optional tools. Until you choose, and if you say no, the site loads nothing from Google or Microsoft and sets no analytics cookies. You can change your answer at any time under <em>Privacy settings</em> at the bottom of every page, or with the button below.</p>
+    <table>
+      <tr><th scope="row">Analytics<br>(Google Analytics 4, through Google Tag Manager)</th><td>Counts visits and shows which pages and features are used, for example how many people plan a journey, which stations and routes they look up, and whether the map and fare information help. It also records how you reached the site (a search engine, another site or a campaign link), your device type, browser, language, screen size, and your approximate area (city level, worked out by Google from your IP address, which Google Analytics doesn't store). Cookies: <code>_ga</code> and <code>_ga_*</code>, for up to 13 months.</td></tr>
+      <tr><th scope="row">Session replay and heatmaps<br>(Microsoft Clarity)</th><td>Records clicks, taps, scrolling and how the page looked, so we can find what's confusing. Text you type into the site is hidden from the recording. Cookies: <code>_clck</code> (up to a year) and <code>_clsk</code> (a day).</td></tr>
+    </table>
+    <p><strong>What we never send.</strong> No name, email address, phone number or account, because the site has none. When you search for a station, the search is reported only if it matches a station or list entry on the site; anything else is reported as "(no match)". Email and phone links are counted, but the address or number is not sent. The site doesn't use advertising, advertising cookies or cross-site tracking, and Consent Mode keeps Google's advertising storage switched off.</p>
+    <p><strong>Who processes it.</strong> Google (<a href="https://policies.google.com/privacy">Google Privacy Policy</a>) and Microsoft (<a href="https://privacy.microsoft.com/privacystatement">Microsoft Privacy Statement</a>) process this data for us and may do so outside India. We see only totals, page and feature reports, and Clarity's recordings with typed text hidden. Google Analytics keeps the data for 14 months. Clarity keeps recordings for 30 days and click and heatmap data for 9 months.</p>
+    <p><strong>Stored in your browser.</strong> Your theme and your analytics choice are saved in your browser's local storage. For the length of a visit, the site also keeps the campaign tag and the website you came from, so they can be counted if you agree on a later page. None of this leaves your device unless you allow analytics.</p>
+    <p><strong>Your rights.</strong> You can say no, or withdraw your consent, as easily as you gave it. Withdrawing deletes the cookies above from this site and stops the tools. The data we hold isn't linked to your name, so we usually can't find a person's data, but you can write to <a href="mailto:care.mobileutility@gmail.com">care.mobileutility@gmail.com</a> with any question or complaint about your data. If you're under 18, please don't allow the optional tools.</p>
+    <p><button type="button" id="reset-choice">Reset my choice on this browser</button> <span id="reset-done" role="status" hidden>Done. The site will ask again on the next page you open.</span></p>
+    <script>
+      document.getElementById("reset-choice").addEventListener("click", function () {
+        try { localStorage.removeItem("pmg-consent"); } catch (e) {}
+        document.cookie.split(";").forEach(function (c) {
+          var n = c.split("=")[0].trim();
+          if (!/^_ga|^_gid$|^_clck$|^_clsk$/.test(n)) return;
+          var h = location.hostname.split(".");
+          for (var i = 0; i < h.length - 1; i++) document.cookie = n + "=;Max-Age=0;path=/;domain=." + h.slice(i).join(".");
+          document.cookie = n + "=;Max-Age=0;path=/";
+        });
+        document.getElementById("reset-done").hidden = false;
+      });
+    </script>
+  </section>
+
   <section class="card" aria-labelledby="children">
     <h2 id="children">Children</h2>
-    <p>The app doesn't collect personal data from anyone, including children.</p>
+    <p>The app doesn't collect personal data from anyone, including children. The website's optional tools run only with consent and aren't meant for children.</p>
   </section>
 
   <section class="card" aria-labelledby="changes">
     <h2 id="changes">Changes to this policy</h2>
-    <p>If the app ever starts handling data differently, this page will be updated before that version is released, and the effective date above will change.</p>
+    <p>If the app or the website ever starts handling data differently, this page will be updated before the change goes live, and the effective date above will change.</p>
   </section>
 
   <section class="card" aria-labelledby="contact">
