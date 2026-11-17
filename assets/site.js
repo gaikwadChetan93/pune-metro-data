@@ -113,8 +113,18 @@
         functionality_storage: "denied", personalization_storage: "denied", security_storage: "granted" });
       gtag("set", "ads_data_redaction", true);
       gtag("consent", "update", { analytics_storage: "granted" });
-      dl().push({ pmg_page: pageCtx() });
+      /* The Google tag ignores settings passed to it from Tag Manager (seen Nov 2026), but it honours
+         gtag("set"). So the page sets page_location / page_referrer here (campaign carry-over), turns
+         off the automatic page_view, and sends its own page_view through the GTM event tag, which
+         adds content_group, content_id and page_language. One page_view per page load. */
+      var pc = pageCtx(), st = { send_page_view: false, page_location: pc.page_location };
+      if (pc.page_referrer) st.page_referrer = pc.page_referrer;
+      gtag("set", st);
+      dl().push({ pmg_page: pc });
       dl().push({ "gtm.start": Date.now(), event: "gtm.js" });
+      dl().push({ pmg_p: null });
+      dl().push({ event: "pmg_event", pmg_name: "page_view", pmg_p: {} });
+      LOG.push({ event: "page_view", params: {}, ga: true, clarity: false });
       var s = d.createElement("script");
       s.async = true; s.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM);
       s.onerror = function () { if (DEBUG) console.info("[pmg] GTM didn't load (blocked or offline). The site works the same."); };
