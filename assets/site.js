@@ -1,6 +1,8 @@
-/* Pune Metro Guide — progressive enhancement. No dependencies, no third parties.
+/* Pune Metro Guide — progressive enhancement. No dependencies.
    Every page works without this file; it adds the journey planner, the
-   interactive map, search and filters, and motion (off under reduced-motion). */
+   interactive map, search and filters, and motion (off under reduced-motion).
+   Third parties (Google Tag Manager → GA4, Microsoft Clarity) load only after the
+   visitor opts in; see the analytics section and ANALYTICS_SETUP.md. */
 (function () {
   "use strict";
   window.PMG = 1;
@@ -51,6 +53,253 @@
     warn: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0zM12 9v4M12 17h.01"/></svg>'
   };
 
+  /* ---------- analytics: consent, loaders and event tracking ----------
+     Nothing is requested from Google or Microsoft until the visitor opts in (Consent Mode v2,
+     basic implementation). Two choices: "analytics" (GA4 through Google Tag Manager) and
+     "replay" (Microsoft Clarity). The IDs come from <meta name="pmg-gtm"> and
+     <meta name="pmg-clarity">, written by build_site.py from analytics/config.json; without
+     them there's no banner and nothing leaves the page. Events go through track() only, and
+     only names and parameters in analytics/taxonomy.json (check_site.py enforces it).
+     ?pmg_debug=1 logs every event to the console (and keeps logging; ?pmg_debug=0 stops). */
+  var A = (function () {
+    var GTM = meta("pmg-gtm"), CLR = meta("pmg-clarity"), CTX = {};
+    try { CTX = JSON.parse(meta("pmg-ctx") || "{}"); } catch (e) { /* bad meta */ }
+    var store = function (s, k, v) {
+      try { var st = window[s]; if (v === undefined) return st.getItem(k); if (v === null) st.removeItem(k); else st.setItem(k, v); } catch (e) { /* storage blocked */ }
+      return null;
+    };
+    var qd = /[?&]pmg_debug=([01])/.exec(location.search);
+    if (qd) store("localStorage", "pmg-debug", qd[1] === "1" ? "1" : null);
+    var DEBUG = store("localStorage", "pmg-debug") === "1";
+    var LOG = window.__pmgLog = [];
+    var OFFER = (GTM ? "a" : "") + (CLR ? "r" : "");
+    var KEY = "pmg-consent", YEAR = 365 * 864e5;
+    var C = null;
+    try {
+      var c0 = JSON.parse(store("localStorage", KEY) || "null");
+      // A choice counts if it's recent and covered everything offered now (a new tool asks again).
+      if (c0 && c0.v === 1 && Date.now() - c0.t < YEAR && OFFER.split("").every(function (k) { return (c0.o || "").indexOf(k) > -1; })) C = c0;
+    } catch (e) { /* */ }
+    var dl = function () { return (window.dataLayer = window.dataLayer || []); };
+    var gtag = function () { dl().push(arguments); };
+
+    /* Campaign and referrer of the tab's first page, kept on the device so they still count if
+       the visitor accepts on a later page (GA4 would otherwise see an internal referrer). */
+    var UTM = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term", "utm_id"];
+    var land = null;
+    try { land = JSON.parse(store("sessionStorage", "pmg-land") || "null"); } catch (e) { /* */ }
+    if (!land) {
+      var q0 = new URLSearchParams(location.search), keep = [];
+      UTM.forEach(function (k) { if (q0.get(k)) keep.push(k + "=" + encodeURIComponent(q0.get(k).slice(0, 100))); });
+      var ref = "";
+      try { var ru = new URL(d.referrer); if (ru.host !== location.host) ref = ru.origin + ru.pathname; } catch (e) { /* none */ }
+      land = { q: keep.join("&"), r: ref, s: 0 };
+      store("sessionStorage", "pmg-land", JSON.stringify(land));
+    }
+    function pageCtx() {
+      var loc = location.href, ref = d.referrer;
+      if (!land.s) {
+        if (land.q && !/[?&]utm_/.test(location.search)) loc = location.origin + location.pathname + (location.search ? location.search + "&" : "?") + land.q + location.hash;
+        ref = land.r || ref;
+        land.s = 1; store("sessionStorage", "pmg-land", JSON.stringify(land));
+      }
+      return { content_group: CTX.g || "other", content_id: CTX.id || undefined, page_language: MR ? "mr" : "en", page_location: loc, page_referrer: ref || undefined };
+    }
+
+    function loadGTM() {
+      if (!GTM || window.__pmgGtm) return;
+      window.__pmgGtm = 1;
+      gtag("consent", "default", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied",
+        functionality_storage: "denied", personalization_storage: "denied", security_storage: "granted" });
+      gtag("set", "ads_data_redaction", true);
+      gtag("consent", "update", { analytics_storage: "granted" });
+      dl().push({ pmg_page: pageCtx() });
+      dl().push({ "gtm.start": Date.now(), event: "gtm.js" });
+      var s = d.createElement("script");
+      s.async = true; s.src = "https://www.googletagmanager.com/gtm.js?id=" + encodeURIComponent(GTM);
+      s.onerror = function () { if (DEBUG) console.info("[pmg] GTM didn't load (blocked or offline). The site works the same."); };
+      (d.head || de).appendChild(s);
+    }
+    function loadClarity() {
+      if (!CLR || window.__pmgClr) return;
+      window.__pmgClr = 1;
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, d, "clarity", "script", CLR);
+      window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: "granted" });
+      window.clarity("set", "content_group", CTX.g || "other");
+      window.clarity("set", "page_language", MR ? "mr" : "en");
+    }
+    function wipe(re) {
+      d.cookie.split(";").forEach(function (c) {
+        var n = c.split("=")[0].trim(); if (!re.test(n)) return;
+        var h = location.hostname.split(".");
+        for (var i = 0; i < h.length - 1; i++) d.cookie = n + "=;Max-Age=0;path=/;domain=." + h.slice(i).join(".");
+        d.cookie = n + "=;Max-Age=0;path=/";
+      });
+    }
+    function apply(next) {
+      var prev = C || {};
+      C = { v: 1, a: !!next.a && !!GTM, r: !!next.r && !!CLR, o: OFFER, t: Date.now() };
+      store("localStorage", KEY, JSON.stringify(C));
+      var reload = false;
+      if (prev.a && !C.a) { wipe(/^_ga|^_gid$|^_gat/); if (window.__pmgGtm) { gtag("consent", "update", { analytics_storage: "denied" }); reload = true; } }
+      if (prev.r && !C.r) { wipe(/^_clck$|^_clsk$/); if (window.__pmgClr) { window.clarity("consentv2", { ad_Storage: "denied", analytics_Storage: "denied" }); window.clarity("consent", false); reload = true; } }
+      // A tag that's already running can't be unloaded, so a withdrawal reloads the page without it.
+      if (reload) { location.reload(); return; }
+      if (C.a) loadGTM();
+      if (C.r) loadClarity();
+    }
+
+    /* ---- the banner and the settings panel (non-modal; equal weight for yes and no) ---- */
+    var T = MR ? {
+      title: "पुणे मेट्रो मार्गदर्शक अधिक चांगले करण्यास मदत करा",
+      a_intro: "तुमची परवानगी असल्यास आम्ही Google Analytics ने भेटी मोजतो आणि कोणती पाने आणि सुविधा वापरल्या जातात ते पाहतो.",
+      r_intro: "Microsoft Clarity ने पाने कशी वापरली जातात (क्लिक आणि स्क्रोल) ते पाहतो; तुम्ही टाइप केलेले लपवले जाते.",
+      tail: "जाहिराती नाहीत, खाते नाही. हा निर्णय पानाच्या तळाशी 'गोपनीयता सेटिंग्ज' मधून कधीही बदला.",
+      more: "गोपनीयता धोरण", all: "सर्व स्वीकारा", none: "नाकारा", choose: "निवडा", save: "निवड जतन करा",
+      a_name: "आकडेवारी (Google Analytics)", a_desc: "भेटी आणि वापरलेली पाने व सुविधा मोजते. _ga कुकीज, 13 महिन्यांपर्यंत.",
+      r_name: "सत्र रेकॉर्डिंग आणि हीटमॅप (Microsoft Clarity)", r_desc: "क्लिक, स्क्रोल आणि पानाची मांडणी नोंदवते. टाइप केलेला मजकूर लपवला जातो. _clck/_clsk कुकीज, 1 वर्षापर्यंत.",
+      saved: "तुमची निवड जतन झाली."
+    } : {
+      title: "Help improve Pune Metro Guide",
+      a_intro: "With your OK, we use Google Analytics to count visits and see which pages and features people use.",
+      r_intro: "Microsoft Clarity shows us how pages are used (clicks and scrolling), with anything you type hidden.",
+      tail: "No ads, no account. Change your mind any time under Privacy settings at the bottom of every page.",
+      more: "Privacy policy", all: "Allow all", none: "Reject all", choose: "Choose", save: "Save choices",
+      a_name: "Analytics (Google Analytics)", a_desc: "Counts visits and which pages and features are used. _ga cookies, up to 13 months.",
+      r_name: "Session replay and heatmaps (Microsoft Clarity)", r_desc: "Records clicks, scrolling and page layout so we can fix what's confusing. Typed text is hidden. _clck/_clsk cookies, up to a year.",
+      saved: "Your choice is saved."
+    };
+    var box = null;
+    function panel(focus) {
+      if (!OFFER) return;
+      if (box) box.remove();
+      var cur = C || { a: false, r: false };
+      var opt = function (k, name, desc) {
+        return '<label class="cc-opt"><input type="checkbox" data-cc-k="' + k + '"' + (cur[k] ? " checked" : "") + '><span><b>' + esc(name) + "</b><small>" + esc(desc) + "</small></span></label>";
+      };
+      box = d.createElement("section");
+      box.className = "cc"; box.setAttribute("aria-label", T.title); box.setAttribute("data-nosnippet", "");
+      box.innerHTML = '<div class="cc-in"><p class="cc-t">' + esc(T.title) + "</p><p>" + esc((GTM ? T.a_intro + " " : "") + (CLR ? T.r_intro + " " : "") + T.tail) +
+        ' <a href="' + ROOT + 'privacy.html#website">' + esc(T.more) + "</a></p>" +
+        '<div class="cc-opts"' + (focus ? "" : " hidden") + ">" + (GTM ? opt("a", T.a_name, T.a_desc) : "") + (CLR ? opt("r", T.r_name, T.r_desc) : "") + "</div>" +
+        '<div class="cc-act"><button type="button" class="btn btn-sm" data-cc="all">' + esc(T.all) + '</button><button type="button" class="btn btn-sm" data-cc="none">' + esc(T.none) +
+        '</button><button type="button" class="btn btn-sm btn-ghost" data-cc="' + (focus ? "save" : "choose") + '">' + esc(focus ? T.save : T.choose) + "</button></div></div>";
+      d.body.appendChild(box);
+      box.addEventListener("click", function (e) {
+        var b = e.target.closest("[data-cc]"); if (!b) return;
+        var k = b.getAttribute("data-cc");
+        if (k === "choose") { $(".cc-opts", box).hidden = false; b.setAttribute("data-cc", "save"); b.textContent = T.save; var cb = $("input", box); cb && cb.focus(); return; }
+        var pick = { a: k === "all", r: k === "all" };
+        if (k === "save") $$("[data-cc-k]", box).forEach(function (i) { pick[i.getAttribute("data-cc-k")] = i.checked; });
+        box.remove(); box = null;
+        var opener = $("[data-consent-open]"); if (focus && opener) opener.focus();
+        apply(pick);
+      });
+      if (focus) { var first = $("input", box); first && first.focus(); }
+    }
+    if (OFFER) {
+      $$("[data-consent-open]").forEach(function (b) { b.hidden = false; b.addEventListener("click", function () { panel(true); }); });
+      if (C) { if (C.a) loadGTM(); if (C.r) loadClarity(); }
+      else panel(false);
+    }
+
+    /* ---- track(): the only way events leave the page ---- */
+    var EMAIL = /[^\s@]+@[^\s@]+\.[^\s@]+/, PHONE = /\+?\d[\d\s().-]{7,}\d/;
+    function clean(p) {
+      var o = {};
+      Object.keys(p || {}).forEach(function (k) {
+        var v = p[k];
+        if (v === undefined || v === null || v === "" || !/^[a-z][a-z0-9_]{0,39}$/.test(k)) return;
+        if (typeof v === "boolean") v = v ? "true" : "false";
+        else if (typeof v === "number") { if (!isFinite(v)) return; }
+        else { v = String(v).replace(/\s+/g, " ").trim().slice(0, 100); if (EMAIL.test(v) || PHONE.test(v)) v = "(redacted)"; }
+        o[k] = v;
+      });
+      return o;
+    }
+    var recent = {}, count = 0, once = {};
+    function track(name, p) {
+      var params = clean(p), sig = name + JSON.stringify(params), now = Date.now();
+      if (recent[sig] && now - recent[sig] < 700) return; // the same event twice in a row is a double fire
+      recent[sig] = now;
+      var ga = !!(C && C.a && window.__pmgGtm), cl = !!(C && C.r && window.__pmgClr);
+      LOG.push({ event: name, params: params, ga: ga, clarity: cl });
+      if (DEBUG) console.info("[pmg] " + name, params, ga ? "→ GA4" : "(not sent to GA4: no consent or not configured)");
+      if (++count > 300) return; // hard cap per page view
+      if (ga) {
+        dl().push({ pmg_p: null }); // reset, so parameters of the previous event can't carry over
+        dl().push({ event: "pmg_event", pmg_name: name, pmg_p: params });
+      }
+      if (cl) window.clarity("event", name);
+    }
+    track.once = function (key, name, p) { if (once[key]) return; once[key] = 1; track(name, p); };
+    return { track: track, ctx: CTX, on: !!OFFER };
+  })();
+  var track = A.track, PG = A.ctx.g || "other";
+
+  /* Search terms leave the page only when they matched public text (a station name or list
+     entry), so free text can't. */
+  var termOf = function (q, n) { q = String(q || "").toLowerCase().replace(/\s+/g, " ").trim(); return n > 0 ? q.slice(0, 40) : "(no match)"; };
+  var debounced = function (ms, fn) { var t; return function () { var a = arguments; clearTimeout(t); t = setTimeout(function () { fn.apply(null, a); }, ms); }; };
+  var area = function (el) {
+    var x = el.closest("[data-area]"); if (x) return x.getAttribute("data-area");
+    return el.closest(".hd") ? "header" : el.closest("#menu") ? "menu" : el.closest(".ft") ? "footer" : el.closest(".crumbs") ? "breadcrumb" :
+      el.closest(".toc") ? "guide_toc" : el.closest(".map-panel") ? "map_panel" : el.closest(".result") ? "planner_result" : "content";
+  };
+
+  /* Clicks: declared events first (data-track="name" data-track-<param>="value"), then
+     links by kind. One click sends at most one event. */
+  d.addEventListener("click", function (e) {
+    if (e.pmgDone) return; // a component already tracked this click (map station, planner chip)
+    var t = e.target.closest ? e.target : e.target.parentElement; if (!t) return;
+    var dt = t.closest("[data-track]");
+    if (dt) {
+      var p = {};
+      Array.prototype.forEach.call(dt.attributes, function (at) { if (at.name.indexOf("data-track-") === 0) p[at.name.slice(11).replace(/-/g, "_")] = at.value; });
+      track(dt.getAttribute("data-track"), p); return;
+    }
+    var a = t.closest("a[href]"); if (!a) return;
+    var href = a.getAttribute("href");
+    if (/^mailto:/i.test(href)) return track("contact_click", { method: "email", nav_area: area(a) });
+    if (/^tel:/i.test(href)) return track("contact_click", { method: "phone", nav_area: area(a) });
+    var u; try { u = new URL(href, location.href); } catch (er) { return; } // getAttribute: SVG links have no string .href
+    if (!/^https?:$/.test(u.protocol)) return;
+    if (u.host === location.host) {
+      if (a.hasAttribute("hreflang")) return track("language_change", { from_language: MR ? "mr" : "en", to_language: MR ? "en" : "mr" });
+      if (u.pathname === location.pathname) return; // in-page anchors
+      return track("navigation_click", { nav_area: area(a), link_url: u.pathname, link_text: a.textContent });
+    }
+    if (u.host === "play.google.com") {
+      var place = ""; try { place = new URLSearchParams(u.searchParams.get("referrer") || "").get("utm_medium") || ""; } catch (er) { /* */ }
+      return track("get_app_click", { placement: place, link_domain: u.host });
+    }
+    var kind = /(^|\.)google\.[a-z.]+$/.test(u.host) && u.pathname.indexOf("/maps") === 0 ? "maps" : /punemetrorail|punerimetro|mahametro/.test(u.host) ? "official" : "other";
+    track("outbound_link_click", { link_url: u.origin + u.pathname, link_domain: u.host, link_type: kind, nav_area: area(a) });
+  });
+  /* Scroll depth: 25/50/75/90 once each, on real scrolling only. */
+  (function () {
+    var marks = [25, 50, 75, 90], busy = false;
+    window.addEventListener("scroll", function () {
+      if (busy) return; busy = true;
+      requestAnimationFrame(function () {
+        busy = false;
+        var h = de.scrollHeight - window.innerHeight; if (h < 240) return;
+        var pct = window.scrollY / h * 100;
+        marks.forEach(function (m) { if (pct >= m) track.once("sd" + m, "scroll_depth", { percent_scrolled: m }); });
+      });
+    }, { passive: true });
+  })();
+  /* FAQ: toggle doesn't bubble, so listen in the capture phase. */
+  d.addEventListener("toggle", function (e) {
+    var el = e.target; if (!el.open || !el.matches || !el.matches("details.acc")) return;
+    var all = $$("details.acc"), i = all.indexOf(el), s = $("summary", el);
+    track.once("faq" + i, "faq_expand", { faq_question: s ? s.textContent : "", faq_index: i + 1 });
+  }, true);
+
   /* ---------- header ---------- */
   var hd = $(".hd");
   if (hd) {
@@ -75,6 +324,7 @@
       var next = cur === "dark" ? "light" : "dark";
       de.setAttribute("data-theme", next);
       try { localStorage.setItem("pmg-theme", next); } catch (e) { /* storage blocked */ }
+      track("theme_change", { theme: next });
     });
   });
 
@@ -207,9 +457,19 @@
   }
 
   /* ---------- combobox ---------- */
-  function Combo(root, onPick) {
+  function Combo(root, onPick, ploc) {
     var input = $("input", root), list = $(".combo-list", root), box = $(".combo-in", root), clr = $(".combo-clear", root);
-    var self = { id: null }, items = [], act = -1;
+    var self = { id: null }, items = [], act = -1, field = root.classList.contains("to") ? "to" : "from", searched = {};
+    var report = debounced(1500, function () {
+      var q = input.value.trim(); if (q.length < 2 || self.id) return;
+      var term = termOf(norm(q) ? q : "", items.length);
+      if (searched[term]) return; searched[term] = 1;
+      track("station_search", { field: field, search_term: term, search_result_count: items.length, planner_location: ploc });
+    });
+    var chosen = function (id, how) {
+      if (!id) return;
+      track("station_search_result_select", { field: field, station_id: NET.st[id].slug, station_name: NET.st[id].en, selection_method: how, planner_location: ploc });
+    };
     var render = function () {
       var q = norm(input.value), res = [];
       Object.keys(NET.st).forEach(function (id) {
@@ -242,18 +502,18 @@
       self.id = id || null; input.value = id ? sname(id) : ""; box.classList.toggle("has", !!id); close();
       if (!silent) onPick && onPick(self);
     };
-    var pick = function (id) { self.set(id); };
-    input.addEventListener("focus", function () { loadNet().then(function () { input.select && input.select(); open(); }); });
-    input.addEventListener("input", function () { self.id = null; box.classList.toggle("has", !!input.value); open(); });
+    var pick = function (id, how) { self.set(id); chosen(id, how); };
+    input.addEventListener("focus", function () { self.onOpen && self.onOpen(); loadNet().then(function () { input.select && input.select(); open(); }); });
+    input.addEventListener("input", function () { self.id = null; box.classList.toggle("has", !!input.value); open(); report(); });
     input.addEventListener("keydown", function (e) {
       if (e.key === "ArrowDown") { e.preventDefault(); if (!list.classList.contains("open")) open(); else hl(act + 1); }
       else if (e.key === "ArrowUp") { e.preventDefault(); hl(act - 1); }
-      else if (e.key === "Enter") { if (list.classList.contains("open") && items[act]) { e.preventDefault(); pick(items[act]); } }
+      else if (e.key === "Enter") { if (list.classList.contains("open") && items[act]) { e.preventDefault(); pick(items[act], "keyboard"); } }
       else if (e.key === "Escape") { close(); }
     });
-    input.addEventListener("blur", function () { setTimeout(function () { close(); if (!self.id && NET && input.value) { var q = norm(input.value), hit = Object.keys(NET.st).filter(function (id) { return NET.st[id].keys.some(function (k) { return k === q; }); }); if (hit.length === 1) self.set(hit[0], true); } }, 160); });
+    input.addEventListener("blur", function () { setTimeout(function () { close(); if (!self.id && NET && input.value) { var q = norm(input.value), hit = Object.keys(NET.st).filter(function (id) { return NET.st[id].keys.some(function (k) { return k === q; }); }); if (hit.length === 1) { self.set(hit[0], true); chosen(hit[0], "typed"); } } }, 160); });
     list.addEventListener("mousedown", function (e) { e.preventDefault(); });
-    list.addEventListener("click", function (e) { var li = e.target.closest("li[data-id]"); if (li) pick(li.getAttribute("data-id")); });
+    list.addEventListener("click", function (e) { var li = e.target.closest("li[data-id]"); if (li) pick(li.getAttribute("data-id"), "list"); });
     clr && clr.addEventListener("click", function () { self.set(null, true); input.focus(); });
     self.input = input;
     return self;
@@ -261,45 +521,62 @@
 
   /* ---------- planner ---------- */
   function Planner(root) {
-    var out = $(".result", root), msg = $(".planner-msg", root), isPage = root.getAttribute("data-planner") === "page";
-    var from = Combo($(".field.from", root)), to = Combo($(".field.to", root), function () {});
-    var run = function (push) {
+    var out = $(".result", root), msg = $(".planner-msg", root), mode = root.getAttribute("data-planner") || "home", isPage = mode === "page";
+    var ploc = mode;
+    var from = Combo($(".field.from", root), null, ploc), to = Combo($(".field.to", root), function () {}, ploc);
+    var opened = false, route = "";
+    var openP = function () { if (!opened) { opened = true; track("journey_planner_open", { planner_location: ploc }); } };
+    from.onOpen = to.onOpen = openP;
+    var slug = function (id) { return id ? NET.st[id].slug : undefined; };
+    var run = function (push, trig) {
       msg.textContent = "";
-      if (!from.id) { msg.textContent = S.pick_from; out.classList.remove("show"); from.input.focus(); return; }
-      if (!to.id) { msg.textContent = S.pick_to; out.classList.remove("show"); to.input.focus(); return; }
-      if (from.id === to.id) { msg.textContent = S.same; out.classList.remove("show"); return; }
-      var bad = [from.id, to.id].filter(function (s) { return !stOpen(s); });
-      if (bad.length) { msg.textContent = f(S.not_open, { s: sname(bad[0]) }); out.classList.remove("show"); return; }
-      var t = trip(from.id, to.id);
-      if (!t) { msg.textContent = S.no_route; out.classList.remove("show"); return; }
+      var status = "ok", t = null;
+      if (!from.id) status = "missing_origin";
+      else if (!to.id) status = "missing_destination";
+      else if (from.id === to.id) status = "same_station";
+      else if (!stOpen(from.id) || !stOpen(to.id)) status = "station_not_open";
+      else if (!(t = trip(from.id, to.id))) status = "no_route";
+      track("journey_search", { planner_location: ploc, trigger: trig || "submit", origin_station: slug(from.id), destination_station: slug(to.id), result_status: status });
+      if (status === "missing_origin") { msg.textContent = S.pick_from; out.classList.remove("show"); from.input.focus(); return; }
+      if (status === "missing_destination") { msg.textContent = S.pick_to; out.classList.remove("show"); to.input.focus(); return; }
+      if (status === "same_station") { msg.textContent = S.same; out.classList.remove("show"); return; }
+      if (status === "station_not_open") { msg.textContent = f(S.not_open, { s: sname(stOpen(from.id) ? to.id : from.id) }); out.classList.remove("show"); return; }
+      if (status === "no_route") { msg.textContent = S.no_route; out.classList.remove("show"); return; }
+      route = slug(from.id) + ">" + slug(to.id);
+      var stops = 0; t.legs.forEach(function (l) { stops += l.stops; });
+      track("journey_result_view", { planner_location: ploc, trigger: trig || "submit", origin_station: slug(from.id), destination_station: slug(to.id), route: route,
+        total_stops: stops, interchange_count: t.legs.length - 1, metro_line: t.legs.map(function (l) { return l.line; }).join(">"),
+        estimated_fare: t.fare[0], estimated_fare_max: t.fare[1], estimated_duration: t.min, ticket_count: t.tickets.length });
       out.innerHTML = renderTrip(t, from.id, to.id);
       out.classList.remove("show"); void out.offsetWidth; out.classList.add("show");
-      var mb = $(".rb-more", out); mb && mb.addEventListener("click", function () { var r = $(".ribbon", out), ex = r.classList.toggle("expanded"); mb.textContent = ex ? S.hide : mb.getAttribute("data-show"); mb.setAttribute("aria-expanded", ex); });
+      var rc = function (action) { track("journey_result_click", { action: action, planner_location: ploc, route: route }); };
+      $$("[data-rc]", out).forEach(function (el) { el.addEventListener("click", function (e) { e.pmgDone = true; rc(el.getAttribute("data-rc")); }); });
+      var mb = $(".rb-more", out); mb && mb.addEventListener("click", function () { var r = $(".ribbon", out), ex = r.classList.toggle("expanded"); mb.textContent = ex ? S.hide : mb.getAttribute("data-show"); mb.setAttribute("aria-expanded", ex); if (ex) rc("show_stops"); });
       var cp = $("[data-copy]", out); cp && cp.addEventListener("click", function () {
         var u = planUrl(from.id, to.id, true);
-        if (navigator.share && /Mobi/.test(navigator.userAgent)) navigator.share({ url: u, title: d.title }).catch(function () {});
-        else if (navigator.clipboard) navigator.clipboard.writeText(u).then(function () { cp.textContent = S.copied; });
+        if (navigator.share && /Mobi/.test(navigator.userAgent)) { rc("share"); navigator.share({ url: u, title: d.title }).catch(function () {}); }
+        else if (navigator.clipboard) { rc("copy_link"); navigator.clipboard.writeText(u).then(function () { cp.textContent = S.copied; }); }
       });
-      var bk = $("[data-back]", out); bk && bk.addEventListener("click", function () { swap(); });
+      var bk = $("[data-back]", out); bk && bk.addEventListener("click", function () { rc("return_trip"); swap("return_trip"); });
       if (isPage && push !== false) history.replaceState(null, "", "?from=" + NET.st[from.id].slug + "&to=" + NET.st[to.id].slug);
       if (push === true && !isPage) out.scrollIntoView({ behavior: RM ? "auto" : "smooth", block: "nearest" });
     };
     var swapBtn = $(".swap", root);
-    var swap = function () { var a = from.id, b = to.id; from.set(b, true); to.set(a, true); swapBtn.classList.toggle("spin"); if (from.id && to.id) run(); };
-    swapBtn.addEventListener("click", function () { loadNet().then(swap); });
-    $("form", root).addEventListener("submit", function (e) { e.preventDefault(); loadNet().then(function () { run(true); }, fail); });
+    var swap = function (trig) { var a = from.id, b = to.id; from.set(b, true); to.set(a, true); swapBtn.classList.toggle("spin"); if (from.id && to.id) run(undefined, trig || "swap"); };
+    swapBtn.addEventListener("click", function () { openP(); track("journey_station_swap", { planner_location: ploc }); loadNet().then(function () { swap(); }); });
+    $("form", root).addEventListener("submit", function (e) { e.preventDefault(); openP(); loadNet().then(function () { run(true, "submit"); }, fail); });
     $$("[data-quick]", root).forEach(function (b) {
-      b.addEventListener("click", function () { var p = b.getAttribute("data-quick").split(">"); loadNet().then(function () { from.set(p[0], true); to.set(p[1], true); run(true); }); });
+      b.addEventListener("click", function () { openP(); var p = b.getAttribute("data-quick").split(">"); loadNet().then(function () { from.set(p[0], true); to.set(p[1], true); run(true, "quick_route"); }); });
     });
-    var fail = function () { msg.textContent = S.load_fail; };
-    root.pmgSet = function (which, id) { loadNet().then(function () { (which === "from" ? from : to).set(id, true); if (from.id && to.id) run(true); else (which === "from" ? to : from).input.focus(); }); };
+    var fail = function () { msg.textContent = S.load_fail; track("journey_search", { planner_location: ploc, result_status: "data_error" }); };
+    root.pmgSet = function (which, id) { openP(); loadNet().then(function () { (which === "from" ? from : to).set(id, true); if (from.id && to.id) run(true, "map_panel"); else (which === "from" ? to : from).input.focus(); }); };
     var qs = new URLSearchParams(location.search);
     var preset = root.getAttribute("data-from");
     if (qs.get("from") || qs.get("to") || preset) {
       loadNet().then(function () {
         var fs = qs.get("from") ? NET.bySlug[qs.get("from")] : preset, ts = qs.get("to") ? NET.bySlug[qs.get("to")] : null;
         if (fs) from.set(fs, true); if (ts) to.set(ts, true);
-        if (fs && ts) run(false);
+        if (fs && ts) run(false, "shared_link");
       }, fail);
     } else if ("requestIdleCallback" in window) requestIdleCallback(function () { loadNet().catch(function () {}); });
   }
@@ -343,7 +620,7 @@
       '<div class="kpi"><span>' + esc(S.stops) + "</span><b>" + stops + '</b><span>' + esc(changes ? changes + " " + S.change : S.none) + "</span></div></div>" +
       tks + '<p class="tiny muted">' + esc(S.fare_src) + ".</p>" +
       '<div class="res-notes">' + notes.map(function (n) { return '<p class="note ' + n[0] + '">' + (n[0] ? ICON.warn : ICON.info) + "<span>" + esc(n[1]) + "</span></p>"; }).join("") + "</div>" +
-      '<div class="res-actions"><a class="btn btn-sm btn-ghost" href="' + stUrl(b) + '">' + esc(f(S.open_station, { s: sname(b) })) + '</a><button type="button" class="btn btn-sm btn-ghost" data-back>' + esc(S.back) + '</button><button type="button" class="btn btn-sm btn-ghost" data-copy>' + esc(S.copy) + "</button></div>" +
+      '<div class="res-actions"><a class="btn btn-sm btn-ghost" data-rc="open_station" href="' + stUrl(b) + '">' + esc(f(S.open_station, { s: sname(b) })) + '</a><button type="button" class="btn btn-sm btn-ghost" data-back>' + esc(S.back) + '</button><button type="button" class="btn btn-sm btn-ghost" data-copy>' + esc(S.copy) + "</button></div>" +
       "</div><div>" + ribbon + "</div></div>";
   }
   $$("[data-planner]").forEach(Planner);
@@ -368,13 +645,25 @@
       var ox = (r.width * s - vb[2]) / 2, oy = (r.height * s - vb[3]) / 2;
       return [vb[0] - ox + (cx - r.left) * s, vb[1] - oy + (cy - r.top) * s, s];
     };
-    var zoom = function (k, cx, cy) {
+    /* One zoom event per gesture: reported 1 s after the last change, at most 10 per page view. */
+    var zMethod = "", zSent = 0, zLast = 1;
+    var zReport = debounced(1000, function () {
+      var z = Math.round(vb0[2] / vb[2] * 10) / 10;
+      if (z === zLast || zSent >= 10) return; zLast = z; zSent++;
+      track("metro_map_zoom", { zoom_method: zMethod, zoom_level: z, map_location: PG });
+    });
+    var zoom = function (k, cx, cy, how) {
       var nz = Math.min(7, Math.max(1, (vb0[2] / vb[2]) * k)), nw = vb0[2] / nz, nh = vb0[3] / nz;
       var p = cx == null ? [vb[0] + vb[2] / 2, vb[1] + vb[3] / 2] : toSvg(cx, cy);
       var fx = (p[0] - vb[0]) / vb[2], fy = (p[1] - vb[1]) / vb[3];
       vb = [p[0] - fx * nw, p[1] - fy * nh, nw, nh]; clamp(); apply();
+      zMethod = how || "button"; zReport();
     };
-    stage.addEventListener("wheel", function (e) { if (!e.ctrlKey && !e.metaKey && vb0[2] / vb[2] <= 1 && e.deltaY > 0) return; e.preventDefault(); zoom(e.deltaY < 0 ? 1.18 : 1 / 1.18, e.clientX, e.clientY); }, { passive: false });
+    if ("IntersectionObserver" in window) {
+      var mio = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { mio.disconnect(); track("metro_map_view", { map_location: PG }); } }, { threshold: .4 });
+      mio.observe(stage);
+    }
+    stage.addEventListener("wheel", function (e) { if (!e.ctrlKey && !e.metaKey && vb0[2] / vb[2] <= 1 && e.deltaY > 0) return; e.preventDefault(); zoom(e.deltaY < 0 ? 1.18 : 1 / 1.18, e.clientX, e.clientY, "wheel"); }, { passive: false });
     var ptrs = {}, start = null, moved = false, pinch0 = 0;
     stage.addEventListener("pointerdown", function (e) {
       ptrs[e.pointerId] = [e.clientX, e.clientY]; moved = false;
@@ -386,7 +675,7 @@
       var ks = Object.keys(ptrs);
       if (ks.length === 2) {
         var p = Object.values(ptrs), dd = Math.hypot(p[0][0] - p[1][0], p[0][1] - p[1][1]);
-        if (pinch0) { zoom(dd / pinch0, (p[0][0] + p[1][0]) / 2, (p[0][1] + p[1][1]) / 2); pinch0 = dd; moved = true; }
+        if (pinch0) { zoom(dd / pinch0, (p[0][0] + p[1][0]) / 2, (p[0][1] + p[1][1]) / 2, "pinch"); pinch0 = dd; moved = true; }
         return;
       }
       var dx = e.clientX - start.x, dy = e.clientY - start.y;
@@ -398,13 +687,14 @@
     var up = function (e) { delete ptrs[e.pointerId]; pinch0 = 0; stage.classList.remove("drag"); if (Object.keys(ptrs).length === 1) { var p = Object.values(ptrs)[0]; start = { x: p[0], y: p[1], vb: vb.slice() }; } };
     stage.addEventListener("pointerup", up); stage.addEventListener("pointercancel", up);
     $$(".map-tools button", shell).forEach(function (b) {
-      b.addEventListener("click", function () { var a = b.getAttribute("data-z"); if (a === "in") zoom(1.4); else if (a === "out") zoom(1 / 1.4); else { vb = vb0.slice(); apply(); } });
+      b.addEventListener("click", function () { var a = b.getAttribute("data-z"); if (a === "in") zoom(1.4); else if (a === "out") zoom(1 / 1.4); else { vb = vb0.slice(); apply(); zMethod = "reset"; zReport(); } });
     });
     // line highlight
     var chips = $$(".map-legend [data-line]", shell), on = {};
     chips.forEach(function (c) {
       c.addEventListener("click", function () {
         var l = c.getAttribute("data-line"); on[l] = !on[l]; c.setAttribute("aria-pressed", on[l] ? "true" : "false");
+        track("metro_map_line_select", { metro_line: l, selected: !!on[l], map_location: PG });
         var any = Object.keys(on).some(function (k) { return on[k]; });
         svg.classList.toggle("dim", any);
         $$(".ln", svg).forEach(function (p) { p.classList.toggle("on", !!on[p.getAttribute("data-line")]); });
@@ -415,13 +705,16 @@
     var sel = null;
     svg.addEventListener("click", function (e) {
       var a = e.target.closest(".st"); if (!a || !panel) return;
-      e.preventDefault(); if (moved) return;
+      e.preventDefault(); e.pmgDone = true; if (moved) return;
       select(a.getAttribute("data-id"), a);
     });
     var select = function (id, a) {
       sel && sel.classList.remove("sel"); sel = a; a.classList.add("sel");
       loadNet().then(function () {
         var s = NET.st[id];
+        track("metro_map_station_select", { station_id: s.slug, station_name: s.en, metro_line: s.l.join(" "), is_interchange: s.l.length > 1,
+          station_status: stOpen(id) ? "open" : "not_open", map_location: PG });
+        var mpa = function (action) { return ' data-track="metro_map_panel_action" data-track-action="' + action + '" data-track-station_id="' + esc(s.slug) + '" data-track-map_location="' + esc(PG) + '"'; };
         var rows = s.l.map(function (l) {
           var st = NET.status[l + "|" + id];
           return '<div><dt><span class="lbadge" style="--c:' + NET.lines[l].c + '">' + esc(lname(l)) + "</span></dt><dd>" + esc(st === "open" ? S.open : st === "under_construction" ? S.uc : S.closed) + "</dd></div>";
@@ -432,8 +725,8 @@
         panel.innerHTML = "<div><h3>" + esc(sname(id)) + '</h3><p class="alt-name" lang="' + (MR ? "en" : "mr") + '">' + esc(MR ? s.en : s.mr) + "</p></div>" +
           (s.l.length > 1 ? '<p><span class="tag violet">' + esc(S.interchange) + "</span></p>" : "") +
           '<dl class="mp-rows">' + rows + "</dl>" +
-          '<div class="mp-actions">' + (open ? '<a class="btn btn-sm btn-violet" data-pick="from" href="' + planUrl(id) + '">' + esc(S.from_here) + '</a><a class="btn btn-sm btn-ghost" data-pick="to" href="' + planUrl(null, id) + '">' + esc(S.to_here) + "</a>" : "") +
-          '<a class="btn btn-sm btn-ghost" href="' + stUrl(id) + '">' + esc(S.details) + "</a></div>";
+          '<div class="mp-actions">' + (open ? '<a class="btn btn-sm btn-violet" data-pick="from"' + mpa("plan_from") + ' href="' + planUrl(id) + '">' + esc(S.from_here) + '</a><a class="btn btn-sm btn-ghost" data-pick="to"' + mpa("plan_to") + ' href="' + planUrl(null, id) + '">' + esc(S.to_here) + "</a>" : "") +
+          '<a class="btn btn-sm btn-ghost"' + mpa("station_details") + ' href="' + stUrl(id) + '">' + esc(S.details) + "</a></div>";
         panel.removeAttribute("data-anim"); void panel.offsetWidth; panel.setAttribute("data-anim", "");
         if (planner && planner.pmgSet) $$("[data-pick]", panel).forEach(function (b) {
           b.addEventListener("click", function (e) { e.preventDefault(); planner.pmgSet(b.getAttribute("data-pick"), id); planner.scrollIntoView({ behavior: RM ? "auto" : "smooth", block: "center" }); });
@@ -447,6 +740,7 @@
   /* ---------- station filters ---------- */
   $$("[data-filter]").forEach(function (box) {
     var q = $("[data-filter-q]", box), chips = $$("[data-filter-line]", box), items = $$("[data-item]", box), empty = $(".empty-state", box), line = "";
+    var shownN = 0, done = {};
     var applyF = function () {
       var n = norm(q ? q.value : ""), shown = 0;
       items.forEach(function (it) {
@@ -454,17 +748,28 @@
         it.hidden = !ok; if (ok) shown++;
       });
       if (empty) empty.hidden = shown > 0;
+      shownN = shown;
     };
+    var report = debounced(1500, function () {
+      var v = q.value.trim(); if (v.length < 2) return;
+      var term = termOf(v, shownN); if (done[term]) return; done[term] = 1;
+      track("search", { search_type: "station_list", search_term: term, search_result_count: shownN });
+    });
     items.forEach(function (it) { it.setAttribute("data-q", norm(it.getAttribute("data-q"))); });
-    q && q.addEventListener("input", applyF);
+    q && q.addEventListener("input", function () { applyF(); report(); });
     chips.forEach(function (c) {
-      c.addEventListener("click", function () { line = c.getAttribute("data-filter-line"); chips.forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); }); applyF(); });
+      c.addEventListener("click", function () { line = c.getAttribute("data-filter-line"); chips.forEach(function (x) { x.setAttribute("aria-pressed", x === c ? "true" : "false"); }); applyF(); track("station_list_filter", { metro_line: line }); });
     });
   });
   $$("[data-table-filter]").forEach(function (inp) {
-    var rows = $$("#" + inp.getAttribute("data-table-filter") + " tbody tr");
+    var rows = $$("#" + inp.getAttribute("data-table-filter") + " tbody tr"), shownN = 0, done = {};
     rows.forEach(function (r) { r.setAttribute("data-q", norm(r.getAttribute("data-q") || r.textContent)); });
-    inp.addEventListener("input", function () { var n = norm(inp.value); rows.forEach(function (r) { r.hidden = n && r.getAttribute("data-q").indexOf(n) < 0; }); });
+    var report = debounced(1500, function () {
+      var v = inp.value.trim(); if (v.length < 2) return;
+      var term = termOf(v, shownN); if (done[term]) return; done[term] = 1;
+      track("search", { search_type: "fare_table", search_term: term, search_result_count: shownN });
+    });
+    inp.addEventListener("input", function () { var n = norm(inp.value); shownN = 0; rows.forEach(function (r) { r.hidden = n && r.getAttribute("data-q").indexOf(n) < 0; if (!r.hidden) shownN++; }); report(); });
   });
   /* fare matrix: highlight row and column */
   $$(".mx").forEach(function (t) {
