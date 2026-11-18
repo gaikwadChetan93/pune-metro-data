@@ -1,0 +1,29 @@
+{
+  "name": "Pune Metro Guide",
+  "short_name": "Pune Metro",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#101426",
+  "theme_color": "#101426",
+  "icons": [
+    {
+      "src": "/assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "prefer_related_applications": true,
+  "related_applications": [
+    {
+      "platform": "play",
+      "url": "https://play.google.com/store/apps/details?id=app.punemetroguide.pune_metro",
+      "id": "app.punemetroguide.pune_metro"
+    }
+  ]
+}

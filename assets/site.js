@@ -251,6 +251,114 @@
   })();
   var track = A.track, PG = A.ctx.g || "other";
 
+  /* ---------- app promotion (APP_CONVERSION_STRATEGY.md) ----------
+     Promotions are marked data-promo="<placement>" in the HTML. One counts as seen (app_promotion_view)
+     once half of it has been on screen for a second. Store links carry data-slot; a click is an
+     app_download_click. That is a click, not an install: installs are only in Play Console, by the
+     referrer each link carries (utm_medium = page_slot, utm_campaign = web_<variant>). */
+  var PROMO = (function () {
+    var cfg = {}; try { cfg = JSON.parse(meta("pmg-app") || "{}"); } catch (e) { /* */ }
+    var ua = navigator.userAgent || "";
+    var IOS = /iP(hone|ad|od)/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+    de.className += IOS ? " is-ios" : /Android/i.test(ua) ? " is-android" : "";
+    var st = function (s, k, v) { try { var o = window[s]; if (v === undefined) return o.getItem(k); o.setItem(k, v); } catch (e) { /* blocked */ } return null; };
+    /* The experiment: one at a time, a random variant kept on the device, ?pmg_xp=<variant> to force one. */
+    var V = "none", vs = cfg.v || [];
+    if (vs.length) {
+      var key = "pmg-xp-" + cfg.xp, qv = /[?&]pmg_xp=([a-z0-9_]+)/.exec(location.search);
+      V = qv && vs.indexOf(qv[1]) > -1 ? qv[1] : st("localStorage", key);
+      if (vs.indexOf(V) < 0) V = vs[Math.floor(Math.random() * vs.length)];
+      st("localStorage", key, V);
+    }
+    var pv = (+st("sessionStorage", "pmg-pv") || 0) + 1; st("sessionStorage", "pmg-pv", String(pv));
+    /* Play links: put the variant in the referrer so Play Console can split installs by it. */
+    $$('a[href^="https://play.google.com/store/apps/details"]').forEach(function (a) {
+      try {
+        var u = new URL(a.href), r = new URLSearchParams(u.searchParams.get("referrer") || "");
+        if (V !== "none") r.set("utm_campaign", "web_" + V);
+        u.searchParams.set("referrer", r.toString()); a.href = u.href;
+      } catch (e) { /* leave it */ }
+    });
+    var place = function (el) { var p = el.closest("[data-promo]"); return p ? p.getAttribute("data-promo") : ""; };
+    var seen = function (pl) { track.once("apv" + pl, "app_promotion_view", { promotion_placement: pl, promotion_variant: V, app_platform: "android" }); };
+    var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
+      es.forEach(function (e) {
+        var el = e.target;
+        if (e.isIntersecting) el.pmgT = setTimeout(function () { io.unobserve(el); seen(el.getAttribute("data-promo")); }, 1000);
+        else clearTimeout(el.pmgT);
+      });
+    }, { threshold: 0.5 }) : null;
+    var watch = function (el) { if (io && el.getAttribute("data-promo") !== "sticky_banner") io.observe(el); };
+    $$("[data-promo]").forEach(watch);
+    var installed = false;
+    // Chrome on Android can tell whether the app is installed, once the app declares this site (see APP_CONVERSION_STRATEGY.md).
+    if (navigator.getInstalledRelatedApps) navigator.getInstalledRelatedApps().then(function (l) { if (l && l.length) { installed = true; de.className += " has-app"; } }).catch(function () {});
+
+    /* Sticky banner: phones only, not on iPhone (no iOS app yet), never over the consent banner, the menu
+       or a focused field, never twice in a session after a dismissal or a click, and after two
+       dismissals it rests for a week. When it appears depends on the variant:
+         st_a: after 35% of the page (at least 700 px), or a journey result.
+         st_b: only once the visitor is engaged: a journey result, a second page in this visit with 25% scrolled, or 70% of one page. */
+    var sb = $("#pmg-sb"), sbOn = false, signal = false;
+    var phone = window.matchMedia && matchMedia("(max-width:760px)").matches;
+    var n = +st("localStorage", "pmg-sb-n") || 0, last = +st("localStorage", "pmg-sb-t") || 0;
+    var resting = n >= 2 && Date.now() - last < 7 * 864e5;
+    var allowed = sb && phone && !IOS && !st("sessionStorage", "pmg-sb") && !resting;
+    var depth = function () { var h = de.scrollHeight - innerHeight; return h > 0 ? scrollY / h : 0; };
+    var due = function () {
+      if (signal) return true;
+      if (V === "st_b") return depth() >= 0.7 || (pv >= 2 && depth() >= 0.25);
+      return depth() >= 0.35 && scrollY >= 700;
+    };
+    var clear = function () {
+      if (installed || $(".cc") || d.body.classList.contains("locked")) return false;
+      var a = d.activeElement; if (a && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) return false;
+      // Not while an in-page promotion is on screen: one ask at a time.
+      return !$$(".apromo,.showcase-in,.plan-promo").some(function (el) { var r = el.getBoundingClientRect(); return r.top < innerHeight * 0.8 && r.bottom > innerHeight * 0.2; });
+    };
+    var show = function () {
+      sbOn = true; sb.hidden = false; void sb.offsetWidth; sb.classList.add("in"); d.body.classList.add("sb-on");
+      seen("sticky_banner");
+    };
+    var hide = function (why) {
+      sb.classList.remove("in"); d.body.classList.remove("sb-on");
+      st("sessionStorage", "pmg-sb", why);
+      setTimeout(function () { sb.hidden = true; }, 500);
+      allowed = false;
+    };
+    var check = function () { if (allowed && !sbOn && due() && clear()) show(); };
+    if (allowed) {
+      var busy = false;
+      addEventListener("scroll", function () { if (busy) return; busy = true; setTimeout(function () { busy = false; check(); }, 250); }, { passive: true });
+      $(".sb-x", sb).addEventListener("click", function () {
+        st("localStorage", "pmg-sb-n", String(n + 1)); st("localStorage", "pmg-sb-t", String(Date.now()));
+        track("sticky_banner_dismiss", { promotion_variant: V });
+        hide("x");
+      });
+      // Tuck it away while typing (the keyboard is up) or while the menu is open.
+      d.addEventListener("focusin", function (e) { if (sbOn && /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName)) sb.classList.add("tuck"); });
+      d.addEventListener("focusout", function () { if (sbOn) setTimeout(function () { var a = d.activeElement; if (!a || !/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)) sb.classList.remove("tuck"); }, 200); });
+    }
+    return {
+      v: V, ios: IOS, place: place,
+      clicked: function () { st("sessionStorage", "pmg-sb", "c"); if (sbOn) hide("c"); else allowed = false; },
+      /* After a journey result: a small card in the result, and a signal for the banner. */
+      journey: function (out) {
+        var tpl = $("#pmg-tpl-plan");
+        if (tpl && !IOS && !installed && !$(".plan-promo", out)) {
+          var node = tpl.content ? tpl.content.firstElementChild.cloneNode(true) : null;
+          if (node) {
+            $$("a[href]", node).forEach(function (a) {
+              try { var u = new URL(a.href), r = new URLSearchParams(u.searchParams.get("referrer") || ""); if (V !== "none") r.set("utm_campaign", "web_" + V); u.searchParams.set("referrer", r.toString()); a.href = u.href; } catch (e) { /* */ }
+            });
+            out.appendChild(node); watch(node);
+          }
+        }
+        signal = true; setTimeout(check, 4000);
+      }
+    };
+  })();
+
   /* Search terms leave the page only when they matched public text (a station name or list
      entry), so free text can't. */
   var termOf = function (q, n) { q = String(q || "").toLowerCase().replace(/\s+/g, " ").trim(); return n > 0 ? q.slice(0, 40) : "(no match)"; };
@@ -281,11 +389,14 @@
     if (u.host === location.host) {
       if (a.hasAttribute("hreflang")) return track("language_change", { from_language: MR ? "mr" : "en", to_language: MR ? "en" : "mr" });
       if (u.pathname === location.pathname) return; // in-page anchors
+      var pp = PROMO.place(a);
+      if (pp) return track("app_promotion_click", { promotion_placement: pp, promotion_variant: PROMO.v, link_url: u.pathname });
       return track("navigation_click", { nav_area: area(a), link_url: u.pathname, link_text: a.textContent });
     }
-    if (u.host === "play.google.com") {
-      var place = ""; try { place = new URLSearchParams(u.searchParams.get("referrer") || "").get("utm_medium") || ""; } catch (er) { /* */ }
-      return track("get_app_click", { placement: place, link_domain: u.host });
+    if (u.host === "play.google.com" || u.host === "apps.apple.com") {
+      var slot = a.getAttribute("data-slot") || PROMO.place(a) || "other";
+      PROMO.clicked();
+      return track("app_download_click", { promotion_placement: slot, promotion_variant: PROMO.v, app_platform: u.host === "apps.apple.com" ? "ios" : "android", link_domain: u.host });
     }
     var kind = /(^|\.)google\.[a-z.]+$/.test(u.host) && u.pathname.indexOf("/maps") === 0 ? "maps" : /punemetrorail|punerimetro|mahametro/.test(u.host) ? "official" : "other";
     track("outbound_link_click", { link_url: u.origin + u.pathname, link_domain: u.host, link_type: kind, nav_area: area(a) });
@@ -559,6 +670,7 @@
         estimated_fare: t.fare[0], estimated_fare_max: t.fare[1], estimated_duration: t.min, ticket_count: t.tickets.length });
       out.innerHTML = renderTrip(t, from.id, to.id);
       out.classList.remove("show"); void out.offsetWidth; out.classList.add("show");
+      PROMO.journey(out);
       var rc = function (action) { track("journey_result_click", { action: action, planner_location: ploc, route: route }); };
       $$("[data-rc]", out).forEach(function (el) { el.addEventListener("click", function (e) { e.pmgDone = true; rc(el.getAttribute("data-rc")); }); });
       var mb = $(".rb-more", out); mb && mb.addEventListener("click", function () { var r = $(".ribbon", out), ex = r.classList.toggle("expanded"); mb.textContent = ex ? S.hide : mb.getAttribute("data-show"); mb.setAttribute("aria-expanded", ex); if (ex) rc("show_stops"); });
