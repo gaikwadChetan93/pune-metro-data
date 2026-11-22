@@ -101,7 +101,7 @@ a.lbadge:hover{background:color-mix(in srgb,var(--c) 22%,var(--surface))}
 .hd.solid{background:color-mix(in srgb,var(--surface) 84%,transparent);color:var(--ink);box-shadow:0 1px 0 var(--hair);-webkit-backdrop-filter:saturate(1.6) blur(16px);backdrop-filter:saturate(1.6) blur(16px)}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;margin-right:auto;font:700 17px/1 var(--f-disp);letter-spacing:-.02em}
 html[lang^=mr] .brand{font-family:var(--f-body)}
-.brand svg{width:34px;height:34px;border-radius:10px;flex:none}
+.brand img{width:34px;height:34px;border-radius:8px;flex:none}
 .nav{display:flex;align-items:center;gap:2px}
 .nav a{position:relative;padding:10px 12px;border-radius:999px;font:600 15px/1 var(--f-body);text-decoration:none;opacity:.86;transition:opacity .2s,background .2s}
 .nav a:hover{opacity:1;background:color-mix(in srgb,currentColor 9%,transparent)}
@@ -650,7 +650,7 @@ html[lang^=mr] .cc-t{font-family:var(--f-body);font-weight:700}
 /* hero row (home) */
 .hero-app{display:flex;align-items:center;gap:14px;margin-top:26px;padding:10px 12px 10px 10px;max-width:560px;border-radius:22px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(255,255,255,.11);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
 .js .hero-app{animation:rise .8s .6s var(--ease-out) both}
-.hero-app-i{width:48px;height:48px;border-radius:13px;flex:none;box-shadow:0 6px 16px -6px rgba(0,0,0,.6)}
+.hero-app-i{width:48px;height:48px;border-radius:11px;flex:none;box-shadow:0 6px 16px -6px rgba(0,0,0,.6)}
 .hero-app p{margin:0;flex:1;min-width:0;line-height:1.35}
 .hero-app b{display:block;font:600 16px/1.3 var(--f-disp);color:#fff}
 html[lang^=mr] .hero-app b{font-family:var(--f-body);font-weight:700}
@@ -695,7 +695,7 @@ html[lang^=mr] .eyebrow{letter-spacing:0;font-size:14px}
 .apromo-in::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(420px 260px at 100% 100%,color-mix(in srgb,var(--violet) 18%,transparent),transparent 70%),radial-gradient(300px 200px at 0% 0%,color-mix(in srgb,var(--cyan) 10%,transparent),transparent 70%)}
 .apromo-copy{padding-bottom:clamp(22px,3vw,34px)}
 .apromo-eyebrow{display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:var(--ink3);margin:0 0 12px}
-.apromo-eyebrow img{width:28px;height:28px;border-radius:8px}
+.apromo-eyebrow img{width:28px;height:28px;border-radius:6px}
 .apromo-t{font-size:clamp(22px,2.4vw,28px);margin:0 0 .4em;max-width:28ch}
 .apromo-x{color:var(--ink2);max-width:60ch;margin:0}
 .apromo-feats{list-style:none;padding:0;margin:16px 0 0;display:flex;flex-wrap:wrap;gap:10px 20px}
@@ -711,7 +711,7 @@ html[lang^=mr] .eyebrow{letter-spacing:0;font-size:14px}
 
 /* mobile menu */
 .sheet-app{display:flex;align-items:center;gap:14px;margin:22px 0 18px;padding:12px 14px;border-radius:18px;background:rgba(255,255,255,.07);box-shadow:inset 0 0 0 1px rgba(255,255,255,.1);text-decoration:none}
-.sheet-app img{width:40px;height:40px;border-radius:11px}
+.sheet-app img{width:40px;height:40px;border-radius:9px}
 .sheet-app span{flex:1}.sheet-app b{display:block}.sheet-app small{color:rgba(255,255,255,.65);font-size:13px}
 
 /* planner result */
@@ -728,7 +728,7 @@ html[lang^=mr] .eyebrow{letter-spacing:0;font-size:14px}
 .sb[hidden]{display:none}
 .sb.in{transform:none}
 .sb.tuck{transform:translateY(calc(100% + 30px))}
-.sb-i{width:44px;height:44px;border-radius:12px;flex:none}
+.sb-i{width:44px;height:44px;border-radius:10px;flex:none}
 .sb-t{margin:0;flex:1;min-width:0;line-height:1.3}
 .sb-t b{display:block;font-size:15px}
 .sb-t span{display:block;font-size:13px;color:rgba(255,255,255,.72)}
