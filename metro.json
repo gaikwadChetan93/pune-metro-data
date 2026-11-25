@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "2026.11.09.2",
+    "version": "2026.11.25.1",
     "last_verified": "2026-11-08",
-    "built": "2026-11-09",
+    "built": "2026-11-25",
     "coords_snapshot": "2026-11-08T13:00:21Z",
     "places_snapshot": "2026-11-09T09:02:50Z",
     "disclaimer": "Unofficial. Not affiliated with Maha Metro or PMRDA. Verify fares and timings at the station.",
@@ -380,11 +380,11 @@
         },
         {
           "station": "balewadi_high_street",
-          "status": "not_open"
+          "status": "open"
         },
         {
           "station": "balewadi_phata",
-          "status": "not_open"
+          "status": "open"
         },
         {
           "station": "baner_gaon",
@@ -423,7 +423,7 @@
           "status": "open"
         }
       ],
-      "status_source": "mrn_line3",
+      "status_source": "fpj_line3_19",
       "service": {
         "first_departure": "06:00",
         "last_departure_by_terminal": {
@@ -7208,6 +7208,12 @@
       "url": "https://en.wikipedia.org/wiki/Pink_Line_(Pune_Metro)",
       "kind": "secondary",
       "read_on": "2026-11-08"
+    },
+    "fpj_line3_19": {
+      "title": "Pune Metro Line 3 network expands to 19 stations - Free Press Journal (25 Nov 2026)",
+      "url": "https://www.freepressjournal.in/pune/pune-metro-line-3-network-expands-to-19-stations-4-more-expected-to-open-by-january",
+      "kind": "secondary",
+      "read_on": "2026-11-25"
     },
     "mrn_line3": {
       "title": "Pune Metro Line 3 - Metro Rail News (status, timings, fare range)",

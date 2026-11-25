@@ -1,10 +1,23 @@
 {
-  "version": "2026.11.08.6",
+  "version": "2026.11.25.1",
   "items": [
+    {
+      "id": "pink-balewadi-open",
+      "kind": "service",
+      "featured": true,
+      "date": "2026-11-25",
+      "title": "Balewadi High Street and Balewadi Phata are open",
+      "title_mr": "बालेवाडी हाय स्ट्रीट आणि बालेवाडी फाटा स्थानके सुरू",
+      "title_hi": "बालेवाडी हाय स्ट्रीट और बालेवाडी फाटा स्टेशन खुले",
+      "body": "Both Pink Line stations opened on 25 Nov 2026 at 15:30, with the same hours as the rest of the line. 19 of 23 stations are now open.",
+      "body_mr": "दोन्ही पिंक लाईन स्थानके 25 नोव्हेंबर 2026 रोजी दुपारी 3:30 पासून सुरू झाली; वेळा मार्गिकेवरील इतर स्थानकांप्रमाणेच. आता 23 पैकी 19 स्थानके सुरू.",
+      "body_hi": "दोनों पिंक लाइन स्टेशन 25 नवंबर 2026 को दोपहर 3:30 बजे से खुले; समय लाइन के बाकी स्टेशनों जैसा ही है। अब 23 में से 19 स्टेशन खुले हैं।",
+      "source": "Pune Pulse (Puneri Metro announcement)",
+      "url": "https://mypunepulse.com/puneri-metro-starts-passenger-services-at-balewadi-high-street-and-balewadi-phata-on-23-3-km-maan-shivaji-nagar-route/"
+    },
     {
       "id": "pink-open",
       "kind": "service",
-      "featured": true,
       "date": "2026-11-04",
       "title": "The Pink Line is open",
       "title_mr": "पिंक लाईन सुरू झाली",
@@ -18,15 +31,15 @@
     {
       "id": "pink-closed-stations",
       "kind": "service",
-      "date": "2026-11-04",
-      "title": "Six Pink Line stations are still closed",
-      "title_mr": "पिंक लाईनवरील सहा स्थानके अद्याप बंद",
-      "title_hi": "पिंक लाइन के छह स्टेशन अभी बंद",
-      "body": "Balewadi High Street and Balewadi Phata are expected by end of November. Baner Gaon, Baner Pashan Link Road, Bhosalenagar - RBI and Shivaji Nagar are expected in phases by January 2027.",
-      "body_mr": "बालेवाडी हाय स्ट्रीट आणि बालेवाडी फाटा नोव्हेंबरअखेरपर्यंत अपेक्षित आहेत. बाणेर गाव, बाणेर पाषाण लिंक रोड, भोसलेनगर - आरबीआय आणि शिवाजीनगर जानेवारी 2027 पर्यंत टप्प्याटप्प्याने अपेक्षित आहेत.",
-      "body_hi": "बालेवाडी हाय स्ट्रीट और बालेवाडी फाटा नवंबर के अंत तक अपेक्षित हैं। बाणेर गाव, बाणेर पाषाण लिंक रोड, भोसलेनगर - आरबीआय और शिवाजीनगर जनवरी 2027 तक चरणों में अपेक्षित हैं।",
-      "source": "Metro Rail News (expected dates)",
-      "url": "https://metrorailnews.in/projects/pune-metro-line-3/"
+      "date": "2026-11-25",
+      "title": "Four Pink Line stations are still closed",
+      "title_mr": "पिंक लाईनवरील चार स्थानके अद्याप बंद",
+      "title_hi": "पिंक लाइन के चार स्टेशन अभी बंद",
+      "body": "Baner Gaon, Baner Pashan Link Road, Bhosalenagar - RBI and Shivaji Nagar are expected in phases by January 2027.",
+      "body_mr": "बाणेर गाव, बाणेर पाषाण लिंक रोड, भोसलेनगर - आरबीआय आणि शिवाजीनगर जानेवारी 2027 पर्यंत टप्प्याटप्प्याने अपेक्षित आहेत.",
+      "body_hi": "बाणेर गाव, बाणेर पाषाण लिंक रोड, भोसलेनगर - आरबीआय और शिवाजीनगर जनवरी 2027 तक चरणों में अपेक्षित हैं।",
+      "source": "Free Press Journal (expected dates)",
+      "url": "https://www.freepressjournal.in/pune/pune-metro-line-3-network-expands-to-19-stations-4-more-expected-to-open-by-january"
     },
     {
       "id": "pink-two-tickets",
