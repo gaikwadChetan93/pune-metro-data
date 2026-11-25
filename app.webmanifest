@@ -24,6 +24,11 @@
       "platform": "play",
       "url": "https://play.google.com/store/apps/details?id=app.punemetroguide.pune_metro",
       "id": "app.punemetroguide.pune_metro"
+    },
+    {
+      "platform": "itunes",
+      "url": "https://apps.apple.com/in/app/pune-metro-guide-map-route/id6832922006",
+      "id": "id6832922006"
     }
   ]
 }

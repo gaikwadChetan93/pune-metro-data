@@ -261,6 +261,10 @@
     var ua = navigator.userAgent || "";
     var IOS = /iP(hone|ad|od)/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
     de.className += IOS ? " is-ios" : /Android/i.test(ua) ? " is-android" : "";
+    /* The App Store link (build_site.py APP_STORE_URL). Safari on an iPhone shows Apple's own banner for it
+       (apple-itunes-app), so the site's banner is for the other iPhone browsers. */
+    var AS = cfg.ios || "", SAFARI = IOS && /Version\/[\d.]+.*Safari\//.test(ua) && !/CriOS|FxiOS|EdgiOS|OPiOS|GSA\//.test(ua);
+    var toStore = function (root) { if (IOS && AS) $$('a[href^="https://play.google.com/store/apps/details"]', root).forEach(function (a) { a.href = AS; }); };
     var st = function (s, k, v) { try { var o = window[s]; if (v === undefined) return o.getItem(k); o.setItem(k, v); } catch (e) { /* blocked */ } return null; };
     /* The experiment: one at a time, a random variant kept on the device, ?pmg_xp=<variant> to force one. */
     var V = "none", vs = cfg.v || [];
@@ -279,8 +283,16 @@
         u.searchParams.set("referrer", r.toString()); a.href = u.href;
       } catch (e) { /* leave it */ }
     });
+    /* /app/?get=qr (the QR code on wide screens): a phone goes straight to its own store. */
+    if (/[?&]get=qr(&|$)/.test(location.search)) {
+      var and = /Android/i.test(ua), dest = IOS ? AS : and && cfg.play ? cfg.play + "&referrer=" + encodeURIComponent("utm_source=website&utm_medium=desktop_qr&utm_campaign=web" + (V !== "none" ? "_" + V : "")) : "";
+      if (dest) {
+        track("app_download_click", { promotion_placement: "qr", promotion_variant: V, app_platform: IOS ? "ios" : "android", link_domain: IOS ? "apps.apple.com" : "play.google.com" });
+        location.replace(dest);
+      }
+    }
     var place = function (el) { var p = el.closest("[data-promo]"); return p ? p.getAttribute("data-promo") : ""; };
-    var seen = function (pl) { track.once("apv" + pl, "app_promotion_view", { promotion_placement: pl, promotion_variant: V, app_platform: "android" }); };
+    var seen = function (pl) { track.once("apv" + pl, "app_promotion_view", { promotion_placement: pl, promotion_variant: V, app_platform: IOS ? "ios" : "android" }); };
     var io = "IntersectionObserver" in window ? new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         var el = e.target;
@@ -294,7 +306,7 @@
     // Chrome on Android can tell whether the app is installed, once the app declares this site (see APP_CONVERSION_STRATEGY.md).
     if (navigator.getInstalledRelatedApps) navigator.getInstalledRelatedApps().then(function (l) { if (l && l.length) { installed = true; de.className += " has-app"; } }).catch(function () {});
 
-    /* Sticky banner: phones only, not on iPhone (no iOS app yet), never over the consent banner, the menu
+    /* Sticky banner: phones only (on an iPhone it leads to the App Store, and not in Safari, which shows Apple's banner), never over the consent banner, the menu
        or a focused field, never twice in a session after a dismissal or a click, and after two
        dismissals it rests for a week. When it appears depends on the variant:
          st_a: after 35% of the page (at least 700 px), or a journey result.
@@ -303,7 +315,8 @@
     var phone = window.matchMedia && matchMedia("(max-width:760px)").matches;
     var n = +st("localStorage", "pmg-sb-n") || 0, last = +st("localStorage", "pmg-sb-t") || 0;
     var resting = n >= 2 && Date.now() - last < 7 * 864e5;
-    var allowed = sb && phone && !IOS && !st("sessionStorage", "pmg-sb") && !resting;
+    var allowed = sb && phone && (!IOS || (AS && !SAFARI)) && !st("sessionStorage", "pmg-sb") && !resting;
+    if (allowed) toStore(sb);
     var depth = function () { var h = de.scrollHeight - innerHeight; return h > 0 ? scrollY / h : 0; };
     var due = function () {
       if (signal) return true;
@@ -345,12 +358,13 @@
       /* After a journey result: a small card in the result, and a signal for the banner. */
       journey: function (out) {
         var tpl = $("#pmg-tpl-plan");
-        if (tpl && !IOS && !installed && !$(".plan-promo", out)) {
+        if (tpl && (!IOS || AS) && !installed && !$(".plan-promo", out)) {
           var node = tpl.content ? tpl.content.firstElementChild.cloneNode(true) : null;
           if (node) {
             $$("a[href]", node).forEach(function (a) {
               try { var u = new URL(a.href), r = new URLSearchParams(u.searchParams.get("referrer") || ""); if (V !== "none") r.set("utm_campaign", "web_" + V); u.searchParams.set("referrer", r.toString()); a.href = u.href; } catch (e) { /* */ }
             });
+            toStore(node);
             out.appendChild(node); watch(node);
           }
         }

@@ -636,6 +636,14 @@ html[lang^=mr] .cc-t{font-family:var(--f-body);font-weight:700}
 .play-badge img{display:block;width:168px;height:auto}
 .play-badge:hover{transform:translateY(-1px);filter:drop-shadow(0 8px 14px rgba(16,20,38,.28))}
 .store-row{display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;margin-top:20px}
+.as-badge{display:inline-flex;border-radius:10px;transition:transform .2s var(--ease),filter .2s;-webkit-tap-highlight-color:transparent}
+.as-badge img{display:block;height:50px;width:auto}
+.as-badge:hover{transform:translateY(-1px);filter:drop-shadow(0 8px 14px rgba(16,20,38,.28))}
+.as-btn{display:inline-flex;align-items:center;gap:10px;height:50px;padding:0 18px 0 14px;border-radius:12px;font:700 15px/1.15 var(--f-body);color:inherit;text-decoration:none;box-shadow:inset 0 0 0 1.5px color-mix(in srgb,currentColor 32%,transparent);transition:box-shadow .2s,transform .2s var(--ease);-webkit-tap-highlight-color:transparent}
+.as-btn:hover{box-shadow:inset 0 0 0 1.5px currentColor;transform:translateY(-1px)}
+.as-btn svg{flex:none}
+/* Each phone sees its own store; wide screens see both. */
+.is-ios .play-badge,.is-android .as-btn,.is-android .as-badge{display:none}
 .qr{display:none;align-items:center;gap:12px;padding:8px 14px 8px 8px;border-radius:16px;background:var(--surface2);font-size:13px;line-height:1.35;color:var(--ink2)}
 .qr img{width:84px;height:84px;border-radius:8px;background:#fff;padding:4px;flex:none}
 .qr span{max-width:14ch}
@@ -656,6 +664,12 @@ html[lang^=mr] .cc-t{font-family:var(--f-body);font-weight:700}
 html[lang^=mr] .hero-app b{font-family:var(--f-body);font-weight:700}
 .hero-app p span{display:block;font-size:13px;color:rgba(255,255,255,.66);margin-top:2px}
 .hero-app .play-badge img{width:148px}
+.hero-app .as-btn{height:44px;font-size:14px;padding:0 14px 0 12px;color:#fff}
+.hero-app .as-badge img{height:44px}
+/* Two stores: the badges go on their own row under the words. */
+.hero-app-2{flex-wrap:wrap;row-gap:10px}
+.hero-app-2 p{flex-basis:calc(100% - 62px)}
+.hero-app-2 .play-badge,.is-ios .hero-app-2 .as-btn,.is-ios .hero-app-2 .as-badge{margin-left:62px}
 @media (max-width:560px){.hero-app{flex-wrap:wrap}.hero-app p{flex-basis:calc(100% - 62px)}.hero-app .play-badge{margin-left:62px}.hero-app .play-badge img{width:140px}}
 
 /* showcase (home) */
