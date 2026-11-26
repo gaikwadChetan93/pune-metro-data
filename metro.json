@@ -1,8 +1,8 @@
 {
   "meta": {
-    "version": "2026.11.25.1",
+    "version": "2026.11.26.3",
     "last_verified": "2026-11-08",
-    "built": "2026-11-25",
+    "built": "2026-11-26",
     "coords_snapshot": "2026-11-08T13:00:21Z",
     "places_snapshot": "2026-11-09T09:02:50Z",
     "disclaimer": "Unofficial. Not affiliated with Maha Metro or PMRDA. Verify fares and timings at the station.",
@@ -208,7 +208,7 @@
           "08:00-11:00",
           "16:00-20:00"
         ],
-        "hours_source": "mahametro_hours_notice",
+        "hours_source": "mahametro_project_profile",
         "hours_verified": true,
         "headway_source": "urbanacres_frequency",
         "headway_verified": false,
@@ -310,7 +310,7 @@
           "08:00-11:00",
           "16:00-20:00"
         ],
-        "hours_source": "mahametro_hours_notice",
+        "hours_source": "mahametro_project_profile",
         "hours_verified": true,
         "headway_source": "urbanacres_frequency",
         "headway_verified": false,
@@ -7214,6 +7214,19 @@
       "url": "https://www.freepressjournal.in/pune/pune-metro-line-3-network-expands-to-19-stations-4-more-expected-to-open-by-january",
       "kind": "secondary",
       "read_on": "2026-11-25"
+    },
+    "pib_balewadi_open": {
+      "title": "Balewadi High Street and Balewadi Phata stations commissioned (PIB, 25 Nov 2026)",
+      "url": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2341636&lang=9&reg=1",
+      "kind": "official",
+      "read_on": "2026-11-26",
+      "label": "PIB, 25 Nov 2026"
+    },
+    "mahametro_project_profile": {
+      "title": "Maha Metro Pune project profile (service hours and operational network)",
+      "url": "https://www.punemetrorail.org/projectprofile.aspx?lang=en-US",
+      "kind": "official",
+      "read_on": "2026-11-26"
     },
     "mrn_line3": {
       "title": "Pune Metro Line 3 - Metro Rail News (status, timings, fare range)",

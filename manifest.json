@@ -1,15 +1,15 @@
 {
   "schema": 1,
-  "version": "2026.11.25.1",
-  "published": "2026-11-25",
+  "version": "2026.11.26.3",
+  "published": "2026-11-26",
   "files": {
     "metro.json": {
-      "sha256": "2c64a21e25dbb39b69001df5712393f40a5f826128076ee4ab5af60a2cdc23f6",
-      "bytes": 195737
+      "sha256": "46690383879a857a729279b67de629e284f1a0e7ec2ca4cadc87052f7e8cbb12",
+      "bytes": 196321
     },
     "updates.json": {
-      "sha256": "102b2ebdd4b3637e6f27d3c425fab42bf7038b0e54d4ea5bdba053334f9be6f5",
-      "bytes": 9431
+      "sha256": "8fc0a9eed80a23ecd4cd8687eb28a3574b0e3f9646fd25b6593f40f52a87c91e",
+      "bytes": 9401
     }
   }
 }
