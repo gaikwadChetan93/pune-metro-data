@@ -1,11 +1,11 @@
 {
   "schema": 1,
-  "version": "2026.11.26.4",
+  "version": "2026.11.26.5",
   "published": "2026-11-26",
   "files": {
     "metro.json": {
-      "sha256": "6866b14eba0bbf3fa1fb5e4fef040791fffa3ff5a4627a03eab0a6199a2fc642",
-      "bytes": 196321
+      "sha256": "1e8599389d973a5a439a9fb64eb96a0c9acfff15c3762f0ef284eedeae688a26",
+      "bytes": 195281
     },
     "updates.json": {
       "sha256": "642da8931d77d21e5360e3b074408224c1a9d26a7bfc0a204078212967445464",

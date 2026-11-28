@@ -1,6 +1,6 @@
 {
   "meta": {
-    "version": "2026.11.26.4",
+    "version": "2026.11.26.5",
     "last_verified": "2026-11-08",
     "built": "2026-11-26",
     "coords_snapshot": "2026-11-08T13:00:21Z",
@@ -208,14 +208,15 @@
           "08:00-11:00",
           "16:00-20:00"
         ],
-        "hours_source": "mahametro_project_profile",
+        "hours_source": "mahametro_timetable",
         "hours_verified": true,
-        "headway_source": "urbanacres_frequency",
-        "headway_verified": false,
-        "end_to_end_min": null,
-        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro.",
-        "note_mr": "अधिकृत सेवा वेळ 06:00 ते 23:00 आहे. महामेट्रोने प्रत्येक टोकावरून सुटणाऱ्या शेवटच्या मेट्रोची वेळ जाहीर केलेली नाही. वारंवारता महामेट्रोचा हवाला देणाऱ्या सप्टेंबर 2026 मधील एका बातमीवरून घेतली आहे.",
-        "note_hi": "आधिकारिक सेवा समय 06:00 से 23:00 है। महामेट्रो ने हर छोर से छूटने वाली आख़िरी मेट्रो का समय प्रकाशित नहीं किया है। फ़्रीक्वेंसी महामेट्रो के हवाले से सितंबर 2026 की एक ख़बर से ली गई है।"
+        "headway_source": "mahametro_timetable",
+        "headway_verified": true,
+        "note": "The published service window is 06:00 to 23:00. The timetable gives no last departure for each terminal.",
+        "note_mr": "प्रसिद्ध वेळापत्रकानुसार सेवा 06:00 ते 23:00 आहे. प्रत्येक टोकावरून सुटणाऱ्या शेवटच्या मेट्रोची वेळ दिलेली नाही.",
+        "note_hi": "प्रकाशित समय सारणी के अनुसार सेवा 06:00 से 23:00 तक है। प्रत्येक छोर से आखिरी ट्रेन के प्रस्थान का समय नहीं दिया गया है।",
+        "end_to_end_min": 34,
+        "end_to_end_km": 17.5
       }
     },
     {
@@ -310,14 +311,15 @@
           "08:00-11:00",
           "16:00-20:00"
         ],
-        "hours_source": "mahametro_project_profile",
+        "hours_source": "mahametro_timetable",
         "hours_verified": true,
-        "headway_source": "urbanacres_frequency",
-        "headway_verified": false,
-        "end_to_end_min": null,
-        "note": "Official service hours are 06:00 to 23:00. Maha Metro has not published the last departure from each end. Frequency is from a September 2026 report citing Maha Metro.",
-        "note_mr": "अधिकृत सेवा वेळ 06:00 ते 23:00 आहे. महामेट्रोने प्रत्येक टोकावरून सुटणाऱ्या शेवटच्या मेट्रोची वेळ जाहीर केलेली नाही. वारंवारता महामेट्रोचा हवाला देणाऱ्या सप्टेंबर 2026 मधील एका बातमीवरून घेतली आहे.",
-        "note_hi": "आधिकारिक सेवा समय 06:00 से 23:00 है। महामेट्रो ने हर छोर से छूटने वाली आख़िरी मेट्रो का समय प्रकाशित नहीं किया है। फ़्रीक्वेंसी महामेट्रो के हवाले से सितंबर 2026 की एक ख़बर से ली गई है।"
+        "headway_source": "mahametro_timetable",
+        "headway_verified": true,
+        "note": "The published service window is 06:00 to 23:00. The timetable gives no last departure for each terminal.",
+        "note_mr": "प्रसिद्ध वेळापत्रकानुसार सेवा 06:00 ते 23:00 आहे. प्रत्येक टोकावरून सुटणाऱ्या शेवटच्या मेट्रोची वेळ दिलेली नाही.",
+        "note_hi": "प्रकाशित समय सारणी के अनुसार सेवा 06:00 से 23:00 तक है। प्रत्येक छोर से आखिरी ट्रेन के प्रस्थान का समय नहीं दिया गया है।",
+        "end_to_end_min": 37,
+        "end_to_end_km": 14.5
       }
     },
     {
@@ -7246,6 +7248,12 @@
       "kind": "official",
       "read_on": "2026-11-08"
     },
+    "mahametro_timetable": {
+      "title": "Maha Metro Purple and Aqua operating timetable (effective 15 August 2025)",
+      "url": "https://www.punemetrorail.org/assets/images/Time-Table-new-2-15Aug.jpg",
+      "kind": "official",
+      "read_on": "2026-11-26"
+    },
     "mahametro_hours_notice": {
       "title": "Maha Metro timetable notice: regular service 06:00 to 23:00 (Aug 2025)",
       "url": "https://www.punemetrorail.org/assets/images/home_popup/Time-Tablenew2.jpg",
@@ -7467,7 +7475,7 @@
   },
   "open_issues": [
     "The official Maha Metro fare chart prints different fares in each direction for 11 station pairs; confirm which applies (the app shows a range).",
-    "Maha Metro publishes service hours (06:00 to 23:00) but not the last departure from each end, travel times or an official frequency for the Purple and Aqua lines.",
+    "Terminal-specific last departures for Purple and Aqua still need confirmation.",
     "Verify Purple Line Marathi names (written from knowledge, flagged mr_verified=false).",
     "Confirm whether Pink Line trains run through not-yet-open stations without stopping.",
     "Purple and Aqua station facilities are incomplete: Maha Metro doesn't publish them station by station, so gates, lifts, parking and feeder buses come from its press releases and timetables, news reports and OpenStreetMap.",
@@ -7475,7 +7483,7 @@
   ],
   "open_issues_mr": [
     "अधिकृत महामेट्रो भाडे तक्त्यात 11 स्थानक-जोड्यांसाठी दोन्ही दिशांना वेगवेगळे भाडे छापलेले आहे; कोणते लागू होते याची खात्री करायची आहे (ॲप भाड्याची श्रेणी दाखवते).",
-    "महामेट्रो सेवा वेळ (06:00 ते 23:00) जाहीर करते, पण पर्पल आणि ॲक्वा लाईनसाठी प्रत्येक टोकावरून सुटणारी शेवटची मेट्रो, प्रवास वेळ किंवा अधिकृत वारंवारता जाहीर करत नाही.",
+    "पर्पल आणि ॲक्वा लाईनच्या प्रत्येक टोकावरील शेवटच्या मेट्रोची वेळ तपासायची आहे.",
     "पर्पल लाईनवरील स्थानकांची मराठी नावे पडताळायची आहेत.",
     "पिंक लाईनवरील अद्याप सुरू नसलेल्या स्थानकांवर मेट्रो न थांबता जाते का, याची खात्री करायची आहे.",
     "पर्पल आणि ॲक्वा लाईनच्या स्थानकांवरील सुविधांची माहिती अपूर्ण आहे: महामेट्रो ती प्रत्येक स्थानकासाठी प्रसिद्ध करत नाही, त्यामुळे प्रवेशद्वारे, लिफ्ट, पार्किंग आणि फीडर बसची माहिती तिच्या प्रसिद्धीपत्रकांतून, वेळापत्रकांतून, बातम्यांतून आणि ओपनस्ट्रीटमॅपवरून घेतली आहे.",
@@ -7483,7 +7491,7 @@
   ],
   "open_issues_hi": [
     "महामेट्रो के आधिकारिक किराया चार्ट में 11 स्टेशन-जोड़ियों के लिए दोनों दिशाओं में अलग-अलग किराया छपा है; कौन-सा लागू होता है, इसकी पुष्टि करनी है (ऐप किराये की रेंज दिखाता है)।",
-    "महामेट्रो सेवा समय (06:00 से 23:00) प्रकाशित करता है, लेकिन पर्पल और एक्वा लाइन के लिए हर छोर से आख़िरी मेट्रो, यात्रा समय या आधिकारिक फ़्रीक्वेंसी प्रकाशित नहीं करता।",
+    "पर्पल और एक्वा लाइन के प्रत्येक छोर से आखिरी ट्रेन के प्रस्थान का समय सत्यापित करना बाकी है।",
     "पर्पल लाइन के स्टेशनों के मराठी नामों की पुष्टि करनी है।",
     "पिंक लाइन पर जो स्टेशन अभी नहीं खुले, वहाँ मेट्रो बिना रुके गुज़रती है या नहीं, इसकी पुष्टि करनी है।",
     "पर्पल और एक्वा लाइन के स्टेशनों की सुविधाओं की जानकारी अधूरी है: महामेट्रो इसे हर स्टेशन के लिए अलग से प्रकाशित नहीं करता, इसलिए गेट, लिफ़्ट, पार्किंग और फ़ीडर बसों की जानकारी उसकी प्रेस विज्ञप्तियों, समय सारणियों, ख़बरों और ओपनस्ट्रीटमैप से ली गई है।",

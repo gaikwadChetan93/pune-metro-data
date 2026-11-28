@@ -23,7 +23,7 @@
     est: "अंदाज", min: "मि.", board: "{line} पकडा", towards: "{end} कडे", ride: "{n} थांबे", ride1: "1 थांबा",
     show: "{n} स्थानके दाखवा", hide: "लपवा", change_at: "{s} येथे {line} मध्ये बदला", arrive: "उतरा",
     ticket: "तिकीट", tickets: "{n} तिकिटे", skip: "थांबत नाही",
-    est_note: "मेट्रोतील वेळेचा अंदाज स्थानकांमधील अंतर आणि पिंक लाईनच्या अधिकृत एका टोकापासून दुसऱ्या टोकापर्यंतच्या वेळेवरून काढला आहे; ही अधिकृत वेळ नाही. प्रतीक्षा आणि मार्ग बदलण्याचा वेळ त्यात नाही.",
+    est_note: "प्रत्येक मार्गिकेचा प्रसिद्ध प्रवासवेळ आणि प्रवासातील स्थानकांमधील टप्पे यांवर आधारित अंदाज. प्रतीक्षा आणि मार्गिका बदलण्यासाठी जादा वेळ धरा.",
     range_note: "अधिकृत महामेट्रो तक्त्यात काही स्थानक-जोड्यांसाठी दोन्ही दिशांना वेगवेगळे भाडे छापलेले आहे, त्यामुळे भाडे श्रेणीत दाखवले आहे.",
     two_note: "या प्रवासासाठी दोन तिकिटे लागतात: एक पुणेरी मेट्रोचे आणि एक महामेट्रोचे. अधिकृत ॲप दोन्ही एकाच पेमेंटमध्ये देते.",
     closed_note: "मार्गावरील काही स्थानके अद्याप सुरू नाहीत; मेट्रो तिथे थांबत नाही.",
@@ -38,7 +38,7 @@
     est: "estimate", min: "min", board: "Board the {line}", towards: "towards {end}", ride: "{n} stops", ride1: "1 stop",
     show: "Show {n} stations", hide: "Hide", change_at: "Change at {s} to the {line}", arrive: "Get off",
     ticket: "1 ticket", tickets: "{n} tickets", skip: "doesn't stop",
-    est_note: "Time on the train is our estimate from station distances and the Pink Line's published end-to-end time. It's not an official figure and doesn't include waiting or changing trains.",
+    est_note: "Estimated from the published travel time for each line and the number of station intervals travelled. Allow extra time for waits and transfers.",
     range_note: "The official Maha Metro chart prints a different fare in each direction for a few station pairs, so this shows a range.",
     two_note: "This trip needs two tickets: one from Puneri Metro (Pink Line) and one from Maha Metro. The official app sells both in one payment.",
     closed_note: "Some stations on the way aren't open yet; trains run through without stopping.",
@@ -536,6 +536,7 @@
   }
   var isOpen = function (l, s) { return NET.status[l + "|" + s] === "open"; };
   var stOpen = function (s) { return NET.st[s].l.some(function (l) { return isOpen(l, s); }); };
+  var canTransfer = function (id) { return NET.st[id].l.filter(function (l) { return isOpen(l, id); }).length > 1; };
   var sname = function (s) { var x = NET.st[s]; return MR ? (x.mr || x.en) : x.en; };
   var lname = function (l) { return MR ? NET.lines[l].nm : NET.lines[l].n; };
   var money = function (lo, hi) { return lo === hi ? "₹" + lo : "₹" + lo + "–" + hi; };
@@ -544,11 +545,6 @@
     var lo = 1e9, hi = 0;
     ix[a].forEach(function (i) { ix[b].forEach(function (k) { [c.r[i][k], c.r[k][i]].forEach(function (v) { lo = Math.min(lo, v); hi = Math.max(hi, v); }); }); });
     return [lo, hi];
-  }
-  function hav(a, b) {
-    var R = 6371, p = Math.PI / 180, A = NET.st[a].ll, B = NET.st[b].ll;
-    var x = Math.sin((B[0] - A[0]) * p / 2), y = Math.sin((B[1] - A[1]) * p / 2);
-    return 2 * R * Math.asin(Math.sqrt(x * x + Math.cos(A[0] * p) * Math.cos(B[0] * p) * y * y));
   }
   /* Fewest changes, then fewest stations: the app's planner (and build_site.py's). */
   function trip(a, b) {
@@ -573,11 +569,12 @@
     return best ? info(best[2]) : null;
   }
   function info(legs) {
-    var out = [], km = 0;
+    var out = [], minutes = 0;
     legs.forEach(function (lg) {
       var l = lg[0], ids = NET.lines[l].ids, i = ids.indexOf(lg[1]), j = ids.indexOf(lg[2]), step = j > i ? 1 : -1, path = [];
       for (var k = i; k !== j + step; k += step) path.push(ids[k]);
-      for (var m = 1; m < path.length; m++) km += hav(path[m - 1], path[m]);
+      var full = NET.lines[l].minutes;
+      minutes = full == null || minutes == null ? null : minutes + full * Math.abs(j - i) / (ids.length - 1);
       var mid = path.slice(1, -1);
       out.push({ line: l, from: lg[1], to: lg[2], mid: mid, stops: mid.filter(function (s) { return isOpen(l, s); }).length + 1, towards: step === 1 ? ids[ids.length - 1] : ids[0] });
     });
@@ -588,7 +585,7 @@
     });
     var lo = 0, hi = 0;
     for (var n = 0; n < tk.length; n++) { var q = quote(tk[n].op, tk[n].from, tk[n].to); if (!q) return null; tk[n].fare = q; lo += q[0]; hi += q[1]; }
-    return { legs: out, tickets: tk, fare: [lo, hi], min: Math.max(2, Math.round(km * NET.mpk)) };
+    return { legs: out, tickets: tk, fare: [lo, hi], min: minutes == null ? null : Math.round(minutes) };
   }
 
   /* ---------- combobox ---------- */
@@ -622,7 +619,7 @@
         if (q && !MR) { var at = s.en.toLowerCase().indexOf(input.value.trim().toLowerCase()); if (at > -1 && input.value.trim()) nm = esc(s.en.slice(0, at)) + "<mark>" + esc(s.en.slice(at, at + input.value.trim().length)) + "</mark>" + esc(s.en.slice(at + input.value.trim().length)); }
         return '<li role="option" id="' + list.id + "-" + i + '" data-id="' + id + '"' + (i === act ? ' aria-selected="true"' : "") + (open ? "" : ' class="closed"') + ">" +
           '<span class="pips">' + s.l.map(function (l) { return '<i class="pip" style="--c:' + NET.lines[l].c + '"></i>'; }).join("") + "</span>" +
-          '<span class="nm">' + nm + "</span>" + (open ? (s.l.length > 1 ? '<span class="sub">' + esc(S.interchange) + "</span>" : "") : '<span class="sub">' + esc(S.closed) + "</span>") + "</li>";
+          '<span class="nm">' + nm + "</span>" + (open ? (canTransfer(s.id) ? '<span class="sub">' + esc(S.interchange) + "</span>" : "") : '<span class="sub">' + esc(S.closed) + "</span>") + "</li>";
       }).join("");
       input.setAttribute("aria-activedescendant", act > -1 ? list.id + "-" + act : "");
     };
@@ -752,7 +749,7 @@
     notes.push(["", S.est_note]);
     return '<div class="res-grid"><div>' +
       '<div class="res-sum"><div class="kpi fare"><span>' + esc(S.fare) + "</span><b>" + money(t.fare[0], t.fare[1]) + "</b></div>" +
-      '<div class="kpi"><span>' + esc(S.time) + ' <span class="tag est">' + esc(S.est) + "</span></span><b>≈" + t.min + " " + esc(S.min) + "</b></div>" +
+      '<div class="kpi"><span>' + esc(S.time) + ' <span class="tag est">' + esc(S.est) + "</span></span><b>" + (t.min == null ? "—" : "≈" + t.min + " " + esc(S.min)) + "</b></div>" +
       '<div class="kpi"><span>' + esc(S.stops) + "</span><b>" + stops + '</b><span>' + esc(changes ? changes + " " + S.change : S.none) + "</span></div></div>" +
       tks + '<p class="tiny muted">' + esc(S.fare_src) + ".</p>" +
       '<div class="res-notes">' + notes.map(function (n) { return '<p class="note ' + n[0] + '">' + (n[0] ? ICON.warn : ICON.info) + "<span>" + esc(n[1]) + "</span></p>"; }).join("") + "</div>" +
@@ -848,18 +845,17 @@
       sel && sel.classList.remove("sel"); sel = a; a.classList.add("sel");
       loadNet().then(function () {
         var s = NET.st[id];
-        track("metro_map_station_select", { station_id: s.slug, station_name: s.en, metro_line: s.l.join(" "), is_interchange: s.l.length > 1,
+        track("metro_map_station_select", { station_id: s.slug, station_name: s.en, metro_line: s.l.join(" "), is_interchange: canTransfer(id),
           station_status: stOpen(id) ? "open" : "not_open", map_location: PG });
         var mpa = function (action) { return ' data-track="metro_map_panel_action" data-track-action="' + action + '" data-track-station_id="' + esc(s.slug) + '" data-track-map_location="' + esc(PG) + '"'; };
         var rows = s.l.map(function (l) {
           var st = NET.status[l + "|" + id];
           return '<div><dt><span class="lbadge" style="--c:' + NET.lines[l].c + '">' + esc(lname(l)) + "</span></dt><dd>" + esc(st === "open" ? S.open : st === "under_construction" ? S.uc : S.closed) + "</dd></div>";
         }).join("");
-        if (s.f) rows += "<div><dt>" + esc(S.first) + '</dt><dd class="num">' + esc(s.f) + "</dd></div>";
         if (s.near) rows += "<div><dt>" + esc(S.near) + "</dt><dd>" + esc(MR ? (s.nearm || s.near) : s.near) + "</dd></div>";
         var open = stOpen(id), planner = $("[data-planner]");
         panel.innerHTML = "<div><h3>" + esc(sname(id)) + '</h3><p class="alt-name" lang="' + (MR ? "en" : "mr") + '">' + esc(MR ? s.en : s.mr) + "</p></div>" +
-          (s.l.length > 1 ? '<p><span class="tag violet">' + esc(S.interchange) + "</span></p>" : "") +
+          (canTransfer(id) ? '<p><span class="tag violet">' + esc(S.interchange) + "</span></p>" : "") +
           '<dl class="mp-rows">' + rows + "</dl>" +
           '<div class="mp-actions">' + (open ? '<a class="btn btn-sm btn-violet" data-pick="from"' + mpa("plan_from") + ' href="' + planUrl(id) + '">' + esc(S.from_here) + '</a><a class="btn btn-sm btn-ghost" data-pick="to"' + mpa("plan_to") + ' href="' + planUrl(null, id) + '">' + esc(S.to_here) + "</a>" : "") +
           '<a class="btn btn-sm btn-ghost"' + mpa("station_details") + ' href="' + stUrl(id) + '">' + esc(S.details) + "</a></div>";
